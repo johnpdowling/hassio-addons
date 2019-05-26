@@ -10,6 +10,7 @@ LABEL Description="This image is used to start a Flask API server that will act 
 
 # Copy data
 COPY *.sh /
+RUN chmod +x /*.sh
 
 #install environment
 RUN apk add --no-cache --virtual build-deps alpine-sdk cmake git \
