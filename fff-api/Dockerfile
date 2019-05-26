@@ -13,9 +13,9 @@ COPY *.sh /
 
 #install environment
 RUN apk add --update build-deps alpine-sdk cmake git \
-            python python-dev py-pip build-base && \
-    pip install Flask && \
-    mkdir /fff-api && cd /fff-api && \
+            python python-dev py-pip build-base
+RUN pip install Flask
+RUN mkdir /fff-api && cd /fff-api && \
     git clone https://github.com/01F0/flashforge-finder-api.git
     
 CMD cd / && /run.sh
