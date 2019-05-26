@@ -15,7 +15,7 @@ RUN chmod +x /*.sh
 #install environment
 RUN apk add --no-cache --virtual build-deps alpine-sdk cmake git \
             python python-dev py-pip build-base
-RUN pip install Flask
+RUN pip install flask flask-cors --upgrade
 RUN git clone https://github.com/01F0/flashforge-finder-api.git /fff-api
     
 CMD cd / && /run.sh
