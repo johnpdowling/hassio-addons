@@ -12,7 +12,7 @@ LABEL Description="This image is used to start a Flask API server that will act 
 COPY *.sh /
 
 #install environment
-RUN apk add --update build-deps alpine-sdk cmake git \
+RUN apk add --no-cache build-deps alpine-sdk cmake git \
             python python-dev py-pip build-base
 RUN pip install Flask
 RUN mkdir /fff-api && cd /fff-api && \
