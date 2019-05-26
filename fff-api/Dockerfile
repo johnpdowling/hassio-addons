@@ -16,7 +16,6 @@ RUN chmod +x /*.sh
 RUN apk add --no-cache --virtual build-deps alpine-sdk cmake git \
             python python-dev py-pip build-base
 RUN pip install Flask
-RUN mkdir /fff-api && cd /fff-api && \
-    git clone https://github.com/01F0/flashforge-finder-api.git
+RUN git clone https://github.com/01F0/flashforge-finder-api.git /fff-api
     
 CMD cd / && /run.sh
