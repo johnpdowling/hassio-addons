@@ -13,6 +13,7 @@ RUN apk update \
         curl=7.64.0-r1 \
         tzdata=2019a-r0 
 RUN apk add --no-cache --virtual jq musl-dev build-base build-dependencies linux-headers
+RUN apk py-pillow
 
 #redis, nginx
 RUN apk add --no-cache --virtual redis-server nginx
