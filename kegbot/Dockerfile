@@ -23,8 +23,6 @@ ADD nginx.conf /etc/nginx/nginx.conf
 RUN mkdir /app
 #WORKDIR /app
 #ENV PATH="/app/bin:${PATH}"
-COPY /app/bin/kegbot /bin/
-COPY /app/bin/*.py /bin/
 
 ENV KEGBOT_VERSION=master
 RUN apk add --no-cache --virtual curl tar \
@@ -43,6 +41,7 @@ RUN rm -rf /tmp/kegbot*
 
 RUN mkdir -p /etc/kegbot
 COPY local_settings.py /etc/kegbot/
+COPY /app/bin/* /bin/
 
 ADD     run.sh /run.sh
 RUN     chmod 700 /run.sh
