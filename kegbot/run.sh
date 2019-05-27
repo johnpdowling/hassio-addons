@@ -1,4 +1,5 @@
 #!/bin/bash -ex
+set -e
 CONFIG_PATH=/data/options.json
 # Run script for kegbot appserver.
 
