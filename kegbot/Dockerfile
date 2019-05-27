@@ -9,10 +9,11 @@ RUN apk add --no-cache --virtual redis-server nginx
 ADD kegbot.conf /etc/nginx/conf.d/default.conf
 ADD nginx.conf /etc/nginx/nginx.conf
 
+#kb
 RUN mkdir /app
 #WORKDIR /app
+ENV PATH="/app/bin:${PATH}"
 
-#kb
 ENV KEGBOT_VERSION=master
 RUN apk add --no-cache --virtual curl tar \
      && curl -k -L https://github.com/Kegbot/kegbot-server/archive/${KEGBOT_VERSION}.tar.gz -o /tmp/kegbot.tar.gz \
