@@ -23,10 +23,10 @@ RUN apk add --no-cache --virtual gcc musl-dev \
      && apk add zlib-dev libjpeg-turbo libjpeg-turbo-dev libjpeg openjpeg \
      && apk add mysql-client \
      && apk add mariadb-dev
-RUN ls -la ./ \
-     && python ./setup.py install \
-     && apk del musl-dev gcc \
-     && rm -rf /tmp/kegbot*
+RUN ls -la ./ 
+RUN python ./setup.py install 
+RUN apk del musl-dev gcc 
+RUN rm -rf /tmp/kegbot*
 
 RUN mkdir -p /etc/kegbot
 COPY local_settings.py /etc/kegbot/
