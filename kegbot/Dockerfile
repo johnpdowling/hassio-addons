@@ -11,9 +11,9 @@ RUN apk update \
         musl=1.1.20-r4 \
         bash=4.4.19-r1 \
         curl=7.64.0-r1 \
-        jq=1.6-r0 \
         tzdata=2019a-r0 
-    
+RUN apk add --no-cache jq
+
 #redis, nginx
 RUN apk add --no-cache --virtual redis-server nginx
 ADD kegbot.conf /etc/nginx/conf.d/default.conf
