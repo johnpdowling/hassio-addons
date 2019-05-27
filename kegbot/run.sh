@@ -84,6 +84,10 @@ run_daemons() {
   kegbot run_all --logs_dir=/kegbot-data --gunicorn_options="-b 0.0.0.0:8000"
 }
 
+setup() {
+  python /app/setup.py install
+}
+
 run_all() {
   setup_env
 
@@ -100,4 +104,5 @@ run_all() {
   #done
 }
 
-run_all
+setup
+#run_all
