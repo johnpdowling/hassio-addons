@@ -37,7 +37,7 @@
   ],
   "apparmor": false,
   "map": [
-    "config:rw"
+    "config:rw",
     "ssl"
   ],
   "options": {
