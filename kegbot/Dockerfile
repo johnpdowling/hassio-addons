@@ -5,14 +5,14 @@ FROM python:2.7-alpine
 RUN apk update \ 
 #    apk add --no-cache python2 python-dev py-pip python-pip py-virtualenv build-base build-dependencies
     apk add --no-cache --virtual \
-        libcrypto1.1=1.1.1b-r1 \
-        libssl1.1=1.1.1b-r1 \
-        musl-utils=1.1.20-r4 \
-        musl=1.1.20-r4 \
-        bash=4.4.19-r1 \
-        curl=7.64.0-r1 \
-        tzdata=2019a-r0 
-RUN apk add --no-cache --virtual jq musl-dev build-base build-dependencies linux-headers
+        libcrypto1.1 \
+        libssl1.1 \
+        musl-utils \
+        musl \
+        bash \
+        curl \
+        tzdata
+RUN apk add --no-cache --virtual jq musl-dev build-base build-dependencies linux-headers linux-kernel-headers
 RUN apk add --no-cache py-pillow
 
 #redis, nginx
@@ -33,7 +33,7 @@ RUN apk add --no-cache --virtual curl tar \
      && cp -r /tmp/kegbot-server-${KEGBOT_VERSION}/* /app/ \
      && cp -r /tmp/kegbot-server-${KEGBOT_VERSION}/bin/* /bin/
      
-RUN apk add --no-cache --virtual gcc musl-dev libc-dev \
+RUN apk add --no-cache --virtual gcc musl-dev \
      && apk add --no-cache zlib-dev libjpeg-turbo libjpeg-turbo-dev libjpeg openjpeg \
      && apk add --no-cache mysql-client \
      && apk add --no-cache mariadb-dev
