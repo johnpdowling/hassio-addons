@@ -41,7 +41,9 @@ RUN rm -rf /tmp/kegbot*
 
 RUN mkdir -p /etc/kegbot
 COPY local_settings.py /etc/kegbot/
-COPY /app/bin/* /bin/
+COPY /app/bin/kegbot /bin/
+COPY /app/bin/setup-kegbot.py /bin/
+
 
 ADD     run.sh /run.sh
 RUN     chmod 700 /run.sh
