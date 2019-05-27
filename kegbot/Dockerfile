@@ -15,7 +15,7 @@ RUN apk update \
         tzdata=2019a-r0 
     
 #redis, nginx
-RUN apk add --no-cache redis-server nginx
+RUN apk add --no-cache --virtual redis-server nginx
 ADD kegbot.conf /etc/nginx/conf.d/default.conf
 ADD nginx.conf /etc/nginx/nginx.conf
 
