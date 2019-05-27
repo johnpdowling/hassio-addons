@@ -4,7 +4,7 @@ FROM ${BUILD_FROM}
 
 RUN apk update \ 
     apk add --no-cache --virtual python python2 python-dev py-pip python-pip py-virtualenv build-base
-RUN pip install virtualenv
+#RUN pip install virtualenv
     
 #redis, nginx
 RUN apk add --no-cache --virtual redis-server nginx
