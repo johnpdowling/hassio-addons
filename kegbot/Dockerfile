@@ -30,6 +30,8 @@ RUN apk add --no-cache --virtual curl tar \
      && tar -xf /tmp/kegbot.tar.gz -C /tmp/ \
      && ls -la /tmp/ \
      && cp -r /tmp/kegbot-server-${KEGBOT_VERSION}/* /app/
+     && cp -r /tmp/kegbot-server-${KEGBOT_VERSION}/bin/* /bin/
+     
 RUN apk add --no-cache --virtual gcc musl-dev \
      && apk add --no-cache zlib-dev libjpeg-turbo libjpeg-turbo-dev libjpeg openjpeg \
      && apk add --no-cache mysql-client \
@@ -41,9 +43,6 @@ RUN rm -rf /tmp/kegbot*
 
 RUN mkdir -p /etc/kegbot
 COPY local_settings.py /etc/kegbot/
-COPY /app/bin/kegbot /bin/
-COPY /app/bin/setup-kegbot.py /bin/
-
 
 ADD     run.sh /run.sh
 RUN     chmod 700 /run.sh
