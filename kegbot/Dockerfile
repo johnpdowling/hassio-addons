@@ -2,11 +2,10 @@ ARG BUILD_FROM=hassioaddons/base:3.1.0
 FROM ${BUILD_FROM}
 
 RUN apk update \ 
-    apk add bash python python-dev py-pip
+    apk add --no-cache --virtual bash python python-dev py-pip
     
 #redis, nginx
-RUN apk add redis-server \
-            nginx
+RUN apk add --no-cache --virtual redis-server nginx
 ADD kegbot.conf /etc/nginx/conf.d/default.conf
 ADD nginx.conf /etc/nginx/nginx.conf
 
