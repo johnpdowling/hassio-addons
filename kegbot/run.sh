@@ -17,11 +17,11 @@ do_mysql() {
 
 setup_env() {
   #pull from options
-  KEGBOT_DB_NAME=$(/usr/bin/jq --raw-output '.db_name' $CONFIG_PATH)
-  KEGBOT_DB_HOST=$(/usr/bin/jq --raw-output '.db_host' $CONFIG_PATH)
-  KEGBOT_DB_PORT=$(/usr/bin/jq --raw-output '.db_port' $CONFIG_PATH)
-  KEGBOT_DB_USER=$(/usr/bin/jq --raw-output '.db_user' $CONFIG_PATH)
-  KEGBOT_DB_PASS=$(/usr/bin/jq --raw-output '.db_pass' $CONFIG_PATH)
+  KEGBOT_DB_NAME=$(jq --raw-output '.db_name' $CONFIG_PATH)
+  KEGBOT_DB_HOST=$(jq --raw-output '.db_host' $CONFIG_PATH)
+  KEGBOT_DB_PORT=$(jq --raw-output '.db_port' $CONFIG_PATH)
+  KEGBOT_DB_USER=$(jq --raw-output '.db_user' $CONFIG_PATH)
+  KEGBOT_DB_PASS=$(jq --raw-output '.db_pass' $CONFIG_PATH)
 
 
   # Set defaults
@@ -90,14 +90,14 @@ run_all() {
   wait_for_mysql
   #wait_for_redis
 
-  #maybe_setup_kegbot
+  maybe_setup_kegbot
   ls -ld /kegbot-data
   ls -l /kegbot-data
   echo `date` >> /kegbot-data/runlog
-  #run_daemons
-  while true; do
-     sleep 20
-  done
+  run_daemons
+  #while true; do
+  #   sleep 20
+  #done
 }
 
 run_all
