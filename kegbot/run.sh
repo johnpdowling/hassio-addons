@@ -95,6 +95,9 @@ run_all() {
   ls -l /kegbot-data
   echo `date` >> /kegbot-data/runlog
   #run_daemons
+  while true; do
+     sleep 20
+  done
 }
 
 run_all
