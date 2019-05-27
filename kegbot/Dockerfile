@@ -1,10 +1,18 @@
-ARG BUILD_FROM=hassioaddons/base:3.1.0
-FROM ${BUILD_FROM}
-#FROM python:2.7-alpine
+#ARG BUILD_FROM=hassioaddons/base:3.1.0
+#FROM ${BUILD_FROM}
+FROM python:2.7-alpine
 
 RUN apk update \ 
-    apk add --no-cache python2 python-dev py-pip python-pip py-virtualenv build-base build-dependencies
-RUN pip install virtualenv
+#    apk add --no-cache python2 python-dev py-pip python-pip py-virtualenv build-base build-dependencies
+    apk add --no-cache \
+        libcrypto1.1=1.1.1b-r1 \
+        libssl1.1=1.1.1b-r1 \
+        musl-utils=1.1.20-r4 \
+        musl=1.1.20-r4 \
+        bash=4.4.19-r1 \
+        curl=7.64.0-r1 \
+        jq=1.6-r0 \
+        tzdata=2019a-r0 
     
 #redis, nginx
 RUN apk add --no-cache redis-server nginx
