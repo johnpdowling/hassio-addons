@@ -14,7 +14,7 @@ WORKDIR /app
 
 #kb
 ENV KEGBOT_VERSION=master
-RUN apk add --no-cache --virtual curl \
+RUN apk add --no-cache --virtual curl tar \
      && curl -k -L https://github.com/Kegbot/kegbot-server/archive/${KEGBOT_VERSION}.tar.gz -o /tmp/kegbot.tar.gz \
      && tar -xf /tmp/kegbot.tar.gz -C /tmp/ \
      && ls -la /tmp/ \
