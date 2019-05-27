@@ -35,9 +35,9 @@ RUN apk add --no-cache --virtual gcc musl-dev \
      && apk add --no-cache mysql-client \
      && apk add --no-cache mariadb-dev
 RUN ls -la ./ 
-#RUN python /app/setup.py install 
+RUN python /app/setup.py install 
 #RUN apk del musl-dev gcc 
-#RUN rm -rf /tmp/kegbot*
+RUN rm -rf /tmp/kegbot*
 
 RUN mkdir -p /etc/kegbot
 COPY local_settings.py /etc/kegbot/
