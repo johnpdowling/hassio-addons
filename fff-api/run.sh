@@ -7,7 +7,7 @@ LOCAL_ONLY=$(jq --raw-output '.local_only' $CONFIG_PATH)
 WAIT_TIME=10
 
 HOST=""
-if [ !LOCAL_ONLY ]
+if [ !$LOCAL_ONLY ]
 then
 HOST="--host=0.0.0.0"
 fi
