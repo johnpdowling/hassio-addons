@@ -1,5 +1,5 @@
 #!/bin/bash -ex
-
+CONFIG_PATH=/data/options.json
 # Run script for kegbot appserver.
 
 die() {
