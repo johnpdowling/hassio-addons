@@ -1,8 +1,9 @@
-ARG BUILD_FROM=hassioaddons/base:3.1.0
-FROM ${BUILD_FROM}
+#ARG BUILD_FROM=hassioaddons/base:3.1.0
+#FROM ${BUILD_FROM}
+FROM python:2.7-alpine
 
 RUN apk update \ 
-    apk add --no-cache --virtual bash python python2 python-dev py-pip python-pip
+    apk add --no-cache --virtual bash //python python2 python-dev py-pip python-pip
     
 #redis, nginx
 RUN apk add --no-cache --virtual redis-server nginx
