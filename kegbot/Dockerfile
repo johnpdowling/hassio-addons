@@ -32,7 +32,7 @@ RUN apk add --no-cache --virtual curl tar \
      && cp -r /tmp/kegbot-server-${KEGBOT_VERSION}/* /app/ \
      && cp -r /tmp/kegbot-server-${KEGBOT_VERSION}/bin/* /bin/
      
-RUN apk add --no-cache --virtual gcc musl-dev \
+RUN apk add --no-cache --virtual gcc musl-dev libc-dev \
      && apk add --no-cache zlib-dev libjpeg-turbo libjpeg-turbo-dev libjpeg openjpeg \
      && apk add --no-cache mysql-client \
      && apk add --no-cache mariadb-dev
