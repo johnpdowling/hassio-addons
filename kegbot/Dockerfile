@@ -5,7 +5,7 @@ RUN apk update \
     apk add bash python python-dev py-pip
     
 #redis, nginx
-RUN apk add redis-server
+RUN apk add redis-server \
             nginx
 ADD kegbot.conf /etc/nginx/conf.d/default.conf
 ADD nginx.conf /etc/nginx/nginx.conf
