@@ -3,11 +3,11 @@ FROM ${BUILD_FROM}
 #FROM python:2.7-alpine
 
 RUN apk update \ 
-    apk add --no-cache --virtual python python2 python-dev py-pip python-pip py-virtualenv build-base
-#RUN pip install virtualenv
+    apk add --no-cache python2 python-dev py-pip python-pip py-virtualenv build-base build-dependencies
+RUN pip install virtualenv
     
 #redis, nginx
-RUN apk add --no-cache --virtual redis-server nginx
+RUN apk add --no-cache redis-server nginx
 ADD kegbot.conf /etc/nginx/conf.d/default.conf
 ADD nginx.conf /etc/nginx/nginx.conf
 
@@ -23,9 +23,9 @@ RUN apk add --no-cache --virtual curl tar \
      && ls -la /tmp/ \
      && cp -r /tmp/kegbot-server-${KEGBOT_VERSION}/* /app/
 RUN apk add --no-cache --virtual gcc musl-dev \
-     && apk add zlib-dev libjpeg-turbo libjpeg-turbo-dev libjpeg openjpeg \
-     && apk add mysql-client \
-     && apk add mariadb-dev
+     && apk add --no-cache zlib-dev libjpeg-turbo libjpeg-turbo-dev libjpeg openjpeg \
+     && apk add --no-cache mysql-client \
+     && apk add --no-cache mariadb-dev
 RUN ls -la ./ 
 #RUN python /app/setup.py install 
 #RUN apk del musl-dev gcc 
