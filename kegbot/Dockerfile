@@ -14,16 +14,16 @@ WORKDIR /app
 
 #kb
 ENV KEGBOT_VERSION=master
-RUN  apk add curl \
+RUN apk add --no-cache --virtual curl \
      && curl -k -L https://github.com/Kegbot/kegbot-server/archive/${KEGBOT_VERSION}.tar.gz -o /tmp/kegbot.tar.gz \
      && tar -xf /tmp/kegbot.tar.gz -C /tmp/ \
      && ls -la /tmp/ \
-     && cp -r /tmp/kegbot-server-${KEGBOT_VERSION}/* /app/ \
-     && apk add gcc musl-dev \
+     && cp -r /tmp/kegbot-server-${KEGBOT_VERSION}/* /app/
+RUN apk add --no-cache --virtual gcc musl-dev \
      && apk add zlib-dev libjpeg-turbo libjpeg-turbo-dev libjpeg openjpeg \
      && apk add mysql-client \
-     && apk add mariadb-dev \
-     && ls -la ./ \
+     && apk add mariadb-dev
+RUN ls -la ./ \
      && python ./setup.py install \
      && apk del musl-dev gcc \
      && rm -rf /tmp/kegbot*
