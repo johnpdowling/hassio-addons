@@ -90,11 +90,11 @@ run_all() {
   wait_for_mysql
   #wait_for_redis
 
-  maybe_setup_kegbot
+  #maybe_setup_kegbot
   ls -ld /kegbot-data
   ls -l /kegbot-data
   echo `date` >> /kegbot-data/runlog
-  run_daemons
+  #run_daemons
 }
 
 run_all
