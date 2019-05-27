@@ -2,7 +2,7 @@ ARG BUILD_FROM=hassioaddons/base:3.1.0
 FROM ${BUILD_FROM}
 
 RUN apk update \ 
-    apk add --no-cache --virtual bash python python-dev py-pip
+    apk add --no-cache --virtual bash python python-dev py-pip python-pip
     
 #redis, nginx
 RUN apk add --no-cache --virtual redis-server nginx
@@ -24,7 +24,7 @@ RUN apk add --no-cache --virtual gcc musl-dev \
      && apk add mysql-client \
      && apk add mariadb-dev
 RUN ls -la ./ 
-RUN python ./setup.py install 
+RUN python /app/setup.py install 
 RUN apk del musl-dev gcc 
 RUN rm -rf /tmp/kegbot*
 
