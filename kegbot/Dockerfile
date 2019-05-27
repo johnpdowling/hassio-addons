@@ -29,7 +29,7 @@ RUN apk add --no-cache --virtual curl tar \
      && curl -k -L https://github.com/Kegbot/kegbot-server/archive/${KEGBOT_VERSION}.tar.gz -o /tmp/kegbot.tar.gz \
      && tar -xf /tmp/kegbot.tar.gz -C /tmp/ \
      && ls -la /tmp/ \
-     && cp -r /tmp/kegbot-server-${KEGBOT_VERSION}/* /app/
+     && cp -r /tmp/kegbot-server-${KEGBOT_VERSION}/* /app/ \
      && cp -r /tmp/kegbot-server-${KEGBOT_VERSION}/bin/* /bin/
      
 RUN apk add --no-cache --virtual gcc musl-dev \
