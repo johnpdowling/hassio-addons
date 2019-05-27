@@ -10,7 +10,7 @@ ADD kegbot.conf /etc/nginx/conf.d/default.conf
 ADD nginx.conf /etc/nginx/nginx.conf
 
 RUN mkdir /app
-WORKDIR /app
+#WORKDIR /app
 
 #kb
 ENV KEGBOT_VERSION=master
