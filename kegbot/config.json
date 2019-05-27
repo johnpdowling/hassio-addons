@@ -44,11 +44,21 @@
     "ssl": true,
     "certfile": "fullchain.pem",
     "keyfile": "privkey.pem",
+    "kegbot_db": "kegbot",
+    "db_host": "localhost",
+    "db_port": "3306",
+    "db_user": "kegbot",
+    "db_pass": ""
   },
   "schema": {
     "log_level": "match(^(trace|debug|info|notice|warning|error|fatal)$)?",
     "ssl": "bool",
     "certfile": "str",
+    "kegbot_db": "str",
+    "db_host": "str",
+    "db_port": "int",
+    "db_user": "str",
+    "db_pass": "str",
     "i_like_to_be_pwned": "bool?",
     "leave_front_door_open": "bool?"
   }
