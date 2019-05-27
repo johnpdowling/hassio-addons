@@ -3,7 +3,7 @@
 FROM python:2.7-alpine
 
 RUN apk update \ 
-    apk add --no-cache --virtual bash //python python2 python-dev py-pip python-pip
+    apk add --no-cache --virtual bash jq //python python2 python-dev py-pip python-pip
     
 #redis, nginx
 RUN apk add --no-cache --virtual redis-server nginx
