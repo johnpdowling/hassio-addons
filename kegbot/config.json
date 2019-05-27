@@ -2,7 +2,7 @@
   "name": "Kegbot",
   "version": "0.0.1",
   "slug": "kegbot",
-  "description": "Flow-based programming for the Internet of Things",
+  "description": "Kegbot Server, the internet beer kegerator monitoring system.",
   "url": "https://github.com/johnpdowling/hassio-addons/kegbot",
   "webui": "[PROTO:ssl]://[HOST]:[PORT:80]",
   "ingress": true,
@@ -24,11 +24,11 @@
     "80/tcp": "Web interface"
   },
   "boot": "auto",
-  "hassio_api": true,
+  "hassio_api": false,
   "hassio_role": "manager",
-  "homeassistant_api": true,
+  "homeassistant_api": false,
   "host_network": true,
-  "auth_api": true,
+  "auth_api": false,
   "auto_uart": false,
   "gpio": false,
   "privileged": [
