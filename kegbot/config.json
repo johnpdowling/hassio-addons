@@ -41,10 +41,10 @@
     "ssl"
   ],
   "options": {
-    "ssl": true,
+    "ssl": false,
     "certfile": "fullchain.pem",
     "keyfile": "privkey.pem",
-    "kegbot_db": "kegbot",
+    "db_name": "kegbot",
     "db_host": "localhost",
     "db_port": "3306",
     "db_user": "kegbot",
@@ -54,7 +54,7 @@
     "log_level": "match(^(trace|debug|info|notice|warning|error|fatal)$)?",
     "ssl": "bool",
     "certfile": "str",
-    "kegbot_db": "str",
+    "db_name": "str",
     "db_host": "str",
     "db_port": "int",
     "db_user": "str",
