@@ -4,7 +4,7 @@ FROM python:2.7-alpine
 
 RUN apk update \ 
 #    apk add --no-cache python2 python-dev py-pip python-pip py-virtualenv build-base build-dependencies
-    apk add --no-cache \
+    apk add --no-cache --virtual \
         libcrypto1.1=1.1.1b-r1 \
         libssl1.1=1.1.1b-r1 \
         musl-utils=1.1.20-r4 \
