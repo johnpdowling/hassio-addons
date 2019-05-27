@@ -20,6 +20,7 @@ ADD kegbot.conf /etc/nginx/conf.d/default.conf
 ADD nginx.conf /etc/nginx/nginx.conf
 
 #kb
+RUN pip install django
 RUN mkdir /app
 #WORKDIR /app
 ENV PATH="/app/bin:${PATH}"
