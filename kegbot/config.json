@@ -35,7 +35,7 @@
   ],
   "devices": [
   ],
-  "apparmor": false,
+  "apparmor": true,
   "map": [
     "config:rw",
     "ssl"
