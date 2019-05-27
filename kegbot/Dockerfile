@@ -1,7 +1,8 @@
-FROM python:2.7-alpine
+ARG BUILD_FROM=hassioaddons/base:3.1.0
+FROM ${BUILD_FROM}
 
 RUN apk update \ 
-    apk add bash
+    apk add bash python python-dev py-pip
     
 #redis, nginx
 RUN apk add redis-server
