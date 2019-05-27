@@ -23,7 +23,7 @@ ADD nginx.conf /etc/nginx/nginx.conf
 RUN mkdir /app
 #WORKDIR /app
 #ENV PATH="/app/bin:${PATH}"
-COPY /app/bin/ /bin/
+COPY /app/bin/* /bin/*
 
 ENV KEGBOT_VERSION=master
 RUN apk add --no-cache --virtual curl tar \
