@@ -4,20 +4,19 @@ FROM python:2.7-stretch
 
 RUN apt-get update
 #    apk add --no-cache python2 python-dev py-pip python-pip py-virtualenv build-base build-dependencies
-RUN apt-get install && \
-    apt-get install libssl-dev && \
-    apt-get install musl && \
-    apt-get install musl-dev && \
-    apt-get install libc-dev && \
-    apt-get install bash && \
-    apt-get install curl && \
-    apt-get install tzdata
-#RUN apt-get install jq 
-RUN apt-get install python-dev
+RUN apt-get install -y libssl-dev && \
+    apt-get install -y musl && \
+    apt-get install -y musl-dev && \
+    apt-get install -y libc-dev && \
+    apt-get install -y bash && \
+    apt-get install -y curl && \
+    apt-get install -y tzdata && \
+    apt-get install -y jq && \
+    apt-get install -y python-dev
 #RUN apk add --no-cache py-pillow py-mysqldb
 
 #redis, nginx
-RUN apt-get install redis-server nginx
+RUN apt-get install -y redis-server nginx
 ADD kegbot.conf /etc/nginx/conf.d/default.conf
 ADD nginx.conf /etc/nginx/nginx.conf
 
@@ -29,14 +28,14 @@ ENV PATH="/app/bin:${PATH}"
 ENV PYTHONPATH="/app:${PYTHONPATH}"
 
 ENV KEGBOT_VERSION=master
-RUN apt-get install curl tar \
+RUN apt-get install -y curl tar \
      && curl -k -L https://github.com/Kegbot/kegbot-server/archive/${KEGBOT_VERSION}.tar.gz -o /tmp/kegbot.tar.gz \
      && tar -xf /tmp/kegbot.tar.gz -C /tmp/ \
      && ls -la /tmp/ \
      && cp -r /tmp/kegbot-server-${KEGBOT_VERSION}/* /app/ \
      && cp -r /app/bin/* /bin/
 
-RUN apt-get install gcc g++ \
+RUN apt-get install -y gcc g++ \
      zlib-dev libjpeg-turbo libjpeg-turbo-dev libjpeg openjpeg \
      mysql-client \
      mariadb-dev
