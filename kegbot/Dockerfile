@@ -4,8 +4,16 @@ FROM python:2.7-stretch
 
 RUN apt-get update
 #    apk add --no-cache python2 python-dev py-pip python-pip py-virtualenv build-base build-dependencies
-RUN apt-get install libssl-dev musl musl-dev libc-dev bash curl tzdata
-RUN apt-get install jq python-dev
+RUN apt-get install && \
+    apt-get install libssl-dev && \
+    apt-get install musl && \
+    apt-get install musl-dev && \
+    apt-get install libc-dev && \
+    apt-get install bash && \
+    apt-get install curl && \
+    apt-get install tzdata && \
+    apt-get install jq && \
+    apt-get install python-dev
 #RUN apk add --no-cache py-pillow py-mysqldb
 
 #redis, nginx
