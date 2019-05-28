@@ -85,7 +85,7 @@ run_daemons() {
 }
 
 setup() {
-  python /app/setup.py install
+  python /setup.py install
 }
 
 run_all() {
