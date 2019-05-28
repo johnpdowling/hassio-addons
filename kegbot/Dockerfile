@@ -24,15 +24,15 @@ ADD nginx.conf /etc/nginx/nginx.conf
 COPY setup.py /     
 RUN mkdir /app
 #WORKDIR /app
-#ENV PATH="/app/bin:${PATH}"
+ENV PATH="/app/bin:${PATH}"
+ENV PYTHONPATH="/app:${PYTHONPATH}"
 
 ENV KEGBOT_VERSION=master
 RUN apk add --no-cache --virtual curl tar \
      && curl -k -L https://github.com/Kegbot/kegbot-server/archive/${KEGBOT_VERSION}.tar.gz -o /tmp/kegbot.tar.gz \
      && tar -xf /tmp/kegbot.tar.gz -C /tmp/ \
      && ls -la /tmp/ \
-     && cp -r /tmp/kegbot-server-${KEGBOT_VERSION}/* /app/ \
-     && cp -r /tmp/kegbot-server-${KEGBOT_VERSION}/bin/* /bin/
+     && cp -r /tmp/kegbot-server-${KEGBOT_VERSION}/* /app/
 
 RUN apk add --no-cache --virtual gcc musl-dev \
      && apk add --no-cache zlib-dev libjpeg-turbo libjpeg-turbo-dev libjpeg openjpeg \
