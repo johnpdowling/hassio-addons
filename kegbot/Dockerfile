@@ -13,7 +13,7 @@ RUN apk update \
         curl \
         tzdata
 RUN apk add --no-cache --virtual jq musl-dev build-base build-dependencies linux-headers linux-kernel-headers
-RUN apk add --no-cache py-pillow
+RUN apk add --no-cache py-pillow py-mysqldb
 
 #redis, nginx
 RUN apk add --no-cache --virtual redis-server nginx
