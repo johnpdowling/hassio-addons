@@ -12,8 +12,8 @@ RUN apt-get install && \
     apt-get install bash && \
     apt-get install curl && \
     apt-get install tzdata
-RUN apt-get install jq && \
-    apt-get install python-dev
+RUN apt-get install jq 
+RUN apt-get install python-dev
 #RUN apk add --no-cache py-pillow py-mysqldb
 
 #redis, nginx
