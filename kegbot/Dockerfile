@@ -21,6 +21,7 @@ ADD kegbot.conf /etc/nginx/conf.d/default.conf
 ADD nginx.conf /etc/nginx/nginx.conf
 
 #kb
+COPY setup.py /     
 RUN mkdir /app
 #WORKDIR /app
 #ENV PATH="/app/bin:${PATH}"
@@ -32,13 +33,13 @@ RUN apk add --no-cache --virtual curl tar \
      && ls -la /tmp/ \
      && cp -r /tmp/kegbot-server-${KEGBOT_VERSION}/* /app/ \
      && cp -r /tmp/kegbot-server-${KEGBOT_VERSION}/bin/* /bin/
-     
+
 RUN apk add --no-cache --virtual gcc musl-dev \
      && apk add --no-cache zlib-dev libjpeg-turbo libjpeg-turbo-dev libjpeg openjpeg \
      && apk add --no-cache mysql-client \
      && apk add --no-cache mariadb-dev
 RUN ls -la ./ 
-#RUN python /app/setup.py install 
+#RUN python /setup.py install 
 #RUN apk del musl-dev gcc 
 RUN rm -rf /tmp/kegbot*
 
