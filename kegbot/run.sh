@@ -85,7 +85,7 @@ run_daemons() {
 }
 
 setup() {
-  python /setup.py install
+  python /app/setup.py install
 }
 
 run_all() {
@@ -100,6 +100,6 @@ run_all() {
   echo `date` >> /kegbot-data/runlog
   run_daemons
 }
-pip install pillow
-#setup
+
+setup
 run_all
