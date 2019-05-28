@@ -5,9 +5,7 @@ FROM python:2.7-stretch
 RUN apt-get update \ 
 #    apk add --no-cache python2 python-dev py-pip python-pip py-virtualenv build-base build-dependencies
     apt-get install \
-        libcrypto1.1 \
-        libssl1.1 \
-        musl-utils \
+        libssl-dev \
         musl \
         musl-dev \
         libc-dev \
