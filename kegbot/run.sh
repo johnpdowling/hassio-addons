@@ -100,5 +100,5 @@ run_all() {
   echo `date` >> /kegbot-data/runlog
   run_daemons
 }
-setup
-#run_all
+#setup
+run_all
