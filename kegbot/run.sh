@@ -100,5 +100,6 @@ run_all() {
   echo `date` >> /kegbot-data/runlog
   run_daemons
 }
+pip install pillow
 #setup
 run_all
