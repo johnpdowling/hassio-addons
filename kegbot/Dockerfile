@@ -35,9 +35,11 @@ RUN apt-get install -y curl tar \
      && cp -r /tmp/kegbot-server-${KEGBOT_VERSION}/* /app/ \
      && cp -r /app/bin/* /bin/
 
-RUN apt-get install -y gcc g++ zlib1g-dev 
-RUN apt-get install -y libturbojpeg0 libturbojpeg0-dev libjpeg-dev
-RUN apt-get install -y libopenjpeg5 openjpeg-tools libopenjp2-7-dev 
+RUN apt-get install -y gcc g++ zlib1g-dev && \
+    apt-get install -y libturbojpeg0 libturbojpeg0-dev libjpeg-dev
+RUN apt-get install -y libopenjpeg5
+RUN apt-get install -y openjpeg-tools
+RUN apt-get install -y libopenjp2-7-dev 
 RUN apt-get install -y mysql-client libmariadbclient-dev libmariadbd-dev
 
 RUN ls -la ./ 
