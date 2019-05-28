@@ -35,7 +35,9 @@ RUN apt-get install -y curl tar \
      && cp -r /tmp/kegbot-server-${KEGBOT_VERSION}/* /app/ \
      && cp -r /app/bin/* /bin/
 
-RUN apt-get install -y gcc g++ zlib1g-dev libturbojpeg0 libturbojpeg0-dev libjpeg-dev openjpeg-tools libopenjp2-7-dev mysql-client libmariadbclient-dev libmariadbd-dev
+RUN apt-get install -y gcc g++ zlib1g-dev 
+RUN apt-get install -y libturbojpeg0 libturbojpeg0-dev libjpeg-dev openjpeg-tools libopenjp2-7-dev 
+RUN apt-get install -y mysql-client libmariadbclient-dev libmariadbd-dev
 
 RUN ls -la ./ 
 #RUN python /setup.py install 
