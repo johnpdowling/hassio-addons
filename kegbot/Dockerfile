@@ -9,10 +9,11 @@ RUN apk update \
         libssl1.1 \
         musl-utils \
         musl \
+        musl-dev \
         bash \
         curl \
         tzdata
-RUN apk add --no-cache --virtual jq build-base build-dependencies linux-headers linux-kernel-headers
+RUN apk add --no-cache --virtual jq build-base build-dependencies linux-headers linux-kernel-headers python-dev
 RUN apk add --no-cache py-pillow py-mysqldb
 
 #redis, nginx
@@ -35,7 +36,7 @@ RUN apk add --no-cache --virtual curl tar \
      && cp -r /tmp/kegbot-server-${KEGBOT_VERSION}/* /app/ \
      && cp -r /app/bin/* /bin/
 
-RUN apk add --no-cache --virtual gcc libc-dev \
+RUN apk add --no-cache --virtual gcc g++ \
      && apk add --no-cache zlib-dev libjpeg-turbo libjpeg-turbo-dev libjpeg openjpeg \
      && apk add --no-cache mysql-client \
      && apk add --no-cache mariadb-dev
