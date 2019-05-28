@@ -38,8 +38,7 @@ DEPENDENCIES = [
   'tweepy == 2.2',
   'jsonfield == 0.9.20',
 ]
-
-  """'pillow == 2.4.0',"""
+"""'pillow == 2.4.0',"""
 
 def setup_package():
   setup(
