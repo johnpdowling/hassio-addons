@@ -17,11 +17,11 @@ do_mysql() {
 
 setup_env() {
   #pull from options
-  KEGBOT_DB_NAME=$(jq --raw-output '.db_name' $CONFIG_PATH)
-  KEGBOT_DB_HOST=$(jq --raw-output '.db_host' $CONFIG_PATH)
-  KEGBOT_DB_PORT=$(jq --raw-output '.db_port' $CONFIG_PATH)
-  KEGBOT_DB_USER=$(jq --raw-output '.db_user' $CONFIG_PATH)
-  KEGBOT_DB_PASS=$(jq --raw-output '.db_pass' $CONFIG_PATH)
+  export KEGBOT_DB_NAME=$(jq --raw-output '.db_name' $CONFIG_PATH)
+  export KEGBOT_DB_HOST=$(jq --raw-output '.db_host' $CONFIG_PATH)
+  export KEGBOT_DB_PORT=$(jq --raw-output '.db_port' $CONFIG_PATH)
+  export KEGBOT_DB_USER=$(jq --raw-output '.db_user' $CONFIG_PATH)
+  export KEGBOT_DB_PASS=$(jq --raw-output '.db_pass' $CONFIG_PATH)
 
 
   # Set defaults
