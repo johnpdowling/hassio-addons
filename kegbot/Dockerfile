@@ -1,6 +1,6 @@
 #ARG BUILD_FROM=hassioaddons/base:3.1.0
 #FROM ${BUILD_FROM}
-FROM python:2.7-alpine
+FROM python:3.6.8-alpine3.8
 
 RUN apk update \ 
 #    apk add --no-cache python2 python-dev py-pip python-pip py-virtualenv build-base build-dependencies
@@ -13,7 +13,7 @@ RUN apk update \
         bash \
         curl \
         tzdata
-RUN apk add --no-cache --virtual jq build-base build-dependencies linux-headers linux-kernel-headers python-dev
+RUN apk add --no-cache --virtual jq .build-deps build-base build-dependencies linux-headers linux-kernel-headers python-dev
 RUN apk add --no-cache py-pillow py-mysqldb
 
 #redis, nginx
