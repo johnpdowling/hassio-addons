@@ -16,6 +16,7 @@ LONG_DESCRIPTION = '\n'.join(DOCLINES[2:])
 DEPENDENCIES = [
   'kegbot-pyutils == 0.1.7',
   'kegbot-api == 1.1.0',
+  'kegbot-pycore',
 
   'Django >= 1.7, < 1.8',
   'django-imagekit == 3.1',
