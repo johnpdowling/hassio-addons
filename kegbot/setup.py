@@ -28,7 +28,6 @@ DEPENDENCIES = [
   'django-crispy-forms == 1.2.8',
   'foursquare == 2014.04.10',
   'gunicorn == 19.1.1',
-  'MySQL-python == 1.2.5',
   'protobuf == 2.5.0',
   'python-gflags == 2.0',
   'django-redis == 3.6.1',
@@ -38,7 +37,8 @@ DEPENDENCIES = [
   'tweepy == 2.2',
   'jsonfield == 0.9.20',
 ]
-"""'pillow == 2.4.0',"""
+"""'pillow == 2.4.0',
+  'MySQL-python == 1.2.5',"""
 
 def setup_package():
   setup(
