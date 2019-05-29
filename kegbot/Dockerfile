@@ -12,7 +12,8 @@ RUN apt-get install -y libssl-dev && \
     apt-get install -y curl && \
     apt-get install -y tzdata && \
     apt-get install -y jq && \
-    apt-get install -y python-dev
+    apt-get install -y python-dev && \
+    apt-get install -y python-pip
 #RUN apk add --no-cache py-pillow py-mysqldb
 
 #redis, nginx
