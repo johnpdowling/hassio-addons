@@ -100,6 +100,6 @@ run_all() {
   echo `date` >> /kegbot-data/runlog
   run_daemons
 }
-
-setup
-run_all
+apt-get install -y libopenjpeg-dev libopenjp2-7-dev openjpeg-tools
+#setup
+#run_all
