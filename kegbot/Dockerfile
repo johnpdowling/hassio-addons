@@ -15,6 +15,7 @@ RUN apt-get install -y libssl-dev && \
     apt-get install -y python-dev && \
     apt-get install -y python-pip
 #RUN apk add --no-cache py-pillow py-mysqldb
+RUN pip install packaging
 
 #redis, nginx
 RUN apt-get install -y redis-server nginx
