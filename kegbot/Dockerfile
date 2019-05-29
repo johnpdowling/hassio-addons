@@ -26,7 +26,7 @@ COPY setup.py /
 RUN mkdir /app
 #WORKDIR /app
 ENV PATH="/app/bin:${PATH}"
-ENV PYTHONPATH="/app:${PYTHONPATH}"
+#ENV PYTHONPATH="/app:${PYTHONPATH}"
 
 ENV KEGBOT_VERSION=master
 RUN apt-get install -y curl tar \
