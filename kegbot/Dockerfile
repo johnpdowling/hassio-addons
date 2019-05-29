@@ -3,7 +3,7 @@ FROM ${BUILD_FROM}
 #FROM python:2.7-stretch
 
 RUN apk update && \
-    apk add --no-cache --virtual python2 python-dev py-pip py-setuptools python-pip py-virtualenv build-base build-dependencies
+    apk add --no-cache build-base python2 python-dev py-pip py-setuptools py-virtualenv
 #RUN apt-get install -y libssl-dev && \
 #    apt-get install -y musl && \
 #    apt-get install -y musl-dev && \
@@ -18,7 +18,7 @@ RUN apk update && \
 #RUN pip install pillow
 
 #redis, nginx
-RUN apk add --no-cache --virtual redis-server nginx
+RUN apk add --no-cache redis nginx
 ADD kegbot.conf /etc/nginx/conf.d/default.conf
 ADD nginx.conf /etc/nginx/nginx.conf
 
