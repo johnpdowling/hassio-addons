@@ -4,18 +4,6 @@ FROM ${BUILD_FROM}
 
 RUN apk update && \
     apk add --no-cache build-base python2 python-dev py-pip py-setuptools py-virtualenv py-mysqldb
-#RUN apt-get install -y libssl-dev && \
-#    apt-get install -y musl && \
-#    apt-get install -y musl-dev && \
-#    apt-get install -y libc-dev && \
-#    apt-get install -y bash && \
-#    apt-get install -y curl && \
-#    apt-get install -y tzdata && \
-#    apt-get install -y jq && \
-#    apt-get install -y python-dev
-#RUN apk add --no-cache py-pillow py-mysqldb
-#RUN easy_install pip
-#RUN pip install pillow
 
 #redis, nginx
 RUN apk add --no-cache redis nginx
@@ -27,7 +15,7 @@ COPY setup.py /
 RUN mkdir /app
 #WORKDIR /app
 ENV PATH="/app/bin:${PATH}"
-#ENV PYTHONPATH="/app:${PYTHONPATH}"
+ENV PYTHONPATH="/app:${PYTHONPATH}"
 
 ENV KEGBOT_VERSION=master
 RUN  apk add curl \
@@ -43,7 +31,7 @@ RUN  apk add curl \
      && cp -r /app/bin/* /bin/
 
 RUN ls -la ./ 
-#RUN python /setup.py install 
+RUN python /setup.py install 
 #RUN apk del musl-dev gcc 
 RUN rm -rf /tmp/kegbot*
 
