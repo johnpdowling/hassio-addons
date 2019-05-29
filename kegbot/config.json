@@ -41,6 +41,7 @@
     "ssl"
   ],
   "options": {
+    "debug": true,
     "ssl": false,
     "certfile": "fullchain.pem",
     "keyfile": "privkey.pem",
@@ -52,6 +53,7 @@
   },
   "schema": {
     "log_level": "match(^(trace|debug|info|notice|warning|error|fatal)$)?",
+    "debug": "bool",
     "ssl": "bool",
     "certfile": "str",
     "db_name": "str",
