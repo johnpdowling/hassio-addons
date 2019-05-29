@@ -3,7 +3,7 @@ FROM ${BUILD_FROM}
 #FROM python:2.7-stretch
 
 RUN apk update && \
-    apk add --no-cache --virtual python2 python-dev py-pip python-pip py-virtualenv build-base build-dependencies
+    apk add --no-cache --virtual python2 python-dev py-pip py-setuptools python-pip py-virtualenv build-base build-dependencies
 #RUN apt-get install -y libssl-dev && \
 #    apt-get install -y musl && \
 #    apt-get install -y musl-dev && \
