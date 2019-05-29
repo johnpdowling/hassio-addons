@@ -14,7 +14,7 @@ ADD nginx.conf /etc/nginx/nginx.conf
 COPY setup.py /     
 RUN mkdir /app
 #WORKDIR /app
-ENV PATH="/app/bin:${PATH}"
+#ENV PATH="/app/bin:${PATH}"
 ENV PYTHONPATH="/app:${PYTHONPATH}"
 
 ENV KEGBOT_VERSION=master
@@ -31,7 +31,7 @@ RUN  apk add curl \
      && cp -r /app/bin/* /bin/
 
 RUN ls -la ./ 
-RUN python /setup.py install 
+RUN python /app/setup.py install 
 #RUN apk del musl-dev gcc 
 RUN rm -rf /tmp/kegbot*
 
