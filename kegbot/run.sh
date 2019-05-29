@@ -44,7 +44,7 @@ setup_env() {
   fi
 
   if [ -z "${KEGBOT_SETTINGS_DIR}" ]; then
-    export KEGBOT_SETTINGS_DIR=/etc/kegbot/
+    export KEGBOT_SETTINGS_DIR=/config/kegbot/
   fi
 
   # Verify mandatory variables.
