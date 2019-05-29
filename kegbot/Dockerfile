@@ -37,7 +37,7 @@ RUN apt-get install -y curl tar \
 
 RUN apt-get install -y gcc g++ zlib1g-dev && \
     apt-get install -y libturbojpeg0 libturbojpeg0-dev libjpeg-dev
-RUN apt-get install -y libopenjpeg5
+#RUN apt-get install -y libopenjpeg5
 RUN apt-get install -y openjpeg-tools
 RUN apt-get install -y libopenjp2-7-dev 
 RUN apt-get install -y mysql-client libmariadbclient-dev libmariadbd-dev
