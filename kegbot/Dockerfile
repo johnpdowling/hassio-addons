@@ -18,7 +18,7 @@ RUN apk update && \
 #RUN pip install pillow
 
 #redis, nginx
-RUN apt-get install -y redis-server nginx
+RUN apk add --no-cache redis-server nginx
 ADD kegbot.conf /etc/nginx/conf.d/default.conf
 ADD nginx.conf /etc/nginx/nginx.conf
 
