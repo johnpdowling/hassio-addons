@@ -22,6 +22,7 @@ setup_env() {
   export KEGBOT_DB_PORT=$(jq --raw-output '.db_port' $CONFIG_PATH)
   export KEGBOT_DB_USER=$(jq --raw-output '.db_user' $CONFIG_PATH)
   export KEGBOT_DB_PASS=$(jq --raw-output '.db_pass' $CONFIG_PATH)
+  export KEGBOT_DEBUG=$(jq --raw-output '.debug' $CONFIG_PATH)
 
 
   # Set defaults
