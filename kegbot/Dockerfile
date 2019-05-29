@@ -30,7 +30,7 @@ RUN  apk add curl \
      && ls -la ./ \
      && cp -r /app/bin/* /bin/
 
-RUN ls -la ./ 
+WORKDIR /app
 RUN python /app/setup.py install 
 #RUN apk del musl-dev gcc 
 RUN rm -rf /tmp/kegbot*
