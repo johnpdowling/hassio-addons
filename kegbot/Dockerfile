@@ -14,7 +14,7 @@ ADD nginx.conf /etc/nginx/nginx.conf
 COPY setup.py /     
 RUN mkdir /app
 #WORKDIR /app
-#ENV PATH="/app/bin:${PATH}"
+ENV PATH="/app/bin:${PATH}"
 ENV PYTHONPATH="/app:${PYTHONPATH}"
 
 ENV KEGBOT_VERSION=master
