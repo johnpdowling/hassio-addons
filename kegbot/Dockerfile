@@ -5,8 +5,8 @@ FROM ${BUILD_FROM}
 RUN apk update && \
     apk add --no-cache build-base python2 python-dev py-pip py-setuptools py-virtualenv py-mysqldb
 
-#redis, nginx
-RUN apk add --no-cache redis nginx
+#nginx
+RUN apk add --no-cache nginx
 ADD kegbot.conf /etc/nginx/conf.d/default.conf
 ADD nginx.conf /etc/nginx/nginx.conf
 
@@ -30,6 +30,8 @@ RUN  apk add curl \
      && ls -la ./ \
      && cp -r /app/bin/* /bin/
 
+RUN pip install -U celery
+RUN pip install -U redis
 RUN pip install -U kegbot
 
 WORKDIR /app
