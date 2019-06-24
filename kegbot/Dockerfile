@@ -40,8 +40,8 @@ RUN python /app/setup.py install
 #RUN apk del musl-dev gcc 
 RUN rm -rf /tmp/kegbot*
 
-RUN mkdir -p /config/kegbot
-COPY local_settings.py /config/kegbot/
+RUN mkdir -p /kegbot-data/
+COPY local_settings.py /kegbot-data/
 
 ADD     run.sh /run.sh
 RUN     chmod 700 /run.sh
