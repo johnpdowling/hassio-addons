@@ -47,7 +47,7 @@ setup_env() {
   if [ -z "${KEGBOT_SETTINGS_DIR}" ]; then
     export KEGBOT_SETTINGS_DIR=/config/kegbot/
   fi
-
+  
 #  if [ -z "${KEGBOT_DATA_DIR}" ]; then
 #    export KEGBOT_DATA_DIR=/config/kegbot/kegbot-data/
 #  fi
@@ -88,6 +88,11 @@ wait_for_redis() {
 
 # Perform first-launch setup.
 maybe_setup_kegbot() {
+  if [ ! -d "$KEGBOT_SETTINGS_DIR" ]; then
+    mkdir -p $KEGBOT_SETTINGS_DIR/media
+    mv /kegbot-data/local_settings.py $KEGBOT_SETTINGS_DIR
+  fi
+  
   kegbot collectstatic --noinput -v 0
   #do_mysql -e "create database ${KEGBOT_DB_NAME};" || die "Could not create database."
   true
