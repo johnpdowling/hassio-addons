@@ -97,7 +97,7 @@ run_all() {
   setup_env
 
   wait_for_mysql
-  wait_for_redis
+#  wait_for_redis
 
   maybe_setup_kegbot
   ls -ld /kegbot-data
