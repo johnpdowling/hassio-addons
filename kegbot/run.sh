@@ -48,6 +48,10 @@ setup_env() {
     export KEGBOT_SETTINGS_DIR=/config/kegbot/
   fi
 
+  if [ -z "${KEGBOT_DATA_DIR}" ]; then
+    export KEGBOT_DATA_DIR=/config/kegbot/kegbot-data/
+  fi
+
   # Verify mandatory variables.
   if [ -z "${KEGBOT_DB_HOST}" ]; then
     die "Must set KEGBOT_DB_HOST or MYSQL_PORT_3306_TCP_{ADDR,PORT}"
@@ -82,7 +86,7 @@ maybe_setup_kegbot() {
 }
 
 run_daemons() {
-  kegbot run_all --logs_dir=/kegbot-data --gunicorn_options="-b 0.0.0.0:8000"
+  kegbot run_all --logs_dir=/config/kegbot/kegbot-data --gunicorn_options="-b 0.0.0.0:8000"
 }
 
 setup() {
@@ -96,9 +100,9 @@ run_all() {
   #wait_for_redis
 
   maybe_setup_kegbot
-  ls -ld /kegbot-data
-  ls -l /kegbot-data
-  echo `date` >> /kegbot-data/runlog
+  ls -ld /config/kegbot/kegbot-data
+  ls -l /config/kegbot/kegbot-data
+  echo `date` >> /config/kegbot/kegbot-data/runlog
   run_daemons
 }
 
