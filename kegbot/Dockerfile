@@ -6,7 +6,7 @@ RUN apk update && \
     apk add --no-cache build-base python2 python-dev py-pip py-setuptools py-virtualenv py-mysqldb
 
 #nginx
-RUN apk add --no-cache nginx
+RUN apk add --no-cache nginx redis
 ADD kegbot.conf /etc/nginx/conf.d/default.conf
 ADD nginx.conf /etc/nginx/nginx.conf
 
@@ -31,6 +31,7 @@ RUN  apk add curl \
      && cp -r /app/bin/* /bin/
 
 RUN pip install -U gunicorn
+RUN pip install -U celery
 RUN pip install -U redis
 RUN pip install -U kegbot
 
