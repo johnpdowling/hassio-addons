@@ -90,7 +90,7 @@ maybe_setup_kegbot() {
 }
 
 run_daemons() {
-  kegbot run_all --logs_dir=/kegbot-data --gunicorn_options="-w 3 -b 0.0.0.0:8000"
+  kegbot run_all --logs_dir=/kegbot-data --gunicorn_options="-w 3 -b 127.0.0.1:8000"
 }
 
 setup() {
