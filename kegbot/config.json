@@ -6,7 +6,7 @@
   "url": "https://github.com/johnpdowling/hassio-addons/kegbot",
   "webui": "[PROTO:ssl]://[HOST]:[PORT:80]",
   "ingress": true,
-  "ingress_port": 0,
+  "ingress_port": 80,
   "panel_icon": "mdi:keg",
   "startup": "application",
   "homeassistant": "0.92.0b2",
@@ -18,10 +18,10 @@
     "i386"
   ],
   "ports": {
-    "80/tcp": 2080
+    "80/tcp": null
   },
   "ports_description": {
-    "80/tcp": "Web interface"
+    "80/tcp": "Web interface (Not required for Hass.io Ingress)"
   },
   "boot": "auto",
   "hassio_api": false,
