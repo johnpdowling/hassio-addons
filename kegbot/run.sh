@@ -86,7 +86,7 @@ maybe_setup_kegbot() {
 }
 
 run_daemons() {
-  kegbot run_all --logs_dir=/config/kegbot/kegbot-data --gunicorn_options="-b 0.0.0.0:8000"
+  kegbot run_all --logs_dir=/kegbot-data --gunicorn_options="-w 3 -b 0.0.0.0:8000"
 }
 
 setup() {
@@ -97,12 +97,12 @@ run_all() {
   setup_env
 
   wait_for_mysql
-  #wait_for_redis
+  wait_for_redis
 
   maybe_setup_kegbot
-  ls -ld /config/kegbot/kegbot-data
-  ls -l /config/kegbot/kegbot-data
-  echo `date` >> /config/kegbot/kegbot-data/runlog
+  ls -ld /kegbot-data
+  ls -l /kegbot-data
+  echo `date` >> /kegbot-data/runlog
   run_daemons
 }
 
