@@ -74,6 +74,10 @@ wait_for_mysql() {
   fi
 }
 
+kick_off_nginx() {
+  nginx -g 'daemon on;'
+}
+
 kick_off_redis() {
   redis-server --daemonize yes
 }
@@ -99,6 +103,7 @@ setup() {
 
 run_all() {
   setup_env
+  kick_off_nginx
   kick_off_redis
 
   wait_for_mysql
