@@ -74,6 +74,10 @@ wait_for_mysql() {
   fi
 }
 
+kick_off_redis() {
+  redis-server --daemonize yes
+}
+
 wait_for_redis() {
   redis-cli -h "${KEGBOT_REDIS_HOST}" -p ${KEGBOT_REDIS_PORT} ping
 }
@@ -95,9 +99,10 @@ setup() {
 
 run_all() {
   setup_env
+  kick_off_redis
 
   wait_for_mysql
-#  wait_for_redis
+  wait_for_redis
 
   maybe_setup_kegbot
   ls -ld /kegbot-data
