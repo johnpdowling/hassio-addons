@@ -30,7 +30,7 @@ RUN  apk add curl \
      && ls -la ./ \
      && cp -r /app/bin/* /bin/
 
-RUN pip install -U celery
+RUN pip install -U gunicorn
 RUN pip install -U redis
 RUN pip install -U kegbot
 
