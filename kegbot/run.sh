@@ -88,9 +88,9 @@ wait_for_redis() {
 
 # Perform first-launch setup.
 maybe_setup_kegbot() {
-  if [ ! -d "$KEGBOT_SETTINGS_DIR" ]; then
-    mkdir -p $KEGBOT_SETTINGS_DIR/media
-    mv /kegbot-data/local_settings.py $KEGBOT_SETTINGS_DIR
+  if [ ! -d "${KEGBOT_SETTINGS_DIR}" ]; then
+    mkdir -p ${KEGBOT_SETTINGS_DIR}/media
+    mv /kegbot-data/local_settings.py ${KEGBOT_SETTINGS_DIR}
   fi
   
   kegbot collectstatic --noinput -v 0
