@@ -48,9 +48,9 @@ setup_env() {
     export KEGBOT_SETTINGS_DIR=/config/kegbot/
   fi
 
-  if [ -z "${KEGBOT_DATA_DIR}" ]; then
-    export KEGBOT_DATA_DIR=/config/kegbot/kegbot-data/
-  fi
+#  if [ -z "${KEGBOT_DATA_DIR}" ]; then
+#    export KEGBOT_DATA_DIR=/config/kegbot/kegbot-data/
+#  fi
 
   # Verify mandatory variables.
   if [ -z "${KEGBOT_DB_HOST}" ]; then
