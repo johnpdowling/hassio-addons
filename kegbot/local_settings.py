@@ -123,7 +123,7 @@ CACHES = {
 
 del _redishost, _redisport
 
-MEDIA_ROOT  = os.path.join(KEGBOT_ROOT, "media")
+MEDIA_ROOT  = os.environ.get("KEGBOT_MEDIA_ROOT", os.path.join(KEGBOT_ROOT, "media"))
 STATIC_ROOT = os.path.join(KEGBOT_ROOT, "static")
 MEDIA_URL  = "/media/"
 STATIC_URL = "/static/"
