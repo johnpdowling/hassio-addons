@@ -24,13 +24,13 @@ setup_env() {
   export KEGBOT_DB_PASS=$(jq --raw-output '.db_pass' $CONFIG_PATH)
   export KEGBOT_DEBUG=$(jq --raw-output '.debug' $CONFIG_PATH)
   #pull optional options
- # 
-  export KEGBOT_EMAIL_HOST=$(jq --raw-output '.email_host' $CONFIG_PATH)
+  export KEGBOT_EMAIL_FROM=$(jq --raw-output '.email_from' $CONFIG_PATH)
+  export KEGBOT_EMAIL_HOST=$(jq --raw-output '.email_host' $CONFIG_PATH) 
   export KEGBOT_EMAIL_PORT=$(jq --raw-output '.email_port' $CONFIG_PATH)
   export KEGBOT_EMAIL_USER=$(jq --raw-output '.email_user' $CONFIG_PATH)
   export KEGBOT_EMAIL_PASSWORD=$(jq --raw-output '.email_password' $CONFIG_PATH)
   export KEGBOT_EMAIL_USE_SSL=$(jq --raw-output '.email_use_ssl' $CONFIG_PATH)
-  export KEGBOT_EMAIL_USE_TLS=$(jq --raw-output '.email_use_tls' $CONFIG_PATH)
+  export KEGBOT_EMAIL_USE_TLS=$(jq --raw-output '.email_use_tls' $CONFIG_PATH)# Set defaults to required if missing
   
   # Set defaults to required if missing
   if [ -z "${KEGBOT_DB_NAME}" ]; then
@@ -47,27 +47,22 @@ setup_env() {
   fi
 
   # Remove optionals if missing
-  TEMP=$(jq --raw-output '.email_from' $CONFIG_PATH)
-  if [ ! -z "${TEMP}" && "${TEMP}" != "null" ]; then
-    export KEGBOT_EMAIL_FROM=$(jq --raw-output '.email_from' $CONFIG_PATH)
+  if [[ -z "${KEGBOT_EMAIL_FROM}" || "${KEGBOT_EMAIL_FROM}" == "null" ]]; then
+    export -n KEGBOT_EMAIL_FROM
   fi
-  if [ -z "${KEGBOT_EMAIL_HOST}" ]; then
+  if [[ -z "${KEGBOT_EMAIL_HOST}" || "${KEGBOT_EMAIL_HOST}" == "null" ]]; then
     export -n KEGBOT_EMAIL_HOST
   fi
-  if [ -z "${KEGBOT_EMAIL_PORT}" ]; then
+  if [[ ! -z "${KEGBOT_EMAIL_PORT}" && "${KEGBOT_EMAIL_PORT}" == "null" ]]; then
     export -n KEGBOT_EMAIL_PORT
   fi
   if [ -z "${KEGBOT_EMAIL_USER}" ]; then
-    export -n KEGBOT_EMAIL_USER
   fi
   if [ -z "${KEGBOT_EMAIL_PASSWORD}" ]; then
-    export -n KEGBOT_EMAIL_PASSWORD
   fi
   if [ -z "${KEGBOT_EMAIL_USE_SSL}" ]; then
-    export -n KEGBOT_EMAIL_USE_SSL
   fi
   if [ -z "${KEGBOT_EMAIL_USE_TLS}" ]; then
-    export -n KEGBOT_EMAIL_USE_TLS
   fi
 
   # other sets
