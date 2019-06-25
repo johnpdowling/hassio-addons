@@ -48,7 +48,7 @@ setup_env() {
 
   # Remove optionals if missing
   TEMP=$(jq --raw-output '.email_from' $CONFIG_PATH)
-  if [ -z "${TEMP}" ]; then
+  if [ ! -z "${TEMP}" ]; then
     export KEGBOT_EMAIL_FROM=$(jq --raw-output '.email_from' $CONFIG_PATH)
   fi
   if [ -z "${KEGBOT_EMAIL_HOST}" ]; then
