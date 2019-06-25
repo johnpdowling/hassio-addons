@@ -48,25 +48,25 @@ setup_env() {
 
   # Remove optionals if missing
   if [ -z "${KEGBOT_EMAIL_FROM}" ]; then
-    unset KEGBOT_EMAIL_FROM
+    export -n KEGBOT_EMAIL_FROM
   fi
   if [ -z "${KEGBOT_EMAIL_HOST}" ]; then
-    unset KEGBOT_EMAIL_HOST
+    export -n KEGBOT_EMAIL_HOST
   fi
   if [ -z "${KEGBOT_EMAIL_PORT}" ]; then
-    unset KEGBOT_EMAIL_PORT
+    export -n KEGBOT_EMAIL_PORT
   fi
   if [ -z "${KEGBOT_EMAIL_USER}" ]; then
-    unset KEGBOT_EMAIL_USER
+    export -n KEGBOT_EMAIL_USER
   fi
   if [ -z "${KEGBOT_EMAIL_PASSWORD}" ]; then
-    unset KEGBOT_EMAIL_PASSWORD
+    export -n KEGBOT_EMAIL_PASSWORD
   fi
   if [ -z "${KEGBOT_EMAIL_USE_SSL}" ]; then
-    unset KEGBOT_EMAIL_USE_SSL
+    export -n KEGBOT_EMAIL_USE_SSL
   fi
   if [ -z "${KEGBOT_EMAIL_USE_TLS}" ]; then
-    unset KEGBOT_EMAIL_USE_TLS
+    export -n KEGBOT_EMAIL_USE_TLS
   fi
 
   # other sets
