@@ -32,7 +32,7 @@ setup_env() {
   export KEGBOT_EMAIL_USE_SSL=$(jq --raw-output '.email_use_ssl' $CONFIG_PATH)
   export KEGBOT_EMAIL_USE_TLS=$(jq --raw-output '.email_use_tls' $CONFIG_PATH)
   
-  # Set defaults to required
+  # Set defaults to required if missing
   if [ -z "${KEGBOT_DB_NAME}" ]; then
     export KEGBOT_DB_NAME="kegbot"
   fi
@@ -46,29 +46,30 @@ setup_env() {
     export KEGBOT_DB_PORT=3306
   fi
 
-  # Set defaults to optionals
+  # Remove optionals if missing
   if [ -z "${KEGBOT_EMAIL_FROM}" ]; then
-    export KEGBOT_EMAIL_FROM=""
+    unset KEGBOT_EMAIL_FROM
   fi
   if [ -z "${KEGBOT_EMAIL_HOST}" ]; then
-    export KEGBOT_EMAIL_HOST=""
+    unset KEGBOT_EMAIL_HOST
   fi
   if [ -z "${KEGBOT_EMAIL_PORT}" ]; then
-    export KEGBOT_EMAIL_PORT=25
+    unset KEGBOT_EMAIL_PORT
   fi
   if [ -z "${KEGBOT_EMAIL_USER}" ]; then
-    export KEGBOT_EMAIL_USER=""
+    unset KEGBOT_EMAIL_USER
   fi
   if [ -z "${KEGBOT_EMAIL_PASSWORD}" ]; then
-    export KEGBOT_EMAIL_PASSWORD=""
+    unset KEGBOT_EMAIL_PASSWORD
   fi
   if [ -z "${KEGBOT_EMAIL_USE_SSL}" ]; then
-    export KEGBOT_EMAIL_USE_SSL=False
+    unset KEGBOT_EMAIL_USE_SSL
   fi
   if [ -z "${KEGBOT_EMAIL_USE_TLS}" ]; then
-    export KEGBOT_EMAIL_USE_TLS=False
+    unset KEGBOT_EMAIL_USE_TLS
   fi
 
+  # other sets
   if [ -z "${KEGBOT_REDIS_PORT}" ]; then
     export KEGBOT_REDIS_HOST=localhost
     export KEGBOT_REDIS_PORT=6379
