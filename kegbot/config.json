@@ -60,6 +60,13 @@
     "db_port": "int",
     "db_user": "str",
     "db_pass": "str",
+    "email_from": "str?",
+    "email_host": "str?",
+    "email_port": "int?",
+    "email_user": "str?",
+    "email_pass": "str?",
+    "email_ssl": "bool?",
+    "email_tls": "bool?",
     "i_like_to_be_pwned": "bool?",
     "leave_front_door_open": "bool?"
   }
