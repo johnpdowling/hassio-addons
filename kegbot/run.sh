@@ -30,7 +30,7 @@ setup_env() {
   export KEGBOT_EMAIL_USER=$(jq --raw-output '.email_user' $CONFIG_PATH)
   export KEGBOT_EMAIL_PASSWORD=$(jq --raw-output '.email_password' $CONFIG_PATH)
   export KEGBOT_EMAIL_USE_SSL=$(jq --raw-output '.email_use_ssl' $CONFIG_PATH)
-  export KEGBOT_EMAIL_USE_TLS=$(jq --raw-output '.email_use_tls' $CONFIG_PATH)# Set defaults to required if missing
+  export KEGBOT_EMAIL_USE_TLS=$(jq --raw-output '.email_use_tls' $CONFIG_PATH)
   
   # Set defaults to required if missing
   if [ -z "${KEGBOT_DB_NAME}" ]; then
@@ -56,13 +56,17 @@ setup_env() {
   if [[ ! -z "${KEGBOT_EMAIL_PORT}" && "${KEGBOT_EMAIL_PORT}" == "null" ]]; then
     export -n KEGBOT_EMAIL_PORT
   fi
-  if [ -z "${KEGBOT_EMAIL_USER}" ]; then
+  if [[ ! -z "${KEGBOT_EMAIL_USER}" && "${KEGBOT_EMAIL_USER}" == "null" ]]; then
+    export -n KEGBOT_EMAIL_USER
   fi
-  if [ -z "${KEGBOT_EMAIL_PASSWORD}" ]; then
+  if [[ ! -z "${KEGBOT_EMAIL_PASSWORD}" && "${KEGBOT_EMAIL_PASSWORD}" == "null" ]]; then
+    export -n KEGBOT_EMAIL_PASSWORD
   fi
-  if [ -z "${KEGBOT_EMAIL_USE_SSL}" ]; then
+  if [[ ! -z "${KEGBOT_EMAIL_USE_SSL}" && "${KEGBOT_EMAIL_USE_SSL}" == "null" ]]; then
+    export -n KEGBOT_EMAIL_USE_SSL
   fi
-  if [ -z "${KEGBOT_EMAIL_USE_TLS}" ]; then
+  if [[ ! -z "${KEGBOT_EMAIL_USE_TLS}" && "${KEGBOT_EMAIL_USE_TLS}" == "null" ]]; then
+    export -n KEGBOT_EMAIL_USE_TLS
   fi
 
   # other sets
