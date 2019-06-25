@@ -24,7 +24,7 @@ setup_env() {
   export KEGBOT_DB_PASS=$(jq --raw-output '.db_pass' $CONFIG_PATH)
   export KEGBOT_DEBUG=$(jq --raw-output '.debug' $CONFIG_PATH)
   #pull optional options
-  export KEGBOT_EMAIL_FROM=$(jq --raw-output '.email_from' $CONFIG_PATH)
+ # 
   export KEGBOT_EMAIL_HOST=$(jq --raw-output '.email_host' $CONFIG_PATH)
   export KEGBOT_EMAIL_PORT=$(jq --raw-output '.email_port' $CONFIG_PATH)
   export KEGBOT_EMAIL_USER=$(jq --raw-output '.email_user' $CONFIG_PATH)
@@ -47,8 +47,9 @@ setup_env() {
   fi
 
   # Remove optionals if missing
-  if [ -z "${KEGBOT_EMAIL_FROM}" ]; then
-    export -n KEGBOT_EMAIL_FROM
+  TEMP=$(jq --raw-output '.email_from' $CONFIG_PATH)
+  if [ -z "${TEMP}" ]; then
+    export KEGBOT_EMAIL_FROM=$(jq --raw-output '.email_from' $CONFIG_PATH)
   fi
   if [ -z "${KEGBOT_EMAIL_HOST}" ]; then
     export -n KEGBOT_EMAIL_HOST
