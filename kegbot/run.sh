@@ -78,6 +78,10 @@ setup_env() {
     export KEGBOT_SETTINGS_DIR=/config/kegbot/
   fi
   
+  if [ -z "${KEGBOT_MEDIA_ROOT}" ]; then
+    export KEGBOT_MEDIA_ROOT=/config/kegbot/media/
+  fi
+  
 #  if [ -z "${KEGBOT_DATA_DIR}" ]; then
 #    export KEGBOT_DATA_DIR=/config/kegbot/kegbot-data/
 #  fi
