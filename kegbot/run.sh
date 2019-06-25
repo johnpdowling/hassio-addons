@@ -25,25 +25,25 @@ setup_env() {
   export KEGBOT_DEBUG=$(jq --raw-output '.debug' $CONFIG_PATH)
   
   #pull optional options
-  if [ ! -z "${(jq --raw-output '.email_from' $CONFIG_PATH)}" ]; then
+  if [ ! -z "${(jq --raw-output '.email_from' ${CONFIG_PATH})}" ]; then
     export KEGBOT_EMAIL_FROM=$(jq --raw-output '.email_from' $CONFIG_PATH)
   fi
-  if [ ! -z "${(jq --raw-output '.email_host' $CONFIG_PATH)}" ]; then
+  if [ ! -z "${(jq --raw-output '.email_host' ${CONFIG_PATH})}" ]; then
     export KEGBOT_EMAIL_HOST=$(jq --raw-output '.email_host' $CONFIG_PATH)
   fi
-  if [ ! -z "${(jq --raw-output '.email_port' $CONFIG_PATH)}" ]; then
+  if [ ! -z "${(jq --raw-output '.email_port' ${CONFIG_PATH})}" ]; then
     export KEGBOT_EMAIL_PORT=$(jq --raw-output '.email_port' $CONFIG_PATH)
   fi
-  if [ ! -z "${(jq --raw-output '.email_user' $CONFIG_PATH)}" ]; then
+  if [ ! -z "${(jq --raw-output '.email_user' ${CONFIG_PATH})}" ]; then
     export KEGBOT_EMAIL_USER=$(jq --raw-output '.email_user' $CONFIG_PATH)
   fi
-  if [ ! -z "${(jq --raw-output '.email_password' $CONFIG_PATH)}" ]; then
+  if [ ! -z "${(jq --raw-output '.email_password' ${CONFIG_PATH})}" ]; then
     export KEGBOT_EMAIL_PASSWORD=$(jq --raw-output '.email_password' $CONFIG_PATH)
   fi
-  if [ ! -z "${(jq --raw-output '.email_use_ssl' $CONFIG_PATH)}" ]; then
+  if [ ! -z "${(jq --raw-output '.email_use_ssl' ${CONFIG_PATH})}" ]; then
     export KEGBOT_EMAIL_USE_SSL=$(jq --raw-output '.email_use_ssl' $CONFIG_PATH)
   fi
-  if [ ! -z "${(jq --raw-output '.email_use_tls' $CONFIG_PATH)}" ]; then
+  if [ ! -z "${(jq --raw-output '.email_use_tls' ${CONFIG_PATH})}" ]; then
     export KEGBOT_EMAIL_USE_TLS=$(jq --raw-output '.email_use_tls' $CONFIG_PATH)
   fi
   # Set defaults to required
