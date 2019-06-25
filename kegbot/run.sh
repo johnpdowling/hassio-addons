@@ -25,7 +25,6 @@ setup_env() {
   export KEGBOT_DEBUG=$(jq --raw-output '.debug' $CONFIG_PATH)
   
   #pull optional options
-  TEMP=$(jq --raw-output '.email_from' $CONFIG_PATH)
   if [ ! -z "${(jq --raw-output '.email_from' $CONFIG_PATH)}" ]; then
     export KEGBOT_EMAIL_FROM=$(jq --raw-output '.email_from' $CONFIG_PATH)
   fi
