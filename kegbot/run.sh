@@ -23,29 +23,15 @@ setup_env() {
   export KEGBOT_DB_USER=$(jq --raw-output '.db_user' $CONFIG_PATH)
   export KEGBOT_DB_PASS=$(jq --raw-output '.db_pass' $CONFIG_PATH)
   export KEGBOT_DEBUG=$(jq --raw-output '.debug' $CONFIG_PATH)
-  
   #pull optional options
-  if [ ! -z "${(jq --raw-output '.email_from' ${CONFIG_PATH})}" ]; then
-    export KEGBOT_EMAIL_FROM=$(jq --raw-output '.email_from' $CONFIG_PATH)
-  fi
-  if [ ! -z "${(jq --raw-output '.email_host' ${CONFIG_PATH})}" ]; then
-    export KEGBOT_EMAIL_HOST=$(jq --raw-output '.email_host' $CONFIG_PATH)
-  fi
-  if [ ! -z "${(jq --raw-output '.email_port' ${CONFIG_PATH})}" ]; then
-    export KEGBOT_EMAIL_PORT=$(jq --raw-output '.email_port' $CONFIG_PATH)
-  fi
-  if [ ! -z "${(jq --raw-output '.email_user' ${CONFIG_PATH})}" ]; then
-    export KEGBOT_EMAIL_USER=$(jq --raw-output '.email_user' $CONFIG_PATH)
-  fi
-  if [ ! -z "${(jq --raw-output '.email_password' ${CONFIG_PATH})}" ]; then
-    export KEGBOT_EMAIL_PASSWORD=$(jq --raw-output '.email_password' $CONFIG_PATH)
-  fi
-  if [ ! -z "${(jq --raw-output '.email_use_ssl' ${CONFIG_PATH})}" ]; then
-    export KEGBOT_EMAIL_USE_SSL=$(jq --raw-output '.email_use_ssl' $CONFIG_PATH)
-  fi
-  if [ ! -z "${(jq --raw-output '.email_use_tls' ${CONFIG_PATH})}" ]; then
-    export KEGBOT_EMAIL_USE_TLS=$(jq --raw-output '.email_use_tls' $CONFIG_PATH)
-  fi
+  export KEGBOT_EMAIL_FROM=$(jq --raw-output '.email_from' $CONFIG_PATH)
+  export KEGBOT_EMAIL_HOST=$(jq --raw-output '.email_host' $CONFIG_PATH)
+  export KEGBOT_EMAIL_PORT=$(jq --raw-output '.email_port' $CONFIG_PATH)
+  export KEGBOT_EMAIL_USER=$(jq --raw-output '.email_user' $CONFIG_PATH)
+  export KEGBOT_EMAIL_PASSWORD=$(jq --raw-output '.email_password' $CONFIG_PATH)
+  export KEGBOT_EMAIL_USE_SSL=$(jq --raw-output '.email_use_ssl' $CONFIG_PATH)
+  export KEGBOT_EMAIL_USE_TLS=$(jq --raw-output '.email_use_tls' $CONFIG_PATH)
+  
   # Set defaults to required
   if [ -z "${KEGBOT_DB_NAME}" ]; then
     export KEGBOT_DB_NAME="kegbot"
@@ -58,6 +44,29 @@ setup_env() {
   fi
   if [ -z "${KEGBOT_DB_PORT}" ]; then
     export KEGBOT_DB_PORT=3306
+  fi
+
+  # Set defaults to optionals
+  if [ -z "${KEGBOT_EMAIL_FROM}" ]; then
+    export KEGBOT_EMAIL_FROM=""
+  fi
+  if [ -z "${KEGBOT_EMAIL_HOST}" ]; then
+    export KEGBOT_EMAIL_HOST=""
+  fi
+  if [ -z "${KEGBOT_EMAIL_PORT}" ]; then
+    export KEGBOT_EMAIL_PORT=25
+  fi
+  if [ -z "${KEGBOT_EMAIL_USER}" ]; then
+    export KEGBOT_EMAIL_USER=""
+  fi
+  if [ -z "${KEGBOT_EMAIL_PASSWORD}" ]; then
+    export KEGBOT_EMAIL_PASSWORD=""
+  fi
+  if [ -z "${KEGBOT_EMAIL_USE_SSL}" ]; then
+    export KEGBOT_EMAIL_USE_SSL=False
+  fi
+  if [ -z "${KEGBOT_EMAIL_USE_TLS}" ]; then
+    export KEGBOT_EMAIL_USE_TLS=False
   fi
 
   if [ -z "${KEGBOT_REDIS_PORT}" ]; then
