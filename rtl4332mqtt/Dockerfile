@@ -15,7 +15,12 @@ MAINTAINER James Fry
 LABEL Description="This image is used to start a script that will monitor for RF events on 433Mhz (configurable) and send the data to an MQTT server"
 
 #
-# First install software packages needed to compile rtl_433 and to publish MQTT events
+# First install our scripts
+#
+COPY *.sh /
+
+#
+# Then install software packages needed to compile rtl_433 and to publish MQTT events
 #
 RUN apk add --no-cache --virtual build-deps alpine-sdk cmake git libusb-dev && \
     mkdir /tmp/src && \
@@ -48,4 +53,4 @@ ENV MQTT_USER="guest"
 ENV MQTT_PASS="guest"
 ENV MQTT_TOPIC="homeassistant/sensor/rtl433"
 
-CMD cd / && cp /config/rtl4332mqtt/rtl2mqtt.sh /rtl2mqtt.sh && chmod +x /rtl2mqtt.sh && /rtl2mqtt.sh
+CMD chmod +x /*.sh && /rtl2mqtt.sh
