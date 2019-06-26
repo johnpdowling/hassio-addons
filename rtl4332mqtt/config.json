@@ -21,7 +21,7 @@
     "mqtt_user": "",
     "mqtt_password": "",
     "mqtt_topic": "homeassistant/sensor/currentcost",
-    "protocol": [ 100 ]
+    "protocol": [ 100 ],
     "frequency": 433920000,
     "gain": 60,
     "frequency_offset": 350
