@@ -164,14 +164,14 @@ MQTT_HOST="$(jq --raw-output '.mqtt_host' $CONFIG_PATH)"
 MQTT_USER="$(jq --raw-output '.mqtt_user' $CONFIG_PATH)"
 MQTT_PASS="$(jq --raw-output '.mqtt_password' $CONFIG_PATH)"
 MQTT_TOPIC="$(jq --raw-output '.mqtt_topic' $CONFIG_PATH)"
-PROTOCOL="$(jq --raw-output '.protocol' $CONFIG_PATH)"
+PROTOCOL="$(jq --raw-output '.protocol' $CONFIG_PATH | tr -d '[,]')"
 FREQUENCY="$(jq --raw-output '.frequency' $CONFIG_PATH)"
 GAIN="$(jq --raw-output '.gain' $CONFIG_PATH)"
 OFFSET="$(jq --raw-output '.frequency_offset' $CONFIG_PATH)"
 PROTOCOL_STR=""
 for proto in $PROTOCOL
 do
-  PROTOCOL_STR="$PROTOCOL_STR -R ${proto%?}"
+  PROTOCOL_STR="$PROTOCOL_STR -R $proto"
 done
 
 # Start the listener and enter an endless loop
