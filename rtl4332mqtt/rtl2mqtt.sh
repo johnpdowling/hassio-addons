@@ -180,9 +180,15 @@ echo "RTL_433 Frequency =" $FREQUENCY
 echo "RTL_433 Gain =" $GAIN
 echo "RTL_433 Frequency Offset =" $OFFSET
 
+PROTOCOL_STR=""
+for proto in $PROTOCOL
+do
+  PROTOCOL_STR="$PROTOCOL_STR -R $proto"
+done
+
 #set -x  ## uncomment for MQTT logging...
 
-/usr/local/bin/rtl_433 -F json -R $PROTOCOL -f $FREQUENCY -g $GAIN -p $OFFSET | while read line
+/usr/local/bin/rtl_433 -F json $PROTOCOL_STR -f $FREQUENCY -g $GAIN -p $OFFSET | while read line
 do
   DEVICE="$(echo $line | jq --raw-output '.model' | tr -s ' ' '_')" # replace ' ' with '_'
   DEVICEID="$(echo $line | jq --raw-output '.id' | tr -s ' ' '_')"
