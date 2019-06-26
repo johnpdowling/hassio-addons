@@ -1,4 +1,7 @@
 # RTL433 to MQTT Bridge hass.io addon
+## Note
+This is a fork to allow multiple protocols. See original project here: https://github.com/james-fry/hassio-addons/tree/master/rtl4332mqtt
+
 A hass.io addon for a software defined radio tuned to listen for 433MHz RF transmissions and republish the data via MQTT
 
 This hass.io addon is based on Chris Kacerguis' project here: https://github.com/chriskacerguis/honeywell2mqtt,
