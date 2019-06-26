@@ -183,6 +183,7 @@ echo "RTL_433 Frequency Offset =" $OFFSET
 PROTOCOL_STR=""
 for proto in $PROTOCOL
 do
+  proto=${proto%?}
   PROTOCOL_STR="$PROTOCOL_STR -R $proto"
 done
 
