@@ -168,6 +168,11 @@ PROTOCOL="$(jq --raw-output '.protocol' $CONFIG_PATH)"
 FREQUENCY="$(jq --raw-output '.frequency' $CONFIG_PATH)"
 GAIN="$(jq --raw-output '.gain' $CONFIG_PATH)"
 OFFSET="$(jq --raw-output '.frequency_offset' $CONFIG_PATH)"
+PROTOCOL_STR=""
+for proto in $PROTOCOL
+do
+  PROTOCOL_STR="$PROTOCOL_STR -R ${proto%?}"
+done
 
 # Start the listener and enter an endless loop
 echo "Starting RTL_433 with parameters:"
@@ -176,15 +181,12 @@ echo "MQTT User =" $MQTT_USER
 echo "MQTT Password =" $MQTT_PASS
 echo "MQTT Topic =" $MQTT_TOPIC
 echo "RTL_433 Protocol =" $PROTOCOL
+echo "RTL_433 Protocol String =" $PROTOCOL_STR
 echo "RTL_433 Frequency =" $FREQUENCY
 echo "RTL_433 Gain =" $GAIN
 echo "RTL_433 Frequency Offset =" $OFFSET
 
-PROTOCOL_STR=""
-for proto in $PROTOCOL
-do
-  PROTOCOL_STR="$PROTOCOL_STR -R ${proto%?}"
-done
+
 
 #set -x  ## uncomment for MQTT logging...
 
