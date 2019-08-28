@@ -72,9 +72,7 @@ RUN  cd /tmp \
  
 RUN ./configure \
       --enable-itunes \
-      --enable-mpd \
-      --enable-lastfm \
-      --enable-chromecast
+      --enable-mpd
 
 RUN make \
  && make install
