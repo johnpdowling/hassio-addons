@@ -5,8 +5,10 @@ FROM ${BUILD_FROM}
 
 RUN apk --no-cache add --virtual=deps1 \
         alsa-lib-dev \
+        makekit \
         autoconf \
         automake \
+        autotools-dev \
         cmake \
         avahi-dev \
         bash \
@@ -17,6 +19,8 @@ RUN apk --no-cache add --virtual=deps1 \
         curl-dev \
         ffmpeg-dev \
         file \
+        gettext \
+        gawk \
         git \
         gnutls-dev \
         gperf \
@@ -72,7 +76,9 @@ RUN  cd /tmp \
  
 RUN ./configure \
       --enable-itunes \
-      --enable-mpd
+      --enable-mpd \
+      --enable-lastfm \
+      --enable-chromecast
 
 RUN make \
  && make install
