@@ -4,6 +4,9 @@ FROM ${BUILD_FROM}
 #adapted from sretalla's dockerfile
 
 RUN apk --no-cache add --virtual=deps1 \
+        alpine-sdk \
+        build-base \
+        build-deps \
         alsa-lib-dev \
         autoconf \
         automake \
