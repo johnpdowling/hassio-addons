@@ -79,18 +79,24 @@ RUN  cd /tmp \
 
 RUN  apk del --purge deps1 deps2 \
  && rm -rf /usr/local/bin/antlr3 /tmp/*
- 
+
+RUN mkdir -p /config/forked-daapd/cache \
+ && mkdir -p /config/forked-daapd/music \
+ && rm /config/forked-daapd/music/HomeAssistantAnnounce \
+ && mkfifo --mode=666 /config/forked-daapd/HomeAssistantAnnounce
+
 RUN  cd /usr/local/etc \
  && sed -i -e 's/\(uid.*=.*\)/uid = "root"/g' forked-daapd.conf \
  && sed -i s#"ipv6 = yes"#"ipv6 = no"#g forked-daapd.conf \
- && sed -i s#/srv/music#/music#g forked-daapd.conf \
- && sed -i s#/usr/local/var/cache/forked-daapd/songs3.db#/config/cache/songs3.db#g forked-daapd.conf \
- && sed -i s#/usr/local/var/cache/forked-daapd/cache.db#/config/cache/cache.db#g forked-daapd.conf \
+ && sed -i s#/srv/music#/config/forked-daapd/music#g forked-daapd.conf \
+ && sed -i s#/usr/local/var/cache/forked-daapd/songs3.db#/config/forked-daapd/cache/songs3.db#g forked-daapd.conf \
+ && sed -i s#/usr/local/var/cache/forked-daapd/cache.db#/config/forked-daapd/cache/cache.db#g forked-daapd.conf \
  && sed -i s#/usr/local/var/log/forked-daapd.log#/dev/stdout#g forked-daapd.conf \
+ && sed -i "/pipe_autostart\ =/ s/# *//" forked-daapd.conf \
  && sed -i "/db_path\ =/ s/# *//" forked-daapd.conf \
  && sed -i "/cache_path\ =/ s/# *//" forked-daapd.conf
 
-#VOLUME /config /music
+VOLUME /etc/localtime /etc/localtime:ro
 
 ADD daapd.sh /daapd
 
