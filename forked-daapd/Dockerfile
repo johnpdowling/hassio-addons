@@ -1,12 +1,13 @@
 ARG BUILD_FROM=hassioaddons/base:3.1.0
 FROM ${BUILD_FROM}
 
-#adapted from kevineye's dockerfile
+#adapted from sretalla's dockerfile
 
 RUN apk --no-cache add --virtual=deps1 \
         alsa-lib-dev \
         autoconf \
         automake \
+        cmake \
         avahi-dev \
         bash \
         bsd-compat-headers \
@@ -48,7 +49,8 @@ RUN apk add --no-cache \
         libunistring \
         protobuf-c \
         sqlite \
-        sqlite-libs
+        sqlite-libs \
+        openssl
         
 RUN apk add --no-cache --repository http://nl.alpinelinux.org/alpine/edge/testing \
         libantlr3c \
