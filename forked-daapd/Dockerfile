@@ -4,7 +4,6 @@ FROM ${BUILD_FROM}
 #adapted from sretalla's dockerfile
 
 RUN apk --no-cache add --virtual=deps1 \
-        makekit \
         alsa-lib-dev \
         autoconf \
         automake \
@@ -69,7 +68,7 @@ RUN cd /tmp \
 RUN  cd /tmp \
  && git clone https://github.com/ejurgensen/forked-daapd.git \
  && cd /tmp/forked-daapd \
- && autoreconf -i
+ && autoreconf -fi
  
 RUN ./configure \
       --enable-itunes \
