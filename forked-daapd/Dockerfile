@@ -29,7 +29,7 @@ RUN apk --no-cache add --virtual=deps1 \
         libunistring-dev \
         openjdk7-jre-base \
         protobuf-c-dev \
-        sqlite-dev
+        sqlite-dev \
  && apk add --no-cache --virtual=deps2 --repository http://nl.alpinelinux.org/alpine/edge/testing \
         libantlr3c-dev \
         mxml-dev
@@ -49,7 +49,7 @@ RUN apk add --no-cache \
         protobuf-c \
         sqlite \
         sqlite-libs \
-        openssl
+        openssl \
  && apk add --no-cache --repository http://nl.alpinelinux.org/alpine/edge/testing \
         libantlr3c \
         mxml
