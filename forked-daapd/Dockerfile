@@ -28,13 +28,14 @@ RUN apk --no-cache add --virtual=deps1 \
         libunistring-dev \
         openjdk7-jre-base \
         protobuf-c-dev \
-        sqlite-dev \
- && apk add --no-cache --virtual=deps2 --repository http://nl.alpinelinux.org/alpine/edge/testing \
+        sqlite-dev
+        
+RUN apk add --no-cache --virtual=deps2 --repository http://nl.alpinelinux.org/alpine/edge/testing \
         libantlr3c-dev \
         mxml-dev \
-        pulseaudio-dev \
+        pulseaudio-dev
 
- && apk add --no-cache \
+RUN apk add --no-cache \
         avahi \
         confuse \
         dbus \
@@ -48,21 +49,22 @@ RUN apk --no-cache add --virtual=deps1 \
         libunistring \
         protobuf-c \
         sqlite \
-        sqlite-libs \
- && apk add --no-cache --repository http://nl.alpinelinux.org/alpine/edge/testing \
+        sqlite-libs
+        
+RUN apk add --no-cache --repository http://nl.alpinelinux.org/alpine/edge/testing \
         libantlr3c \
         mxml \
-        pulseaudio-libs \
+        pulseaudio-libs
 
- && curl -L -o /tmp/antlr-3.4-complete.jar http://www.antlr3.org/download/antlr-3.4-complete.jar \
+RUN  curl -L -o /tmp/antlr-3.4-complete.jar http://www.antlr3.org/download/antlr-3.4-complete.jar \
  && echo '#!/bin/bash' > /usr/local/bin/antlr3 \
  && echo 'exec java -cp /tmp/antlr-3.4-complete.jar org.antlr.Tool "$@"' >> /usr/local/bin/antlr3 \
- && chmod 775 /usr/local/bin/antlr3 \
+ && chmod 775 /usr/local/bin/antlr3
 
- && cd /tmp \
- && git clone https://github.com/ejurgensen/forked-daapd.git \
- && cd /tmp/forked-daapd \
+RUN  cd /tmp \
+ && git clone https://github.com/ejurgensen/forked-daapd.git
  
+RUN  cd /tmp/forked-daapd \
  && autoreconf -i \
  && ./configure \
       --enable-itunes \
@@ -71,12 +73,12 @@ RUN apk --no-cache add --virtual=deps1 \
       --enable-chromecast \
       --with-pulseaudio \
  && make \
- && make install \
+ && make install
 
- && apk del --purge deps1 deps2 \
- && rm -rf /usr/local/bin/antlr3 /tmp/* \
-
- && cd /usr/local/etc \
+RUN  apk del --purge deps1 deps2 \
+ && rm -rf /usr/local/bin/antlr3 /tmp/*
+ 
+RUN  cd /usr/local/etc \
  && sed -i -e 's/\(uid.*=.*\)/uid = "root"/g' forked-daapd.conf \
  && sed -i s#"ipv6 = yes"#"ipv6 = no"#g forked-daapd.conf \
  && sed -i s#/srv/music#/music#g forked-daapd.conf \
@@ -86,7 +88,7 @@ RUN apk --no-cache add --virtual=deps1 \
  && sed -i "/db_path\ =/ s/# *//" forked-daapd.conf \
  && sed -i "/cache_path\ =/ s/# *//" forked-daapd.conf
 
-VOLUME /config /music
+#VOLUME /config /music
 
 ADD daapd.sh /daapd
 
