@@ -32,8 +32,7 @@ RUN apk --no-cache add --virtual=deps1 \
         
 RUN apk add --no-cache --virtual=deps2 --repository http://nl.alpinelinux.org/alpine/edge/testing \
         libantlr3c-dev \
-        mxml-dev \
-        pulseaudio-dev
+        mxml-dev
 
 RUN apk add --no-cache \
         avahi \
@@ -53,8 +52,7 @@ RUN apk add --no-cache \
         
 RUN apk add --no-cache --repository http://nl.alpinelinux.org/alpine/edge/testing \
         libantlr3c \
-        mxml \
-        pulseaudio-libs
+        mxml
 
 RUN  curl -L -o /tmp/antlr-3.4-complete.jar http://www.antlr3.org/download/antlr-3.4-complete.jar \
  && echo '#!/bin/bash' > /usr/local/bin/antlr3 \
@@ -71,7 +69,6 @@ RUN  cd /tmp/forked-daapd \
       --enable-mpd \
       --enable-lastfm \
       --enable-chromecast \
-      --with-pulseaudio \
  && make \
  && make install
 
