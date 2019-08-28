@@ -65,8 +65,8 @@ RUN  cd /tmp \
  && git clone https://github.com/ejurgensen/forked-daapd.git
  
 RUN  cd /tmp/forked-daapd \
- && autoreconf -i \
- && ./configure \
+ && autoreconf -i
+RUN ./configure \
       --enable-itunes \
       --enable-mpd \
       --enable-lastfm \
