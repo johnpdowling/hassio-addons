@@ -54,7 +54,7 @@ RUN apk add --no-cache \
         libantlr3c \
         mxml
 
-RUN  curl -L -o /tmp/antlr-3.4-complete.jar http://www.antlr3.org/download/antlr-3.4-complete.jar \
+RUN curl -L -o /tmp/antlr-3.4-complete.jar http://www.antlr3.org/download/antlr-3.4-complete.jar \
  && echo '#!/bin/bash' > /usr/local/bin/antlr3 \
  && echo 'exec java -cp /tmp/antlr-3.4-complete.jar org.antlr.Tool "$@"' >> /usr/local/bin/antlr3 \
  && chmod 775 /usr/local/bin/antlr3
@@ -65,7 +65,7 @@ RUN cd /tmp \
  && cmake ./ \
  && make install
 
-RUN  cd /tmp \
+RUN cd /tmp \
  && git clone https://github.com/ejurgensen/forked-daapd.git \
  && cd /tmp/forked-daapd \
  && autoreconf -fi \
@@ -77,15 +77,10 @@ RUN  cd /tmp \
  && make \
  && make install
 
-RUN  apk del --purge deps1 deps2 \
+RUN apk del --purge deps1 deps2 \
  && rm -rf /usr/local/bin/antlr3 /tmp/*
 
-RUN mkdir -p /config/forked-daapd/cache \
- && mkdir -p /config/forked-daapd/music \
- && rm /config/forked-daapd/music/HomeAssistantAnnounce \
- && mkfifo --mode=666 /config/forked-daapd/HomeAssistantAnnounce
-
-RUN  cd /usr/local/etc \
+RUN cd /usr/local/etc \
  && sed -i -e 's/\(uid.*=.*\)/uid = "root"/g' forked-daapd.conf \
  && sed -i s#"ipv6 = yes"#"ipv6 = no"#g forked-daapd.conf \
  && sed -i s#/srv/music#/config/forked-daapd/music#g forked-daapd.conf \
