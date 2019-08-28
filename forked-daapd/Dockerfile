@@ -30,8 +30,7 @@ RUN apk --no-cache add --virtual=deps1 \
         openjdk7-jre-base \
         protobuf-c-dev \
         sqlite-dev
-        
-RUN apk add --no-cache --virtual=deps2 --repository http://nl.alpinelinux.org/alpine/edge/testing \
+ && apk add --no-cache --virtual=deps2 --repository http://nl.alpinelinux.org/alpine/edge/testing \
         libantlr3c-dev \
         mxml-dev
 
@@ -51,8 +50,7 @@ RUN apk add --no-cache \
         sqlite \
         sqlite-libs \
         openssl
-        
-RUN apk add --no-cache --repository http://nl.alpinelinux.org/alpine/edge/testing \
+ && apk add --no-cache --repository http://nl.alpinelinux.org/alpine/edge/testing \
         libantlr3c \
         mxml
 
@@ -61,11 +59,17 @@ RUN  curl -L -o /tmp/antlr-3.4-complete.jar http://www.antlr3.org/download/antlr
  && echo 'exec java -cp /tmp/antlr-3.4-complete.jar org.antlr.Tool "$@"' >> /usr/local/bin/antlr3 \
  && chmod 775 /usr/local/bin/antlr3
 
+RUN cd /tmp \
+ && git clone https://github.com/warmcat/libwebsockets.git \
+ && cd /tmp/libwebsockets \
+ && cmake ./ \
+ && make install
+
 RUN  cd /tmp \
- && git clone https://github.com/ejurgensen/forked-daapd.git
- 
-RUN  cd /tmp/forked-daapd \
+ && git clone https://github.com/ejurgensen/forked-daapd.git \
+ && cd /tmp/forked-daapd \
  && autoreconf -i
+ 
 RUN ./configure \
       --enable-itunes \
       --enable-mpd \
