@@ -73,9 +73,8 @@ RUN  cd /tmp \
       --enable-itunes \
       --enable-mpd \
       --enable-lastfm \
-      --enable-chromecast
-
-RUN make \
+      --enable-chromecast \
+ && make \
  && make install
 
 RUN  apk del --purge deps1 deps2 \
