@@ -68,8 +68,9 @@ RUN  cd /tmp/forked-daapd \
       --enable-itunes \
       --enable-mpd \
       --enable-lastfm \
-      --enable-chromecast \
- && make \
+      --enable-chromecast
+
+RUN make \
  && make install
 
 RUN  apk del --purge deps1 deps2 \
