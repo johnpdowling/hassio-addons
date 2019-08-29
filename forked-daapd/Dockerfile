@@ -2,6 +2,8 @@ ARG BUILD_FROM=hassioaddons/base:3.1.0
 FROM ${BUILD_FROM}
 
 #adapted from sretalla's dockerfile
+ADD daapd.sh /daapd
+RUN chmod +x /daapd
 
 RUN apk --no-cache add --virtual=deps1 \
         alsa-lib-dev \
@@ -93,4 +95,4 @@ RUN cd /usr/local/etc \
 
 VOLUME /etc/localtime /etc/localtime:ro
 
-ADD daapd.sh /daapd
+CMD /daapd
