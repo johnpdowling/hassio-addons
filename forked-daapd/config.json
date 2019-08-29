@@ -5,6 +5,8 @@
   "description": "Forked-daapd media server instance",
   "url": "https://github.com/johnpdowling/hassio-addons/forked-daapd",
   "startup": "before",
+  "ingress": true,
+  "ingress_port": 3689,
   "arch": [
     "aarch64",
     "amd64",
