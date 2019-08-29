@@ -94,5 +94,3 @@ RUN cd /usr/local/etc \
 VOLUME /etc/localtime /etc/localtime:ro
 
 ADD daapd.sh /daapd
-
-CMD /daapd
