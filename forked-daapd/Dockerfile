@@ -89,6 +89,8 @@ RUN cd /usr/local/etc \
  && sed -i s#/usr/local/var/cache/forked-daapd/songs3.db#/config/forked-daapd/cache/songs3.db#g forked-daapd.conf \
  && sed -i s#/usr/local/var/cache/forked-daapd/cache.db#/config/forked-daapd/cache/cache.db#g forked-daapd.conf \
  && sed -i s#/usr/local/var/log/forked-daapd.log#/dev/stdout#g forked-daapd.conf \
+ && sed -i "/websocket_port\ =/ s/# *//" forked-daapd.conf \
+ && sed -i "/trusted_networks\ =/ s/# *//" forked-daapd.conf \
  && sed -i "/pipe_autostart\ =/ s/# *//" forked-daapd.conf \
  && sed -i "/db_path\ =/ s/# *//" forked-daapd.conf \
  && sed -i "/cache_path\ =/ s/# *//" forked-daapd.conf
