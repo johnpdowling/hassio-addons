@@ -73,9 +73,6 @@ RUN cd /tmp \
  && autoreconf -fi \
  && ./configure \
       --enable-itunes \
-      --enable-mpd \
-      --enable-lastfm \
-      --enable-chromecast \
  && make \
  && make install
 
