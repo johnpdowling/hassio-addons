@@ -19,12 +19,6 @@
     "config:rw",
     "ssl"
   ],
-  "ports": {
-    "3689/tcp": 3689
-  },
-  "ports_description": {
-    "3689/tcp": "daap interface"
-  },
   "options": {
   },
   "schema": {
