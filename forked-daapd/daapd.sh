@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#adapted from kevineye
+#adapted from sretalla/kevineye
 
 #set to use host dbus in HA config file
 
