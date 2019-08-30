@@ -7,6 +7,7 @@
   "startup": "before",
   "ingress": true,
   "ingress_port": 3689,
+  "host_network": true,
   "panel_icon": "mdi:cast-audio",
   "arch": [
     "aarch64",
