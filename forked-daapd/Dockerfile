@@ -1,7 +1,7 @@
 ARG BUILD_FROM=hassioaddons/base:3.1.0
 FROM ${BUILD_FROM}
 
-#adapted from sretalla's dockerfile
+#adapted from sretalla's/kevineye's dockerfiles
 ADD daapd.sh /daapd
 RUN chmod +x /daapd
 
