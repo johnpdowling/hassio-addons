@@ -1,11 +1,8 @@
 #!/bin/sh
 
 #adapted from kevineye
-#rm -rf /var/run
-#mkdir -p /var/run/dbus
-#dbus-uuidgen --ensure
-#sleep 1
-#dbus-daemon --system
+
+#set to use host dbus in HA config file
 
 avahi-daemon --daemonize --no-chroot
 
