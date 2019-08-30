@@ -3,7 +3,7 @@ This add-on provides an installation of the [forked-daapd](https://github.com/ej
 
 ## Usage
 1) Install add-on and start it
-2) For your setup, you may need to further edit forked-daapd.conf to suit your needs. All files are located in %config% and are created after first start
+2) For your setup, you may need to further edit forked-daapd.conf to suit your needs. All files are located in %config%/forked-daapd/ and are created after first start
 
 ## Notes
 1) The forked-daapd compiled here was only given the configure flag --enable-itunes. Chromecast, Spotify, etc. are disabled in this add-on. I wanted an instance to work with my [custom component](https://github.com/johnpdowling/custom_components/tree/master/forked-daapd) and AirPlay devices
