@@ -16,8 +16,7 @@
   ],
   "boot": "auto",
   "map": [ 
-    "config:rw",
-    "ssl"
+    "config:rw"
   ],
   "options": {
   },
