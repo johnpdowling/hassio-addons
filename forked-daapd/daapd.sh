@@ -7,7 +7,7 @@ dbus-uuidgen --ensure
 sleep 1
 dbus-daemon --system
 
-#avahi-daemon --daemonize --no-chroot
+avahi-daemon --daemonize --no-chroot
 
 mkdir -p /config/forked-daapd/cache
 [[ ! -f /config/forked-daapd/forked-daapd.conf ]] && cp /usr/local/etc/forked-daapd.conf /config/forked-daapd/forked-daapd.conf
