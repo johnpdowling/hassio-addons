@@ -45,6 +45,6 @@ ENV LD_LIBRARY_PATH $LD_LIBRARY_PATH:/opt/z-way-server/libs
 
 WORKDIR /opt/z-way-server
 
-CMD ["/opt/z-way-server/z-way-server"]
+CMD CMD chmod +x /*.sh && /start-z-way.sh && /opt/z-way-server/z-way-server
 
 HEALTHCHECK CMD curl --fail http://localhost:8083/ || exit 1
