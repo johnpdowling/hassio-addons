@@ -17,11 +17,11 @@ RUN apk update && \
                        libarchive-dev curl libcurl
 
 WORKDIR /opt
-RUN curl -O https://storage.z-wave.me/z-way-server/z-way-server-Debian-v3.0.0.tgz && \
-    tar -zxvf z-way-server-Debian-v3.0.0.tgz && \
-    rm z-way-server-Debian-v3.0.0.tgz
+RUN curl -O https://storage.z-wave.me/z-way-server/z-way-server-Debian-v2.3.8.tgz && \
+    tar -zxvf z-way-server-Debian-v2.3.8.tgz && \
+    rm z-way-server-Debian-v2.3.8.tgz
     
-RUN mkdir -p /etc/z-way/ && echo "v3.0.0" > /etc/z-way/VERSION && echo "razberry" > /etc/z-way/box_type
+RUN mkdir -p /etc/z-way/ && echo "v2.3.8" > /etc/z-way/VERSION && echo "razberry" > /etc/z-way/box_type
 
 #COPY config.xml /opt/z-way-server/
 
