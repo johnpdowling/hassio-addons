@@ -1,8 +1,8 @@
 {
-  "name": "z-way-server",
+  "name": "Z-Way Server",
   "version": "0.0.1",
   "slug": "z-way-server",
-  "description": "z-way ZWave server instance",
+  "description": "Z-Way ZWave server instance",
   "url": "https://github.com/johnpdowling/hassio-addons/z-way-server",
   "startup": "before",
   "auto_uart": true,
