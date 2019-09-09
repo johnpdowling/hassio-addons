@@ -21,24 +21,6 @@ RUN curl -O https://storage.z-wave.me/z-way-server/z-way-server-Debian-v3.0.0.tg
     tar -zxvf z-way-server-Debian-v3.0.0.tgz && \
     rm z-way-server-Debian-v3.0.0.tgz
     
-#remove folders we're linking to on disk
-RUN rm -rf /opt/z-way-server/config && \
-    rm -rf /opt/z-way-server/automation/storage && \
-    rm -rf /opt/z-way-server/automation/userModules && \
-    rm -rf /opt/z-way-server/ZDDX
-
-#create config folders if they don't exist
-RUN mkdir -p /config/z-way-server/config && \
-    mkdir -p /config/z-way-server/automation/storage && \
-    mkdir -p /config/z-way-server/automation/userModules && \
-    mkdir -p /config/z-way-server/ZDDX
-
-#linky linky
-RUN ln -s /config/z-way-server/config /opt/z-way-server/config && \
-    ln -s /config/z-way-server/automation/storage /opt/z-way-server/automation/storage && \
-    ln -s /config/z-way-server/automation/userModules /opt/z-way-server/automation/userModules && \
-    ln -s /config/z-way-server/ZDDX /opt/z-way-server/ZDDX
-
 RUN mkdir -p /etc/z-way/ && echo "v3.0.0" > /etc/z-way/VERSION && echo "razberry" > /etc/z-way/box_type
 
 #COPY config.xml /opt/z-way-server/
