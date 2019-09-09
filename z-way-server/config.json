@@ -6,6 +6,7 @@
   "url": "https://github.com/johnpdowling/hassio-addons/z-way-server",
   "startup": "before",
   "auto_uart": true,
+  "host_dbus": true,
   "ingress": true,
   "ingress_entry": "/",
   "ingress_port": 8083,
