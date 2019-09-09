@@ -8,7 +8,9 @@ ENV TZ=America/Los_Angeles
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apk update && \
-    apk add --no-cache wget sharutils tzdata gawk libc-ares2 libavahi-compat-libdnssd-dev libarchive-dev curl libcurl3
+    apk add --no-cache wget sharutils tzdata gawk c-ares c-ares-dev \
+                       avahi-compat-libdns_sd avahi-tools avahi-dev \
+                       libarchive-dev curl libcurl
 
 WORKDIR /opt
 RUN curl -O https://storage.z-wave.me/z-way-server/z-way-server-Debian-v3.0.0.tgz && \
