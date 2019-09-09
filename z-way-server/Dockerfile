@@ -5,6 +5,10 @@ FROM ${BUILD_FROM}
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=America/Los_Angeles
 
+COPY *.sh /
+
+RUN chmod +x /*.sh
+
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apk update && \
@@ -45,6 +49,6 @@ ENV LD_LIBRARY_PATH $LD_LIBRARY_PATH:/opt/z-way-server/libs
 
 WORKDIR /opt/z-way-server
 
-CMD chmod +x /*.sh && /start_z-way.sh
+CMD /start_z-way.sh
 
 HEALTHCHECK CMD curl --fail http://localhost:8083/ || exit 1
