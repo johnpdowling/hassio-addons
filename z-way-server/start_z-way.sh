@@ -22,4 +22,4 @@ rm -rf /opt/z-way-server/ZDDX && ln -s /config/z-way-server/ZDDX /opt/z-way-serv
 
 #kick off the server
 chmod +x /opt/z-way-server/z-way-server
-exec /opt/z-way-server/z-way-server
+/opt/z-way-server/z-way-server
