@@ -19,9 +19,7 @@ rm -rf /opt/z-way-server/automation/userModules && ln -s /config/z-way-server/us
 mkdir -p /config/z-way-server/ZDDX
 [ -z /config/z-way-server/ZDDX ] && cp -r /opt/z-way-server/ZDDX /config/z-way-server/ZDDX
 rm -rf /opt/z-way-server/ZDDX && ln -s /config/z-way-server/ZDDX /opt/z-way-server/ZDDX
-echo "opt:"
-ls /opt/
-echo "optzway:"
-ls /opt/z-way-server/
+
 #kick off the server
+chmod +x /opt/z-way-server/z-way-server
 exec /opt/z-way-server/z-way-server
