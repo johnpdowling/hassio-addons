@@ -21,5 +21,4 @@ mkdir -p /config/z-way-server/ZDDX
 rm -rf /opt/z-way-server/ZDDX && ln -s /config/z-way-server/ZDDX /opt/z-way-server/ZDDX
 
 #kick off the server
-chmod +x /opt/z-way-server/z-way-server
 /opt/z-way-server/z-way-server
