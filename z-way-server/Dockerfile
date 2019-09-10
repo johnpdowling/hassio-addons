@@ -5,7 +5,7 @@ FROM ${BUILD_FROM}
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=America/Los_Angeles
 
-COPY qemu-arm-static /usr/bin
+#COPY qemu-arm-static /usr/bin
 
 COPY *.sh /
 
@@ -29,7 +29,7 @@ RUN mkdir -p /etc/z-way/ && echo "v2.3.8" > /etc/z-way/VERSION && echo "razberry
 
 ENV LD_LIBRARY_PATH $LD_LIBRARY_PATH:/opt/z-way-server/libs
 
-RUN rm /usr/bin/qemu-arm-static
+#RUN rm /usr/bin/qemu-arm-static
 
 WORKDIR /opt/z-way-server
 
