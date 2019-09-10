@@ -1,4 +1,4 @@
-ARG BUILD_FROM=hassioaddons/debian-base
+ARG BUILD_FROM=hassioaddons/debian-base:latest
 FROM ${BUILD_FROM}
 #FROM armhf/debian:stretch-slim
 
