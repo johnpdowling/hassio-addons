@@ -14,7 +14,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apk update && \
     apk add --no-cache wget sharutils tzdata gawk c-ares c-ares-dev \
                        avahi-compat-libdns_sd avahi-tools avahi-dev \
-                       libarchive-dev curl libcurl
+                       libarchive-dev curl libcurl dpkg
 
 WORKDIR /opt
 RUN curl -O https://storage.z-wave.me/z-way-server/z-way-server-RaspberryPiXTools-v2.3.8.tgz && \
