@@ -17,9 +17,9 @@ RUN apk update && \
                        libarchive-dev curl libcurl
 
 WORKDIR /opt
-RUN curl -O https://storage.z-wave.me/z-way-server/z-way-server-Debian-v2.3.8.tgz && \
-    tar -zxvf z-way-server-Debian-v2.3.8.tgz && \
-    rm z-way-server-Debian-v2.3.8.tgz
+RUN curl -O https://storage.z-wave.me/z-way-server/z-way-server-RaspberryPiXTools-v2.3.8.tgz && \
+    tar -zxvf z-way-server-RaspberryPiXTools-v2.3.8.tgz && \
+    rm z-way-server-RaspberryPiXTools-v2.3.8.tgz
     
 RUN mkdir -p /etc/z-way/ && echo "v2.3.8" > /etc/z-way/VERSION && echo "razberry" > /etc/z-way/box_type
 
