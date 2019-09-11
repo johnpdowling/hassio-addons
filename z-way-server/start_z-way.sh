@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #set to use host dbus in HA config file
-avahi-daemon --daemonize --no-chroot
+#avahi-daemon --daemonize --no-chroot
 
 #create folders if necessary, copy defaults if necessary(empty) , remove defaults and soft link to config
 mkdir -p /config/z-way-server/config
@@ -21,9 +21,4 @@ mkdir -p /config/z-way-server/ZDDX
 rm -rf /opt/z-way-server/ZDDX && ln -s /config/z-way-server/ZDDX /opt/z-way-server/ZDDX
 
 #kick off the server
-echo "/opt/:"
-ls -l /opt/
-echo "/opt/z-way-server/:"
-ls -l /opt/z-way-server/
-
 /opt/z-way-server/z-way-server
