@@ -22,6 +22,9 @@ ARG BUILD_ARCH=armhf
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
+RUN add-apt-repository ppa:rmescandon/yq 
+RUN apt-get update
+
 # Install base system
 RUN \
     add-apt-repository ppa:rmescandon/yq \
