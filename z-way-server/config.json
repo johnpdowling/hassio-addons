@@ -4,12 +4,11 @@
   "slug": "z-way-server",
   "description": "Z-Way ZWave server instance",
   "url": "https://github.com/johnpdowling/hassio-addons/z-way-server",
-  "webui": "http://[HOST]:[PORT:80]/smarthome/#/",
+  "webui": "http://[HOST]:[PORT:80]/",
   "startup": "before",
   "auto_uart": true,
   "ingress": true,
   "ingress_port": 8083,
-  "ingress_entry": "smarthome/#/",
   "panel_icon": "mdi:z-wave",
   "arch": [
     "aarch64",
