@@ -53,36 +53,37 @@ RUN S6_ARCH="${BUILD_ARCH}" \
     && ln -s /usr/lib/bashio/bashio /usr/bin/bashio \
     \
     && rm -fr \
-        /tmp/* \
-        /var/{cache,log}/* \
-        /var/lib/apt/lists/*
+        /tmp/* 
+#\
+#        /var/{cache,log}/* \
+#        /var/lib/apt/lists/*
 
 # Entrypoint & CMD
 #ENTRYPOINT [ "/init" ]
 
 # Build arugments
-ARG BUILD_DATE
-ARG BUILD_REF
-ARG BUILD_VERSION
+#ARG BUILD_DATE
+#ARG BUILD_REF
+#ARG BUILD_VERSION
 
 # Labels
-LABEL \
-    io.hass.name="Addon Raspi base for ${BUILD_ARCH}" \
-    io.hass.description="JPD Hass.io Add-ons: ${BUILD_ARCH} z-way-server image" \
-    io.hass.arch="${BUILD_ARCH}" \
-    io.hass.type="addon" \
-    io.hass.version=${BUILD_VERSION} \
-    maintainer="John Dowling <john.patrick.dowling@gmail.com>" \
-    org.label-schema.description="JPD Hass.io Add-ons: ${BUILD_ARCH} Z-Way Server" \
-    org.label-schema.build-date=${BUILD_DATE} \
-    org.label-schema.name="Addon Z-Way-Server for ${BUILD_ARCH}" \
-    org.label-schema.schema-version="1.0" \
-    org.label-schema.url="https://addons.community" \
-    org.label-schema.usage="https://github.com/johnpdowling/hassio-addons/z-way-server/blob/master/README.md" \
-    org.label-schema.vcs-ref=${REF} \
-    org.label-schema.vcs-url="https://github.com/johnpdowling/hassio-addons/z-way-server" \
-    org.label-schema.vendor="John Dowling"
-
+#LABEL \
+#    io.hass.name="Addon Raspi base for ${BUILD_ARCH}" \
+#    io.hass.description="JPD Hass.io Add-ons: ${BUILD_ARCH} z-way-server image" \
+#    io.hass.arch="${BUILD_ARCH}" \
+#    io.hass.type="addon" \
+#    io.hass.version=${BUILD_VERSION} \
+#    maintainer="John Dowling <john.patrick.dowling@gmail.com>" \
+#    org.label-schema.description="JPD Hass.io Add-ons: ${BUILD_ARCH} Z-Way Server" \
+#    org.label-schema.build-date=${BUILD_DATE} \
+#    org.label-schema.name="Addon Z-Way-Server for ${BUILD_ARCH}" \
+#    org.label-schema.schema-version="1.0" \
+#    org.label-schema.url="https://addons.community" \
+#    org.label-schema.usage="https://github.com/johnpdowling/hassio-addons/z-way-server/blob/master/README.md" \
+#    org.label-schema.vcs-ref=${REF} \
+#    org.label-schema.vcs-url="https://github.com/johnpdowling/hassio-addons/z-way-server" \
+#    org.label-schema.vendor="John Dowling"
+##############################################
 
 # NOW BUILD ZWAY AS NORMAL
 
