@@ -2,7 +2,7 @@
 ARG BUILD_FROM=armhf/debian:stretch-slim
 FROM ${BUILD_FROM}
 
-COPY qemu-arm-static /usr/bin
+#COPY qemu-arm-static /usr/bin
 
 # Environment variables
 ENV \
@@ -112,7 +112,7 @@ RUN mkdir -p /etc/z-way/ && echo "v2.3.8" > /etc/z-way/VERSION && echo "razberry
 
 ENV LD_LIBRARY_PATH $LD_LIBRARY_PATH:/opt/z-way-server/libs
 
-RUN rm /usr/bin/qemu-arm-static
+#RUN rm /usr/bin/qemu-arm-static
 
 WORKDIR /opt/z-way-server
 
