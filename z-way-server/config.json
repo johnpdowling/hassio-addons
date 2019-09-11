@@ -4,6 +4,7 @@
   "slug": "z-way-server",
   "description": "Z-Way ZWave server instance",
   "url": "https://github.com/johnpdowling/hassio-addons/z-way-server",
+  "webui": "http://[HOST]:[PORT:80]/smarthome/#/",
   "startup": "before",
   "auto_uart": true,
   "ingress": true,
@@ -16,6 +17,12 @@
     "armv7"
   ],
   "boot": "auto",
+  "ports": {
+    "80/tcp": null
+  },
+  "ports_description": {
+    "80/tcp": "Web interface (Not required for Hass.io Ingress)"
+  },
   "map": [ 
     "config:rw",
     "ssl"
