@@ -24,17 +24,21 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Install base system
 RUN \
-    apt-get update \
-    \
-    && apt-get dist-upgrade -y \
-    && apt-get install -y --no-install-recommends \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
         ca-certificates=20180409 \
         curl \
         jq \
         tzdata \
-        software-properties-common \
-    \
-    && S6_ARCH="${BUILD_ARCH}" \
+        software-properties-common
+
+RUN \
+    add-apt-repository ppa:rmescandon/yq && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
+        yq
+
+RUN S6_ARCH="${BUILD_ARCH}" \
     && if [ "${BUILD_ARCH}" = "i386" ]; then S6_ARCH="x86"; fi \
     && if [ "${BUILD_ARCH}" = "armv7" ]; then S6_ARCH="arm"; fi \
     \
@@ -58,12 +62,6 @@ RUN \
         /tmp/* \
         /var/{cache,log}/* \
         /var/lib/apt/lists/*
-
-RUN \
-    add-apt-repository ppa:rmescandon/yq && \
-    apt-get update && \
-    apt-get install -y --no-install-recommends \
-        yq
 
 # Entrypoint & CMD
 ENTRYPOINT [ "/init" ]
