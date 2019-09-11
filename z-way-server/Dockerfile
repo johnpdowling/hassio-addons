@@ -1,5 +1,5 @@
 #START AS BUILDING BASE ADDON - NOTE ARMHF/DEBIAN
-FROM=armhf/debian:stretch-slim
+FROM armhf/debian:stretch-slim
 
 #COPY qemu-arm-static /usr/bin
 
