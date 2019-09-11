@@ -6,9 +6,9 @@
   "url": "https://github.com/johnpdowling/hassio-addons/z-way-server",
   "startup": "before",
   "auto_uart": true,
-  "host_dbus": true,
   "ingress": true,
   "ingress_port": 8083,
+  "ingress_entry": "/smarthome/#/",
   "panel_icon": "mdi:z-wave",
   "arch": [
     "aarch64",
