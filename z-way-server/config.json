@@ -8,7 +8,7 @@
   "auto_uart": true,
   "ingress": true,
   "ingress_port": 8083,
-  "ingress_entry": "/smarthome/#/",
+  "ingress_entry": "smarthome/#/",
   "panel_icon": "mdi:z-wave",
   "arch": [
     "aarch64",
