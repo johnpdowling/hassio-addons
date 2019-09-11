@@ -95,7 +95,8 @@ RUN chmod +x /*.sh
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # upgrade and install all the libs zway needs ourself in one go
-RUN apt-get install -y wget sharutils tzdata gawk libc-ares2 libavahi-compat-libdnssd-dev libarchive-dev curl libcurl3
+RUN apt-get install -y --no-install-recommends --force-yes \
+            wget sharutils gawk libc-ares2 libavahi-compat-libdnssd-dev libarchive-dev libcurl3
 
 WORKDIR /opt
 RUN curl -O https://storage.z-wave.me/z-way-server/z-way-server-RaspberryPiXTools-v2.3.8.tgz && \
