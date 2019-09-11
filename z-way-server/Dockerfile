@@ -22,20 +22,17 @@ ARG BUILD_ARCH=armhf
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-RUN add-apt-repository ppa:rmescandon/yq 
-RUN apt-get update
-
 # Install base system
 RUN \
-    add-apt-repository ppa:rmescandon/yq \
     apt-get update \
     \
+    && apt-get dist-upgrade -y \
     && apt-get install -y --no-install-recommends \
         ca-certificates=20180409 \
         curl \
         jq \
         tzdata \
-        yq \
+        software-properties-common \
     \
     && S6_ARCH="${BUILD_ARCH}" \
     && if [ "${BUILD_ARCH}" = "i386" ]; then S6_ARCH="x86"; fi \
@@ -61,6 +58,12 @@ RUN \
         /tmp/* \
         /var/{cache,log}/* \
         /var/lib/apt/lists/*
+
+RUN \
+    add-apt-repository ppa:rmescandon/yq && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
+        yq
 
 # Entrypoint & CMD
 ENTRYPOINT [ "/init" ]
@@ -100,9 +103,7 @@ RUN chmod +x /*.sh
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # upgrade and install all the libs zway needs ourself in one go
-RUN apt-get update && \
-    apt-get dist-upgrade -y && \
-    apt-get install -y wget sharutils tzdata gawk libc-ares2 libavahi-compat-libdnssd-dev libarchive-dev curl libcurl3
+RUN apt-get install -y wget sharutils tzdata gawk libc-ares2 libavahi-compat-libdnssd-dev libarchive-dev curl libcurl3
 
 WORKDIR /opt
 RUN curl -O https://storage.z-wave.me/z-way-server/z-way-server-RaspberryPiXTools-v2.3.8.tgz && \
