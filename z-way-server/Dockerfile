@@ -23,9 +23,8 @@ ARG BUILD_ARCH=armhf
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Install base system
-RUN \
-    apt-get update && \
-    apt-get install -y --no-install-recommends \
+RUN apt-get update
+RUN apt-get install -y --no-install-recommends \
         ca-certificates \
         curl \
         jq \
