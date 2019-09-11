@@ -24,11 +24,7 @@
     "ssl"
   ],
   "options": {
-    "debug": false,
-    "ssl": false
   },
-  "schema": {
-    "debug": "bool",
-    "ssl": "bool"
+  "schema": {    
   }
 }
