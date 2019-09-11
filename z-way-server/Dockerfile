@@ -27,16 +27,11 @@ RUN apt-get update && \
         ca-certificates \
         curl \
         jq \
-        tzdata \
-        software-properties-common \
-        apt-transport-https
+        tzdata
 
 RUN \
-    add-apt-repository ppa:rmescandon/yq && \
-    apt-get update && \
-    apt-get install -y --no-install-recommends \
-        yq
-
+    curl -o /bin/yq https://github.com/mikefarah/yq/releases/download/2.4.0/yq_linux_arm
+    
 RUN S6_ARCH="${BUILD_ARCH}" \
     && if [ "${BUILD_ARCH}" = "i386" ]; then S6_ARCH="x86"; fi \
     && if [ "${BUILD_ARCH}" = "armv7" ]; then S6_ARCH="arm"; fi \
