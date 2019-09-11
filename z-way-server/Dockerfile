@@ -19,7 +19,7 @@ COPY rootfs /
 ARG BUILD_ARCH=armhf
 
 # Set shell
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+#SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Install base system
 RUN apt-get update
