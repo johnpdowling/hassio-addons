@@ -7,3 +7,6 @@ RUN \
     apt-get install -y --no-install-recommends \
         sendmail
         
+COPY rootfs /
+
+CMD ["sendmail-mta"]
