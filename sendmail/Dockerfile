@@ -3,7 +3,8 @@ FROM ${BUILD_FROM}
 
 # Install base system
 RUN \
-    apt-get update && \
+    apt-get update 
+RUN \
     apt-get install -y --no-install-recommends \
         sendmail
         
