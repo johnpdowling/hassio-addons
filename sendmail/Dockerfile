@@ -1,5 +1,8 @@
-ARG BUILD_FROM=hassioaddons/ubuntu-base:3.2.0
+ARG BUILD_FROM=hassioaddons/ubuntu-base:4.0.0
 FROM ${BUILD_FROM}
+
+# Set shell
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Install base system
 RUN \
