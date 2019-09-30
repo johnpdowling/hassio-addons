@@ -3,16 +3,13 @@
 # JPD Hass.io Add-ons: forked-daapd server
 # Runs the forked-daapd Server
 # ==============================================================================
-declare -a options
+# shellcheck disable=SC1091
+source /usr/lib/hassio-addons/base.sh
 
 # Wait for avahi-daemon to become available
 s6-svwait -u -t 5000 /var/run/s6/services/avahi-daemon
 
 bashio::log.info 'Starting the forked-daapd Server...'
 
-options+=(-f)
-options+=(-c /config/forked-daapd/forked-daapd.conf)
-options+=(-P /var/run/forked-daapd.pid)
-
 # Run forked-daapd
-exec forked-daapd "${options[@]}"
+exec forked-daapd -f -c /config/forked-daapd/forked-daapd.conf -P /var/run/forked-daapd.pid
