@@ -11,4 +11,4 @@ options+=(--daemonize)
 options+=(--no-chroot)
 
 # Run UniFi
-exec /usr/sbin/avahi-daemon "${options[@]}"
+exec avahi-daemon "${options[@]}"
