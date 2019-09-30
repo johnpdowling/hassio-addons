@@ -1,0 +1,13 @@
+#!/usr/bin/with-contenv bashio
+# ==============================================================================
+# JPD Hass.io Add-ons: forked-daapd server
+# Runs the avahi daemon
+# ==============================================================================
+
+bashio::log.info 'Starting the forked-daapd avahi daemon...'
+
+options+=(--daemonize)
+options+=(--no-chroot)
+
+# Run UniFi
+exec /usr/sbin/avahi-daemon "${options[@]}"
