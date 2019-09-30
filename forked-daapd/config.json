@@ -4,7 +4,7 @@
   "slug": "forked-daapd",
   "description": "Forked-daapd media server instance",
   "url": "https://github.com/johnpdowling/hassio-addons/forked-daapd",
-  "startup": "before",
+  "startup": "services",
   "host_network": true,
   "host_dbus": true,
   "arch": [
@@ -15,6 +15,8 @@
     "i386"
   ],
   "boot": "auto",
+  "hassio_api": true,
+  "hassio_role": "default",
   "map": [ 
     "config:rw"
   ],
