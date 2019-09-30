@@ -3,6 +3,7 @@
 # JPD Hass.io Add-ons: forked-daapd server
 # Runs the avahi daemon
 # ==============================================================================
+declare -a options
 
 bashio::log.info 'Starting the forked-daapd avahi daemon...'
 
