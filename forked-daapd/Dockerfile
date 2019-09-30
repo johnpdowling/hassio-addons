@@ -1,7 +1,12 @@
-ARG BUILD_FROM=hassioaddons/base:4.0.0
+ARG BUILD_FROM=hassioaddons/base:4.1.1
+# hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
+# Set shell
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
 #adapted from sretalla's/kevineye's dockerfiles
+# hadolint ignore=DL3003
 RUN apk --no-cache add --virtual=deps1 \
         alsa-lib-dev \
         autoconf \
@@ -31,9 +36,9 @@ RUN apk --no-cache add --virtual=deps1 \
         sqlite-dev \
  && apk add --no-cache --virtual=deps2 --repository http://nl.alpinelinux.org/alpine/edge/testing \
         libantlr3c-dev \
-        mxml-dev
-
-RUN apk add --no-cache \
+        mxml-dev \
+ \       
+ && apk add --no-cache \
         avahi \
         confuse \
         dbus \
@@ -48,33 +53,33 @@ RUN apk add --no-cache \
         protobuf-c \
         sqlite \
         sqlite-libs \
-        openssl \
+        openssl \        
  && apk add --no-cache --repository http://nl.alpinelinux.org/alpine/edge/testing \
         libantlr3c \
-        mxml
-
-RUN curl -L -o /tmp/antlr-3.4-complete.jar http://www.antlr3.org/download/antlr-3.4-complete.jar \
- && echo '#!/bin/bash' > /usr/local/bin/antlr3 \
- && echo 'exec java -cp /tmp/antlr-3.4-complete.jar org.antlr.Tool "$@"' >> /usr/local/bin/antlr3 \
- && chmod 775 /usr/local/bin/antlr3
-
-RUN cd /tmp \
- && git clone https://github.com/warmcat/libwebsockets.git \
- && cd /tmp/libwebsockets \
- && cmake ./ \
- && make install
-
-RUN cd /tmp \
- && git clone https://github.com/ejurgensen/forked-daapd.git \
- && cd /tmp/forked-daapd \
- && autoreconf -fi \
- && ./configure \
-      --enable-itunes \
- && make \
- && make install
-
-RUN apk del --purge deps1 deps2 \
- && rm -rf /usr/local/bin/antlr3 /tmp/*
+        mxml \
+ \
+ && curl -L -o /tmp/antlr-3.4-complete.jar http://www.antlr3.org/download/antlr-3.4-complete.jar && \
+    echo '#!/bin/bash' > /usr/local/bin/antlr3 && \
+    echo 'exec java -cp /tmp/antlr-3.4-complete.jar org.antlr.Tool "$@"' >> /usr/local/bin/antlr3 && \
+    chmod 775 /usr/local/bin/antlr3 \
+ \
+ && cd /tmp && \
+    git clone https://github.com/warmcat/libwebsockets.git && \
+    cd /tmp/libwebsockets && \
+    cmake ./ && \
+    make install \
+ \
+ && cd /tmp && \
+    git clone https://github.com/ejurgensen/forked-daapd.git && \
+    cd /tmp/forked-daapd && \
+    autoreconf -fi && \
+    ./configure \
+      --enable-itunes  &&\
+    make && \
+    make install \
+ \
+ && apk del --purge deps1 deps2 && \
+    rm -rf /usr/local/bin/antlr3 /tmp/*
 
 RUN cd /usr/local/etc \
  && sed -i -e 's/\(uid.*=.*\)/uid = "root"/g' forked-daapd.conf \
