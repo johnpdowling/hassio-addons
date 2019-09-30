@@ -15,4 +15,4 @@ options+=(-c /config/forked-daapd/forked-daapd.conf)
 options+=(-P /var/run/forked-daapd.pid)
 
 # Run forked-daapd
-exec /usr/local/sbin/forked-daapd "${options[@]}"
+exec forked-daapd "${options[@]}"
