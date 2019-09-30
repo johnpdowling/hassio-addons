@@ -1,10 +1,7 @@
-ARG BUILD_FROM=hassioaddons/base:3.1.0
+ARG BUILD_FROM=hassioaddons/base:4.0.0
 FROM ${BUILD_FROM}
 
 #adapted from sretalla's/kevineye's dockerfiles
-ADD daapd.sh /daapd
-RUN chmod +x /daapd
-
 RUN apk --no-cache add --virtual=deps1 \
         alsa-lib-dev \
         autoconf \
@@ -94,4 +91,29 @@ RUN cd /usr/local/etc \
 
 VOLUME /etc/localtime /etc/localtime:ro
 
-CMD /daapd
+# Copy root filesystem
+COPY rootfs /
+
+# Build arguments
+ARG BUILD_ARCH
+ARG BUILD_DATE
+ARG BUILD_REF
+ARG BUILD_VERSION
+
+# Labels
+LABEL \
+    io.hass.name="Forked-daapd Server" \
+    io.hass.description="The forked-daapd server program" \
+    io.hass.arch="${BUILD_ARCH}" \
+    io.hass.type="addon" \
+    io.hass.version=${BUILD_VERSION} \
+    maintainer="John Dowling <john.patrick.dowling@gmail.com>" \
+    org.label-schema.description="The forked-daapd server program" \
+    org.label-schema.build-date=${BUILD_DATE} \
+    org.label-schema.name="Forked-daapd Server" \
+    org.label-schema.schema-version="1.0" \
+    org.label-schema.url="" \
+    org.label-schema.usage="https://github.com/johnpdowling/hassio-addons/tree/master/forked-daapd/README.md" \
+    org.label-schema.vcs-ref=${BUILD_REF} \
+    org.label-schema.vcs-url="https://github.com/johnpdowling/hassio-addons/forked-daapd" \
+    org.label-schema.vendor="JPD Hass.io Add-ons"
