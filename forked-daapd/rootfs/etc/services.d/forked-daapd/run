@@ -4,7 +4,6 @@
 # Runs the forked-daapd Server
 # ==============================================================================
 # shellcheck disable=SC1091
-source /usr/lib/hassio-addons/base.sh
 
 # Wait for avahi-daemon to become available
 s6-svwait -u -t 5000 /var/run/s6/services/avahi-daemon
