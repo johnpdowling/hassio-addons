@@ -7,4 +7,4 @@
 # shellcheck disable=SC1091
 
 bashio::log.info 'Kicking off avahi-daemon...'
-exec avahi-daemon --no-chroot
+avahi-daemon --no-chroot
