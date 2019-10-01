@@ -6,7 +6,7 @@
 # shellcheck disable=SC1091
 
 bashio::log.info 'Kicking off avahi-daemon...'
-exec avahi-daemon --daemonize --no-chroot
+avahi-daemon --daemonize --no-chroot
 
 bashio::log.info 'Starting the forked-daapd Server...'
 # Run forked-daapd
