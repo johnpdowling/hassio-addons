@@ -17,9 +17,6 @@ fi
 if ! bashio::fs.directory_exists '/config/forked-daapd/music'; then
     bashio::log.debug 'Creating music folder...'
     mkdir -p /config/forked-daapd/music
-fi
-
-if ! bashio::fs.file_exists '/config/forked-daapd/music/HomeAssistantAnnounce'; then
     bashio::log.debug 'Creating HA fifo file...'
     mkfifo -m 666 /config/forked-daapd/music/HomeAssistantAnnounce
 fi
