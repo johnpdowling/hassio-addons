@@ -21,5 +21,5 @@ if ! bashio::fs.directory_exists '/config/forked-daapd/music'; then
     mkfifo -m 666 /config/forked-daapd/music/HomeAssistantAnnounce
 fi
 
-bashio::log.info 'Kicking off avahi-daemon...'
-/usr/sbin/avahi-daemon --daemonize --no-chroot
+bashio::log.debug 'Kicking off avahi-daemon...'
+exec /usr/sbin/avahi-daemon --daemonize --no-chroot
