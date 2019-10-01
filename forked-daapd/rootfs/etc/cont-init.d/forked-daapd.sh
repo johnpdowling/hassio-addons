@@ -20,3 +20,6 @@ if ! bashio::fs.directory_exists '/config/forked-daapd/music'; then
     bashio::log.debug 'Creating HA fifo file...'
     mkfifo -m 666 /config/forked-daapd/music/HomeAssistantAnnounce
 fi
+
+bashio::log.info 'Kicking off avahi-daemon...'
+avahi-daemon --daemonize --no-chroot
