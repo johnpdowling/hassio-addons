@@ -5,10 +5,9 @@
 # ==============================================================================
 # shellcheck disable=SC1091
 
-# Wait for avahi-daemon to become available
-s6-svwait -u -t 5000 /var/run/s6/services/avahi-daemon
+bashio::log.info 'Kicking off avahi-daemon...'
+exec avahi-daemon --daemonize --no-chroot
 
 bashio::log.info 'Starting the forked-daapd Server...'
-
 # Run forked-daapd
 exec forked-daapd -f -c /config/forked-daapd/forked-daapd.conf -P /var/run/forked-daapd.pid
