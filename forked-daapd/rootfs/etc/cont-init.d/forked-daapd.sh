@@ -22,4 +22,4 @@ if ! bashio::fs.directory_exists '/config/forked-daapd/music'; then
 fi
 
 bashio::log.info 'Kicking off avahi-daemon...'
-exec avahi-daemon --daemonize --no-chroot
+/usr/sbin/avahi-daemon --daemonize --no-chroot
