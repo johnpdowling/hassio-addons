@@ -4,7 +4,6 @@
 # Runs the avahi daemon
 # ==============================================================================
 # shellcheck disable=SC1091
-source /usr/lib/hassio-addons/base.sh
 
 bashio::log.info 'Starting the forked-daapd avahi daemon...'
 
