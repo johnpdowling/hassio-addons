@@ -1,0 +1,9 @@
+{
+    "squash": false,
+    "build_from": {
+        "aarch64": "youdownwithjpd/addon-raspbian-base:latest",
+        "armhf": "youdownwithjpd/addon-raspbian-base:latest",
+        "armv7": "youdownwithjpd/addon-raspbian-base:latest"
+    },
+    "args": {}
+}
