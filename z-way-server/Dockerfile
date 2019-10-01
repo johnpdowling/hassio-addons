@@ -12,8 +12,8 @@ ENV TZ=America/Los_Angeles
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # upgrade and install all the libs zway needs ourself in one go
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
+RUN apt-get update 
+RUN apt-get install -y --no-install-recommends \
         wget \
         sharutils \
         gawk \
