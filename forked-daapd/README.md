@@ -1,5 +1,3 @@
-# Temporarily broken. Trying to implement services.
-
 # forked-daapd hass.io add-on
 This add-on provides an installation of the [forked-daapd](https://github.com/ejurgensen/forked-daapd) server and is based on the [docker project](https://github.com/sretalla/docker-forked-daapd) by [/u/sretalla](https://github.com/sretalla) and [/u/kevineye](https://github.com/kevineye).
 
