@@ -4,12 +4,31 @@
 # Configures the Z-Way Server
 # ==============================================================================
 
-if ! bashio::fs.directory_exists '/config/forked-daapd/cache'; then
-    bashio::log.debug 'Creating cache folder...'
-    mkdir -p /config/forked-daapd/cache
-fi
+bashio::log.debug 'Creating config folder (if necessary)...'
+mkdir -p /config/z-way-server/config
+bashio::log.debug 'Creating storage folder (if necessary)...'
+mkdir -p /config/z-way-server/storage
+bashio::log.debug 'Creating user modules folder (if necessary)...'
+mkdir -p /config/z-way-server/userModules
+bashio::log.debug 'Creating zddx folder (if necessary)...'
+mkdir -p /config/z-way-server/ZDDX
 
-if ! bashio::fs.file_exists '/config/forked-daapd/forked-daapd.conf'; then
-    bashio::log.debug 'Copying default conf file...'
-    cp /usr/local/etc/forked-daapd.conf /config/forked-daapd/forked-daapd.conf
-fi
+bashio::log.debug 'Copying default config files (if necessary)...'
+[ -z /config/z-way-server/config ] && cp -r /opt/z-way-server/config /config/z-way-server/config
+bashio::log.debug 'Linking config files...'
+rm -rf /opt/z-way-server/config && ln -s /config/z-way-server/config /opt/z-way-server/config
+
+bashio::log.debug 'Copying default storage files (if necessary)...'
+[ -z /config/z-way-server/storage ] && cp -r /opt/z-way-server/automation/storage /config/z-way-server/storage
+bashio::log.debug 'Linking storage files...'
+rm -rf /opt/z-way-server/automation/storage && ln -s /config/z-way-server/storage /opt/z-way-server/automation/storage
+
+bashio::log.debug 'Copying default user modules files (if necessary)...'
+[ -z /config/z-way-server/userModules ] && cp -r /opt/z-way-server/automation/userModules /config/z-way-server/userModules
+bashio::log.debug 'Linking user modules files...'
+rm -rf /opt/z-way-server/automation/userModules && ln -s /config/z-way-server/userModules /opt/z-way-server/automation/userModules
+
+bashio::log.debug 'Copying default zddx files (if necessary)...'
+[ -z /config/z-way-server/ZDDX ] && cp -r /opt/z-way-server/ZDDX /config/z-way-server/ZDDX
+bashio::log.debug 'Linking zddx files...'
+rm -rf /opt/z-way-server/ZDDX && ln -s /config/z-way-server/ZDDX /opt/z-way-server/ZDDX
