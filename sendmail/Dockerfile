@@ -14,5 +14,3 @@ RUN \
         sendmail
         
 COPY rootfs /
-
-CMD ["sendmail-mta"]
