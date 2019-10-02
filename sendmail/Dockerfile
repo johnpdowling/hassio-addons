@@ -8,8 +8,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # Install base
 # hadolint ignore=DL3003
 RUN \
-    apt-get update 
-RUN \
+    apt-get update && \
     apt-get install -y --no-install-recommends \
         sendmail
         
