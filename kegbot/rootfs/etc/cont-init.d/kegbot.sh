@@ -3,6 +3,7 @@
 # JPD Hass.io Add-ons: Kegbot Server
 # Configures the Kegbot Server
 # ==============================================================================
+set -e
 CONFIG_PATH=/data/options.json
 
 #pull required options
