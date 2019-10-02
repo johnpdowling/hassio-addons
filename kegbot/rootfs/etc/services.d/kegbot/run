@@ -1,8 +1,13 @@
 #!/usr/bin/with-contenv bashio
 # ==============================================================================
-# Community Hass.io Add-ons: Visual Studio Code
-# Runs the Nginx daemon
+# Community Hass.io Add-ons: Kegbot Server
+# Runs the Kegbot daemon
 # ==============================================================================
+
+# Wait for other services to become available
+s6-svwait -u -t 5000 /var/run/s6/services/nginx
+s6-svwait -u -t 5000 /var/run/s6/services/redis
+
 
 wait_for_mysql() {
   nc -z $KEGBOT_DB_HOST $KEGBOT_DB_PORT || sleep 30
