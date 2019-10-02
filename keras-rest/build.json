@@ -1,0 +1,7 @@
+{
+    "squash": false,
+    "build_from": {
+        "aarch64": "youdownwithjpd/addon-nvidia-base:latest"
+    },
+    "args": {}
+}
