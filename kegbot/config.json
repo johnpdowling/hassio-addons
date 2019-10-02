@@ -1,6 +1,6 @@
 {
   "name": "Kegbot",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "slug": "kegbot",
   "description": "Kegbot Server, the internet beer kegerator monitoring system.",
   "url": "https://github.com/johnpdowling/hassio-addons/kegbot",
