@@ -59,22 +59,12 @@ if [[ ! -z "${KEGBOT_EMAIL_USE_TLS}" && "${KEGBOT_EMAIL_USE_TLS}" == "null" ]]; 
 fi
 
 # other sets
-if [ -z "${KEGBOT_REDIS_PORT}" ]; then
-  export KEGBOT_REDIS_HOST=localhost
-  export KEGBOT_REDIS_PORT=6379
-fi
-
-if [ -z "${KEGBOT_SETTINGS_DIR}" ]; then
-  export KEGBOT_SETTINGS_DIR=/config/kegbot/
-fi
-  
-if [ -z "${KEGBOT_MEDIA_ROOT}" ]; then
-  export KEGBOT_MEDIA_ROOT=/config/kegbot/media/
-fi
-  
-#  if [ -z "${KEGBOT_DATA_DIR}" ]; then
+export KEGBOT_REDIS_HOST=localhost
+export KEGBOT_REDIS_PORT=6379
+export KEGBOT_SETTINGS_DIR=/config/kegbot/
+export KEGBOT_MEDIA_ROOT=/config/kegbot/media/
+ 
 #    export KEGBOT_DATA_DIR=/config/kegbot/kegbot-data/
-#  fi
 
 # Verify mandatory variables.
 if [ -z "${KEGBOT_DB_HOST}" ]; then
