@@ -1,0 +1,10 @@
+#!/usr/bin/with-contenv bashio
+# ==============================================================================
+# JPD Hass.io Add-ons: Sendmail Server
+# Runs the Sendmail MTA
+# ==============================================================================
+set -e
+CONFIG_PATH=/data/options.json
+
+bashio::log.info "Starting Sendmail MTA Server..."
+exec sendmail-mta
