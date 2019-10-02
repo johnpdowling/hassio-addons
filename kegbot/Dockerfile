@@ -43,11 +43,7 @@ RUN rm -rf /tmp/kegbot*
 RUN mkdir -p /kegbot-data/
 COPY local_settings.py /kegbot-data/
 
-#ADD     run.sh /run.sh
-#RUN     chmod 700 /run.sh
-
-#ENTRYPOINT ["/bin/sh"]
-#CMD     ["/run.sh"]
+COPY rootfs /
 
 # Build arguments
 ARG BUILD_ARCH
