@@ -1,0 +1,35 @@
+#!/usr/bin/with-contenv bashio
+# ==============================================================================
+# Community Hass.io Add-ons: Visual Studio Code
+# Runs the Nginx daemon
+# ==============================================================================
+
+wait_for_mysql() {
+  nc -z $KEGBOT_DB_HOST $KEGBOT_DB_PORT || sleep 30
+  if ! do_mysql "${KEGBOT_DB_NAME}" -e "show tables"; then
+    do_mysql -e "create database ${KEGBOT_DB_NAME};"
+    kegbot migrate --noinput -v 0
+    do_mysql "${KEGBOT_DB_NAME}" -e "show tables"
+  fi
+}
+
+# Perform first-launch setup.
+maybe_setup_kegbot() {
+  if [ ! -d "${KEGBOT_SETTINGS_DIR}" ]; then
+    mkdir -p ${KEGBOT_SETTINGS_DIR}/media
+    mv /kegbot-data/local_settings.py ${KEGBOT_SETTINGS_DIR}
+  fi
+  
+  kegbot collectstatic --noinput -v 0
+  #do_mysql -e "create database ${KEGBOT_DB_NAME};" || die "Could not create database."
+  true
+}
+bashio::log.info "Waiting for Redis..."
+redis-cli -h "${KEGBOT_REDIS_HOST}" -p ${KEGBOT_REDIS_PORT} ping
+bashio::log.info "Waiting for MySQL..."
+wait_for_mysql()
+bashio::log.info "Checking Kegbot Setup..."
+maybe_setup_kegbot()
+bashio::log.info "Starting Kegbot..."
+echo `date` >> /kegbot-data/runlog
+kegbot run_all --logs_dir=/kegbot-data --gunicorn_options="-w 3 -b 127.0.0.1:8000"
