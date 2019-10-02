@@ -1,4 +1,4 @@
-ARG BUILD_FROM=youdownwithjpd/addon-raspbian-base:latest
+ARG BUILD_FROM=youdownwithjpd/addon-nvidia-base:latest
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
