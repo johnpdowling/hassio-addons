@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv bashio
 # ==============================================================================
-# Community Hass.io Add-ons: Kegbot Server
+# JPD Hass.io Add-ons: Kegbot Server
 # Runs the Kegbot daemon
 # ==============================================================================
 set -e
