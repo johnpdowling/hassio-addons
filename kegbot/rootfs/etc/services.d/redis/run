@@ -1,0 +1,8 @@
+#!/usr/bin/with-contenv bashio
+# ==============================================================================
+# Community Hass.io Add-ons: Kegbot Server
+# Runs the Redis daemon
+# ==============================================================================
+
+bashio::log.info "Starting Redis..."
+exec redis-server
