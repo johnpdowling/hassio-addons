@@ -16,7 +16,13 @@ RUN mkdir /app
 #WORKDIR /app
 ENV PATH="/app/bin:${PATH}"
 ENV PYTHONPATH="/app:${PYTHONPATH}"
-
+# other sets
+ENV KEGBOT_REDIS_HOST=localhost
+ENV KEGBOT_REDIS_PORT=6379
+ENV KEGBOT_SETTINGS_DIR=/config/kegbot/
+ENV KEGBOT_MEDIA_ROOT=/config/kegbot/media/
+ 
+#    export KEGBOT_DATA_DIR=/config/kegbot/kegbot-data/
 ENV KEGBOT_VERSION=master
 RUN  apk add --no-cache curl \
      && curl -k -L https://github.com/Kegbot/kegbot-server/archive/${KEGBOT_VERSION}.tar.gz -o /tmp/kegbot.tar.gz \
