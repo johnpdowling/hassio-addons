@@ -5,7 +5,7 @@ FROM ${BUILD_FROM}
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-# NOW BUILD ZWAY AS NORMAL
+# Build z-way
 
 ENV TZ=America/Los_Angeles
 
@@ -25,24 +25,16 @@ RUN apt-get install -y --no-install-recommends \
 WORKDIR /opt
 RUN curl -O https://storage.z-wave.me/z-way-server/z-way-server-RaspberryPiXTools-v2.3.8.tgz && \
     tar -zxvf z-way-server-RaspberryPiXTools-v2.3.8.tgz && \
-    rm z-way-server-RaspberryPiXTools-v2.3.8.tgz
-    
-RUN mkdir -p /etc/z-way/ && echo "v2.3.8" > /etc/z-way/VERSION && echo "razberry" > /etc/z-way/box_type
-
-#COPY config.xml /opt/z-way-server/
+    rm z-way-server-RaspberryPiXTools-v2.3.8.tgz && \ 
+    mkdir -p /etc/z-way/ && \
+    echo "v2.3.8" > /etc/z-way/VERSION && echo "razberry" > /etc/z-way/box_type
 
 ENV LD_LIBRARY_PATH $LD_LIBRARY_PATH:/opt/z-way-server/libs
-
-#RUN rm /usr/bin/qemu-arm-static
 
 # Copy root filesystem
 COPY rootfs /
 
 WORKDIR /opt/z-way-server
-
-#CMD /start_z-way.sh
-
-#HEALTHCHECK CMD curl --fail http://localhost:8083/ || exit 1
 
 # Build arugments
 ARG BUILD_DATE
