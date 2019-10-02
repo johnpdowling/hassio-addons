@@ -85,3 +85,4 @@ if [ -z "${KEGBOT_REDIS_HOST}" ]; then
 fi
 
 export C_FORCE_ROOT=True   ## needed by celery
+env
