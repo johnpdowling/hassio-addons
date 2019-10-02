@@ -1,1 +1,26 @@
-
+{
+  "name": "Keras REST Server",
+  "version": "0.0.1",
+  "slug": "keras-rest-server",
+  "description": "Keras REST server instance",
+  "url": "https://github.com/johnpdowling/hassio-addons/keras-rest",
+  "startup": "services",
+  "ingress": false,
+  "arch": [
+    "aarch64"
+  ],
+  "boot": "auto",
+  "ports": {
+    "5000/tcp": 5000
+  },
+  "ports_description": {
+    "5000/tcp": "REST interface"
+  },
+  "map": [ 
+    "config:rw"
+  ],
+  "options": {
+  },
+  "schema": {    
+  }
+}
