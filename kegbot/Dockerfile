@@ -1,12 +1,12 @@
-ARG BUILD_FROM=hassioaddons/base:3.1.0
+ARG BUILD_FROM=hassioaddons/base:5.0.1
+# hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 #FROM python:2.7-stretch
 
 RUN apk update && \
-    apk add --no-cache build-base python2 python-dev py-pip py-setuptools py-virtualenv py-mysqldb
+    apk add --no-cache build-base python2 python-dev py-pip py-setuptools py-virtualenv py-mysqldb && \
+    nginx redis
 
-#nginx
-RUN apk add --no-cache nginx redis
 ADD kegbot.conf /etc/nginx/conf.d/default.conf
 ADD nginx.conf /etc/nginx/nginx.conf
 
@@ -18,7 +18,7 @@ ENV PATH="/app/bin:${PATH}"
 ENV PYTHONPATH="/app:${PYTHONPATH}"
 
 ENV KEGBOT_VERSION=master
-RUN  apk add curl \
+RUN  apk add --no-cache curl \
      && curl -k -L https://github.com/Kegbot/kegbot-server/archive/${KEGBOT_VERSION}.tar.gz -o /tmp/kegbot.tar.gz \
      && tar -xf /tmp/kegbot.tar.gz -C /tmp/ \
      && ls -la /tmp/ \
@@ -43,8 +43,32 @@ RUN rm -rf /tmp/kegbot*
 RUN mkdir -p /kegbot-data/
 COPY local_settings.py /kegbot-data/
 
-ADD     run.sh /run.sh
-RUN     chmod 700 /run.sh
+#ADD     run.sh /run.sh
+#RUN     chmod 700 /run.sh
 
-ENTRYPOINT ["/bin/sh"]
-CMD     ["/run.sh"]
+#ENTRYPOINT ["/bin/sh"]
+#CMD     ["/run.sh"]
+
+# Build arguments
+ARG BUILD_ARCH
+ARG BUILD_DATE
+ARG BUILD_REF
+ARG BUILD_VERSION
+
+# Labels
+LABEL \
+    io.hass.name="Kegbot Server" \
+    io.hass.description="The kegbot server program" \
+    io.hass.arch="${BUILD_ARCH}" \
+    io.hass.type="addon" \
+    io.hass.version=${BUILD_VERSION} \
+    maintainer="John Dowling <john.patrick.dowling@gmail.com>" \
+    org.label-schema.description="The kegbot server program" \
+    org.label-schema.build-date=${BUILD_DATE} \
+    org.label-schema.name="Kegbot Server" \
+    org.label-schema.schema-version="1.0" \
+    org.label-schema.url="" \
+    org.label-schema.usage="https://github.com/johnpdowling/hassio-addons/tree/master/kegbot/README.md" \
+    org.label-schema.vcs-ref=${BUILD_REF} \
+    org.label-schema.vcs-url="https://github.com/johnpdowling/hassio-addons/kegbot" \
+    org.label-schema.vendor="JPD Hass.io Add-ons"
