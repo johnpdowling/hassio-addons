@@ -8,7 +8,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # Copy root filesystem
 COPY rootfs /
 
-# Install uvicorn-gunicorn-fastapi-docker reqs
+# Install tiangolo/uvicorn-gunicorn-fastapi-docker reqs
 
 # Install Shane's webserver reqs w/ nvidia flavors
 RUN \
