@@ -10,6 +10,16 @@ CONFIG_PATH=/data/options.json
 s6-svwait -u -t 5000 /var/run/s6/services/nginx
 s6-svwait -u -t 5000 /var/run/s6/services/redis
 
+die() {
+  echo "Error: $@"
+  exit 1
+}
+
+do_mysql() {
+  mysql -B -u "${KEGBOT_DB_USER}" --password="${KEGBOT_DB_PASS}" -h "${KEGBOT_DB_HOST}" -P ${KEGBOT_DB_PORT} "${@}"
+  return $?
+}
+
 setup_env() {
   #pull required options
   export KEGBOT_DB_NAME=$(jq --raw-output '.db_name' $CONFIG_PATH)
