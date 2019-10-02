@@ -32,9 +32,9 @@ maybe_setup_kegbot() {
 bashio::log.info "Waiting for Redis..."
 redis-cli -h "${KEGBOT_REDIS_HOST}" -p ${KEGBOT_REDIS_PORT} ping
 bashio::log.info "Waiting for MySQL..."
-wait_for_mysql()
+wait_for_mysql
 bashio::log.info "Checking Kegbot Setup..."
-maybe_setup_kegbot()
+maybe_setup_kegbot
 bashio::log.info "Starting Kegbot..."
 echo `date` >> /kegbot-data/runlog
 kegbot run_all --logs_dir=/kegbot-data --gunicorn_options="-w 3 -b 127.0.0.1:8000"
