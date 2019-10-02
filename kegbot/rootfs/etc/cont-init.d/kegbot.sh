@@ -58,14 +58,6 @@ if [[ ! -z "${KEGBOT_EMAIL_USE_TLS}" && "${KEGBOT_EMAIL_USE_TLS}" == "null" ]]; 
   export -n KEGBOT_EMAIL_USE_TLS
 fi
 
-# other sets
-export KEGBOT_REDIS_HOST=localhost
-export KEGBOT_REDIS_PORT=6379
-export KEGBOT_SETTINGS_DIR=/config/kegbot/
-export KEGBOT_MEDIA_ROOT=/config/kegbot/media/
- 
-#    export KEGBOT_DATA_DIR=/config/kegbot/kegbot-data/
-
 # Verify mandatory variables.
 if [ -z "${KEGBOT_DB_HOST}" ]; then
   die "Must set KEGBOT_DB_HOST or MYSQL_PORT_3306_TCP_{ADDR,PORT}"
