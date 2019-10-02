@@ -4,7 +4,7 @@ FROM ${BUILD_FROM}
 #FROM python:2.7-stretch
 
 RUN apk update && \
-    apk add --no-cache build-base python2 python-dev py-pip py-setuptools py-virtualenv py-mysqldb && \
+    apk add --no-cache build-base python2 python-dev py-pip py-setuptools py-virtualenv py-mysqldb \
     nginx redis
 
 ADD kegbot.conf /etc/nginx/conf.d/default.conf
