@@ -5,4 +5,4 @@
 # ==============================================================================
 
 bashio::log.info "Starting Redis..."
-exec redis-server
+redis-server
