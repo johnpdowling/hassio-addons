@@ -5,7 +5,6 @@
 # ==============================================================================
 # shellcheck disable=SC1091
 
-bashio::log.info 'Starting the Z-Way Server...'
 # Run z-way-server
-#exec /opt/z-way-server/z-way-server -c /config/z-way-server/config/config.xml -L /dev/stdout -l 0
-(cd /opt/z-way-server && /opt/z-way-server/z-way-server -c /config/z-way-server/config/config.xml -L /dev/stdout -l 0)
+bashio::log.info 'Starting the Z-Way Server...'
+(cd /opt/z-way-server && /opt/z-way-server/z-way-server -c /config/z-way-server/config/config.xml -L /dev/stdout -l 1)
