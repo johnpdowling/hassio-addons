@@ -5,9 +5,7 @@
 # ==============================================================================
 set -e
 
-if [ -f /app/gunicornapp/main.py ]; then
-    DEFAULT_MODULE_NAME=gunicornapp.main
-elif [ -f /app/app/main.py ]; then
+if [ -f /app/app/main.py ]; then
     DEFAULT_MODULE_NAME=app.main
 elif [ -f /app/main.py ]; then
     DEFAULT_MODULE_NAME=main
