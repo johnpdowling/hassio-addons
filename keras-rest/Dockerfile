@@ -9,6 +9,15 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 COPY rootfs /
 
 # Install server reqs
+ENV REDIS_HOST=localhost
+ENV REDIS_PORT=6379
+RUN \
+    apt-get update && \
+    apt-get install -y --fix-missing --no-install-recommends \
+        redis \
+    rm -fr \
+        /var/{cache,log}/* \
+        /var/lib/apt/lists/*
 # Install Shane's webserver reqs w/ nvidia flavors
 RUN \
 #    pip install -U --pre --no-cache-dir --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 \
