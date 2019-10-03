@@ -18,11 +18,17 @@ ENV IMAGE_HEIGHT=224
 ENV IMAGE_CHANS=3
 ENV IMAGE_DTYPE=float32
 
-# Install server reqs
+# Install server, nvidia tensorflow-gpu reqs
 RUN \
     apt-get update && \
     apt-get install -y --fix-missing --no-install-recommends \
-        redis && \
+        redis \
+        libhdf5-serial-dev \
+        hdf5-tools \
+        libhdf5-dev \
+        zlib1g-dev \
+        zip \
+        libjpeg8-dev && \
     rm -fr \
         /var/{cache,log}/* \
         /var/lib/apt/lists/*
