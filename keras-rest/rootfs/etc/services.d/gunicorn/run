@@ -30,4 +30,5 @@ export GUNICORN_CONF=${GUNICORN_CONF:-$DEFAULT_GUNICORN_CONF}
 #removed pre-start.sh stuff, we have cont-init.d
 
 # Start Gunicorn
+bashio::log.info 'Starting the Uvicorn Gunicorn workers...'
 exec gunicorn -k uvicorn.workers.UvicornWorker -c "$GUNICORN_CONF" "$APP_MODULE"
