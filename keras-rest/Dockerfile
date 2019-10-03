@@ -19,7 +19,7 @@ RUN \
         fastapi \
         redis \
         pillow \
-        python-multipart \
+        python-multipart
 #        keras
 
 # Build arugments
