@@ -34,15 +34,15 @@ RUN \
         /var/lib/apt/lists/*
 # Install Shane's webserver reqs w/ nvidia flavors
 RUN \
-    pip3 install --pre --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 \
+    pip3 install --pre --no-cache-dir --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 \
          tensorflow-gpu
-RUN pip3 install -U --pre --no-cache-dir \
+RUN \
+    pip3 install --pre --no-cache-dir \
          uvicorn \
          gunicorn \
          fastapi \
          redis \
          pillow \
-         python-multipart \
          keras
 
 # Build arugments
