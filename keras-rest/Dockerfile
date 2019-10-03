@@ -8,9 +8,17 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # Copy root filesystem
 COPY rootfs /
 
-# Install server reqs
+# Initialize constants used to control image spatial dimensions and data type
 ENV REDIS_HOST=localhost
 ENV REDIS_PORT=6379
+ENV CLIENT_MAX_TRIES=3
+ENV IMAGE_QUEUE=image_queue
+ENV IMAGE_WIDTH=224
+ENV IMAGE_HEIGHT=224
+ENV IMAGE_CHANS=3
+ENV IMAGE_DTYPE=float32
+
+# Install server reqs
 RUN \
     apt-get update && \
     apt-get install -y --fix-missing --no-install-recommends \
