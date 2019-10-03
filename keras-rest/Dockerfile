@@ -20,7 +20,8 @@ ENV IMAGE_DTYPE=float32
 
 # Install server reqs
 RUN \
-    apt-get update && \
+    apt-get update 
+RUN \
     apt-get install -y --fix-missing --no-install-recommends \
         redis \
     rm -fr \
