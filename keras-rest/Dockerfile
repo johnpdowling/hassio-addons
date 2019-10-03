@@ -11,8 +11,8 @@ COPY rootfs /
 # Install server reqs
 # Install Shane's webserver reqs w/ nvidia flavors
 RUN \
-    pip install -U --pre --no-cache-dir --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 \
-        tensorflow-gpu && \
+#    pip install -U --pre --no-cache-dir --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 \
+#        tensorflow-gpu && \
     pip install -U --pre --no-cache-dir \
         uvicorn \
         gunicorn \
@@ -20,7 +20,7 @@ RUN \
         redis \
         pillow \
         python-multipart \
-        keras
+#        keras
 
 # Build arugments
 ARG BUILD_DATE
