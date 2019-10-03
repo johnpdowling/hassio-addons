@@ -13,14 +13,14 @@ COPY rootfs /
 RUN \
 #    pip install -U --pre --no-cache-dir --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 \
 #        tensorflow-gpu && \
-    pip install -U --pre --no-cache-dir \
-        uvicorn \
-        gunicorn \
-        fastapi \
-        redis \
-        pillow \
-        python-multipart
-#        keras
+    pip3 install -U --pre --no-cache-dir \
+         uvicorn \
+         gunicorn \
+         fastapi \
+         redis \
+         pillow \
+         python-multipart
+#         keras
 
 # Build arugments
 ARG BUILD_DATE
