@@ -28,16 +28,16 @@ RUN \
         /var/lib/apt/lists/*
 # Install Shane's webserver reqs w/ nvidia flavors
 RUN \
-#    pip install -U --pre --no-cache-dir --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 \
-#        tensorflow-gpu && \
+    pip3 install -U --pre --no-cache-dir --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 \
+         tensorflow-gpu && \
     pip3 install -U --pre --no-cache-dir \
          uvicorn \
          gunicorn \
          fastapi \
          redis \
          pillow \
-         python-multipart
-#         keras
+         python-multipart \
+         keras
 
 # Build arugments
 ARG BUILD_DATE
