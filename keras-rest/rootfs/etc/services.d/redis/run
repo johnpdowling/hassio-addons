@@ -1,0 +1,8 @@
+#!/usr/bin/with-contenv bashio
+# ==============================================================================
+# Community Hass.io Add-ons: Keras REST Server
+# Runs the Redis daemon
+# ==============================================================================
+
+bashio::log.info "Starting Redis..."
+redis-server
