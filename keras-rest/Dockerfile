@@ -36,7 +36,7 @@ RUN \
 # Install Shane's webserver reqs w/ nvidia flavors
 RUN \
     pip3 install --pre --no-cache-dir --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 \
-         tensorflow-gpu \
+         tensorflow-gpu && \
     pip3 install --pre --no-cache-dir \
          uvicorn \
          gunicorn \
@@ -49,7 +49,9 @@ RUN \
 RUN \
     git clone https://github.com/keras-team/keras.git /keras 
 #    cd /keras && \
-#    python setup.py install
+#    python setup.py install && \
+#    cd / && \
+#    rm -rf /keras
 
 # Build arugments
 ARG BUILD_DATE
