@@ -43,8 +43,11 @@ RUN \
          fastapi \
          redis \
          pillow \
-         python-multipart
-#         keras
+         python-multipart \
+         numpy \
+         scipy \
+         scikit-learn \
+         keras
 
 # Build arugments
 ARG BUILD_DATE
