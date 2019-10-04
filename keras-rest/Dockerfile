@@ -43,7 +43,8 @@ RUN \
          fastapi \
          redis \
          pillow \
-         python-multipart 
+         python3-multipart \
+         python3-scipy
 
 # Install keras from source. pip3 install erroring out
 RUN \
