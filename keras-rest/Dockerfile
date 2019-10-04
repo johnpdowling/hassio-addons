@@ -51,7 +51,7 @@ RUN \
 RUN \
     git clone https://github.com/keras-team/keras.git /keras && \
     cd /keras && \
-    python3 setup.py install
+    python3 setup.py install && \
     cd / && \
     rm -rf /keras
 
