@@ -43,10 +43,7 @@ RUN \
          fastapi \
          redis \
          pillow \
-         python-multipart \
-         numpy \
-         scipy \
-         scikit-learn 
+         python-multipart
 #         keras
 
 # Build arugments
