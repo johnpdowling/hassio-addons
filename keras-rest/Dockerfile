@@ -51,9 +51,9 @@ RUN \
 RUN \
     git clone https://github.com/keras-team/keras.git /keras && \
     cd /keras && \
-    python3 setup.py install && \
-    cd / && \
-    rm -rf /keras
+    python3 setup.py install 
+#    cd / && \
+#    rm -rf /keras
 
 # Build arugments
 ARG BUILD_DATE
