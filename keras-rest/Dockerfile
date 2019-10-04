@@ -47,7 +47,7 @@ RUN \
 
 # Install keras from source. pip3 install erroring out
 RUN \
-    git clone https://github.com/keras-team/keras.git /keras 
+    git clone https://github.com/keras-team/keras.git /keras && \
     cd /keras && \
     python setup.py install
 #    cd / && \
