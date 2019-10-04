@@ -46,8 +46,8 @@ RUN \
          python-multipart \
          numpy \
          scipy \
-         scikit-learn \
-         keras
+         scikit-learn 
+#         keras
 
 # Build arugments
 ARG BUILD_DATE
