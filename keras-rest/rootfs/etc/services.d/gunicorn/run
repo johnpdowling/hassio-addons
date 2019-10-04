@@ -5,6 +5,9 @@
 # ==============================================================================
 set -e
 
+# Wait for redis to become available
+s6-svwait -u -t 5000 /var/run/s6/services/redis
+
 if [ -f /app/app/main.py ]; then
     DEFAULT_MODULE_NAME=app.main
 elif [ -f /app/main.py ]; then
