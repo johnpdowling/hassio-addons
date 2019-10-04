@@ -28,6 +28,7 @@ RUN \
         libhdf5-dev \
         zlib1g-dev \
         zip \
+        git \
         libjpeg8-dev && \
     rm -fr \
         /var/{cache,log}/* \
@@ -35,8 +36,7 @@ RUN \
 # Install Shane's webserver reqs w/ nvidia flavors
 RUN \
     pip3 install --pre --no-cache-dir --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 \
-         tensorflow-gpu
-RUN \
+         tensorflow-gpu \
     pip3 install --pre --no-cache-dir \
          uvicorn \
          gunicorn \
@@ -44,7 +44,12 @@ RUN \
          redis \
          pillow \
          python-multipart
-#         keras
+
+# Install keras from source. pip3 install erroring out
+RUN \
+    git clone https://github.com/keras-team/keras.git /keras 
+#    cd /keras && \
+#    python setup.py install
 
 # Build arugments
 ARG BUILD_DATE
