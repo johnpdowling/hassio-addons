@@ -43,16 +43,17 @@ RUN \
          fastapi \
          redis \
          pillow \
-         python-multipart
+         python-multipart \
+         numpy \
+         scipy
 
 # Install keras from source. pip3 install erroring out
 RUN \
     git clone https://github.com/keras-team/keras.git /keras && \
-    cd /keras
-#RUN \
-#    python setup.py install
-#    cd / && \
-#    rm -rf /keras
+    cd /keras && \
+    python3 setup.py install
+    cd / && \
+    rm -rf /keras
 
 # Build arugments
 ARG BUILD_DATE
