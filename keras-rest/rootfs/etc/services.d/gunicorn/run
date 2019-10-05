@@ -32,4 +32,4 @@ export GUNICORN_CONF=${GUNICORN_CONF:-$DEFAULT_GUNICORN_CONF}
 
 # Start Gunicorn
 bashio::log.info 'Starting the Uvicorn Gunicorn workers...'
-exec gunicorn -k uvicorn.workers.UvicornWorker -c "$GUNICORN_CONF" "$APP_MODULE"
+exec gunicorn --chdir=/app -k uvicorn.workers.UvicornWorker -c "$GUNICORN_CONF" "$APP_MODULE"
