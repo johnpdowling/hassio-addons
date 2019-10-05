@@ -11,10 +11,10 @@
   ],
   "boot": "auto",
   "ports": {
-    "5000/tcp": 5000
+    "80/tcp": 5000
   },
   "ports_description": {
-    "5000/tcp": "REST interface"
+    "80/tcp": "REST interface"
   },
   "map": [ 
     "config:rw"
