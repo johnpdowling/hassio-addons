@@ -17,6 +17,13 @@ ENV IMAGE_WIDTH=224
 ENV IMAGE_HEIGHT=224
 ENV IMAGE_CHANS=3
 ENV IMAGE_DTYPE=float32
+ENV BATCH_SIZE=32
+# Time in ms between each poll by model server against Redis
+ENV SERVER_SLEEP=0.25  
+# Time in ms between each poll by web server against Redis
+ENV CLIENT_SLEEP=0.25  
+# Num tries by web server to retrieve results from Redis before giving up
+ENV CLIENT_MAX_TRIES=100  
 
 # Install server, nvidia tensorflow-gpu reqs
 RUN \
@@ -29,13 +36,8 @@ RUN \
         zlib1g-dev \
         zip \
         git \
-        libjpeg8-dev \
-        python3-keras && \
-    rm -fr \
-        /var/{cache,log}/* \
-        /var/lib/apt/lists/*
+        libjpeg8-dev && \
 # Install Shane's webserver reqs w/ nvidia flavors
-RUN \
     pip3 install --pre --no-cache-dir --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 \
          tensorflow-gpu && \
     pip3 install --pre --no-cache-dir \
@@ -45,7 +47,13 @@ RUN \
          redis \
          pillow \
          python-multipart \
-         email-validator
+         email-validator && \
+# Install keras
+    apt-get install -y --fix-missing --no-install-recommends \
+        python3-keras && \
+    rm -fr \
+        /var/{cache,log}/* \
+        /var/lib/apt/lists/*
 
 # Build arugments
 ARG BUILD_DATE
