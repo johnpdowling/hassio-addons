@@ -29,7 +29,8 @@ RUN \
         zlib1g-dev \
         zip \
         git \
-        libjpeg8-dev && \
+        libjpeg8-dev \
+        python3-keras && \
     rm -fr \
         /var/{cache,log}/* \
         /var/lib/apt/lists/*
@@ -43,16 +44,7 @@ RUN \
          fastapi \
          redis \
          pillow \
-         python3-multipart \
-         python3-scipy
-
-# Install keras from source. pip3 install erroring out
-RUN \
-    git clone https://github.com/keras-team/keras.git /keras && \
-#    cd /keras && \
-#    python3 setup.py install 
-#    cd / && \
-    rm -rf /keras
+         python-multipart
 
 # Build arugments
 ARG BUILD_DATE
