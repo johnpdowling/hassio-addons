@@ -44,7 +44,8 @@ RUN \
          fastapi \
          redis \
          pillow \
-         python-multipart
+         python-multipart \
+         email-validator
 
 # Build arugments
 ARG BUILD_DATE
