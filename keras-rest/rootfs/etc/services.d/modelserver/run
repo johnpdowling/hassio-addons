@@ -1,0 +1,11 @@
+#!/usr/bin/with-contenv bashio
+# ==============================================================================
+# Community Hass.io Add-ons: Keras REST Server
+# Runs the modelserver daemon
+# ==============================================================================
+
+# Wait for gunicorn to become available
+s6-svwait -u -t 5000 /var/run/s6/services/gunicorn
+
+bashio::log.info "Starting the Model Server..."
+python3 /app/modelserver/main.py
