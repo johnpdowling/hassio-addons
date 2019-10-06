@@ -53,9 +53,6 @@ RUN \
         /var/{cache,log}/* \
         /var/lib/apt/lists/*
 
-# fix redis memory issue
-RUN echo never > /sys/kernel/mm/transparent_hugepage/enabled
-
 # Copy root filesystem
 COPY rootfs /
 
