@@ -5,9 +5,6 @@ FROM ${BUILD_FROM}
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-# Copy root filesystem
-COPY rootfs /
-
 # Initialize constants used to control image spatial dimensions and data type
 ENV REDIS_HOST=localhost
 ENV REDIS_PORT=6379
@@ -22,7 +19,9 @@ ENV SERVER_SLEEP=0.25
 # Time in ms between each poll by web server against Redis
 ENV CLIENT_SLEEP=0.25  
 # Num tries by web server to retrieve results from Redis before giving up
-ENV CLIENT_MAX_TRIES=100  
+ENV CLIENT_MAX_TRIES=100
+# TensorFlow vars
+ENV TF_FORCE_GPU_ALLOW_GROWTH=true
 
 # Install server, nvidia tensorflow-gpu reqs
 RUN \
@@ -56,6 +55,9 @@ RUN \
 
 # fix redis memory issue
 RUN echo never > /sys/kernel/mm/transparent_hugepage/enabled
+
+# Copy root filesystem
+COPY rootfs /
 
 # Build arugments
 ARG BUILD_DATE
