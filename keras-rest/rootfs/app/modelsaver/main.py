@@ -26,7 +26,7 @@ def freeze_graph(graph, session, output, save_pb_dir='/config/keras-rest/models'
 
 def save_model():
     #get the model, save the model
-    model = ResNet50(weights=name)
+    model = ResNet50(weights=model_name)
     model.save(model_folder + '/' + model_name + '.h5')
     # Clear any previous session.
     tf.keras.backend.clear_session()
