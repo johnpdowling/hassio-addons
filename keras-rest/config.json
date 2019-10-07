@@ -20,7 +20,9 @@
     "config:rw"
   ],
   "options": {
+    "model": "imagenet"
   },
-  "schema": {    
+  "schema": {
+    "model": "str"
   }
 }
