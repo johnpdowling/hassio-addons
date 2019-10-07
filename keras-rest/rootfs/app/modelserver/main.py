@@ -14,14 +14,52 @@ from keras.applications import imagenet_utils
 import numpy as np
 import redis
 
+models_folder = "/config/keras-rest/models"
+
 # Connect to Redis server
 db = redis.StrictRedis(host=os.environ.get("REDIS_HOST"))
 
-# Load the pre-trained Keras model (here we are using a model
-# pre-trained on ImageNet and provided by Keras, but you can
-# substitute in your own networks just as easily)
-model = ResNet50(weights="imagenet")
+def load_graph(frozen_graph_filename):
+    # We load the protobuf file from the disk and parse it to retrieve the 
+    # unserialized graph_def
+    with tf.gfile.GFile(frozen_graph_filename, "rb") as f:
+        graph_def = tf.GraphDef()
+        graph_def.ParseFromString(f.read())
 
+    # Then, we can use again a convenient built-in function to import a graph_def into the 
+    # current default Graph
+    with tf.Graph().as_default() as graph:
+        tf.import_graph_def(
+            graph_def, 
+            input_map=None, 
+            return_elements=None, 
+            name="prefix", 
+            op_dict=None, 
+            producer_op_list=None
+        )
+
+    input_name = graph.get_operations()[0].name+':0'
+    output_name = graph.get_operations()[-1].name+':0'
+
+    return graph, input_name, output_name
+
+def model_predict(model_path, input_data):
+    # load tf graph
+    tf_model,tf_input,tf_output = load_graph(model_path)
+
+    # Create tensors for model input and output
+    x = tf_model.get_tensor_by_name(tf_input)
+    y = tf_model.get_tensor_by_name(tf_output) 
+
+    # Number of model outputs
+    num_outputs = y.shape.as_list()[0]
+    predictions = np.zeros((input_data.shape[0],num_outputs))
+    for i in range(input_data.shape[0]):        
+        with tf.Session(graph=tf_model) as sess:
+            y_out = sess.run(y, feed_dict={x: input_data[i:i+1]})
+            predictions[i] = y_out
+
+    return predictions
 
 def base64_decode_image(a, dtype, shape):
     # If this is Python 3, we need the extra step of encoding the
@@ -39,6 +77,8 @@ def base64_decode_image(a, dtype, shape):
 
 
 def classify_process():
+    model_name = os.environ.get("MODEL_NAME")
+    model_path = models_folder + '/' + model_name + '.pb'
     # Continually poll for new images to classify
     while True:
         # Pop off multiple images from Redis queue atomically
@@ -74,7 +114,8 @@ def classify_process():
         if len(imageIDs) > 0:
             # Classify the batch
             print("* Batch size: {}".format(batch.shape))
-            preds = model.predict(batch)
+            # preds = model.predict(batch)
+            preds = model_predict(model_path, batch)
             results = imagenet_utils.decode_predictions(preds)
 
             # Loop over the image IDs and their corresponding set of results from our model
