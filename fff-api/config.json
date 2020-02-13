@@ -1,6 +1,6 @@
 {
   "name": "FFF-API",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "slug": "fff-api",
   "description": "Monitor your Flashforge Finder via API",
   "url": "https://github.com/johnpdowling/hassio-addons/fff-api",
