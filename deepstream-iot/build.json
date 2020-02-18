@@ -1,0 +1,7 @@
+{
+    "squash": false,
+    "build_from": {
+        "aarch64": "youdownwithjpd/addon-deepstream_iot-base:latest"
+    },
+    "args": {}
+}
