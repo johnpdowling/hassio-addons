@@ -1,0 +1,5 @@
+#!/usr/bin/with-contenv bashio
+# ==============================================================================
+# Community Hass.io Add-ons: DeepStream IoT Server
+# Runs the deepstream app
+# ==============================================================================
