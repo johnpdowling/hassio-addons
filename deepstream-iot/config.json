@@ -1,0 +1,30 @@
+{
+  "name": "Keras REST Server",
+  "version": "0.0.1",
+  "slug": "deepstream-iot-server",
+  "description": "Keras REST server instance",
+  "url": "https://github.com/johnpdowling/hassio-addons/deepstream-iot",
+  "startup": "services",
+  "ingress": false,
+  "arch": [
+    "aarch64"
+  ],
+  "boot": "auto",
+  "ports": {
+    "80/tcp": 8080,
+    "8554/tcp": 8554
+  },
+  "ports_description": {
+    "80/tcp": "Web interface",
+    "8554/tcp": "RTSP interface"
+  },
+  "map": [ 
+    "config:rw"
+  ],
+  "options": {
+    "model_name": "test5"
+  },
+  "schema": {
+    "model_name": "str"
+  }
+}
