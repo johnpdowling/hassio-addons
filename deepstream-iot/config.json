@@ -1,8 +1,8 @@
 {
-  "name": "Keras REST Server",
+  "name": "DeepStream IoT Server",
   "version": "0.0.1",
   "slug": "deepstream-iot-server",
-  "description": "Keras REST server instance",
+  "description": "DeepStream IoT server instance",
   "url": "https://github.com/johnpdowling/hassio-addons/deepstream-iot",
   "startup": "services",
   "ingress": false,
