@@ -21,8 +21,8 @@ SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 
 # Install HA system
 RUN \
-    apt-get update && \
-    apt-get install -y --no-install-recommends \
+    opkg update && \
+    opkg install -y \
         ca-certificates \
         curl \
         jq \
