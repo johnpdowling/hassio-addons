@@ -21,7 +21,7 @@ SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 
 # Install HA system
 RUN \
-    opkg update 
+    apk update 
     # && \
 RUN opkg install -y \
         ca-certificates \
