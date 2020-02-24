@@ -1,6 +1,8 @@
 ARG BUILD_FROM
 FROM $BUILD_FROM
 
+ARG BUILD_ARCH
+
 # Environment variables
 ENV \
     DEBIAN_FRONTEND="noninteractive" \
@@ -13,6 +15,49 @@ ENV \
 
 # Copy root filesystem
 COPY rootfs /
+
+# Set shell
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
+# Install HA system
+RUN \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
+        ca-certificates \
+        curl \
+        jq \
+        tzdata
+
+RUN YQ_ARCH = "amd64"\
+    && if [ "${BUILD_ARCH}" = "i386" ]; then YQ_ARCH="386"; \
+       elif [ "${BUILD_ARCH}" = "armv7" ]; then YQ_ARCH="arm"; \
+       elif [ "${BUILD_ARCH}" = "aarch64" ]; then YQ_ARCH="arm64"; fi \
+    && curl -o /bin/yq "https://github.com/mikefarah/yq/releases/download/2.4.0/yq_linux_${YQ_ARCH}"
+
+RUN S6_ARCH="${BUILD_ARCH}" \
+    && if [ "${BUILD_ARCH}" = "i386" ]; then S6_ARCH="x86"; fi \
+    && if [ "${BUILD_ARCH}" = "armv7" ]; then S6_ARCH="arm"; fi \
+    \
+    && curl -L -s "https://github.com/just-containers/s6-overlay/releases/download/v1.22.1.0/s6-overlay-${S6_ARCH}.tar.gz" \
+        | tar zxvf - -C / \
+    \
+    && mkdir -p /etc/fix-attrs.d \
+    && mkdir -p /etc/services.d \
+    \
+    && curl -J -L -o /tmp/bashio.tar.gz \
+        "https://github.com/hassio-addons/bashio/archive/v0.4.1.tar.gz" \
+    && mkdir /tmp/bashio \
+    && tar zxvf \
+        /tmp/bashio.tar.gz \
+        --strip 1 -C /tmp/bashio \
+    \
+    && mv /tmp/bashio/lib /usr/lib/bashio \
+    && ln -s /usr/lib/bashio/bashio /usr/bin/bashio \
+    \
+    && rm -fr \
+        /tmp/* \
+        /var/{cache,log}/* \
+        /var/lib/apt/lists/*
 
 # Build arugments
 ARG BUILD_DATE
