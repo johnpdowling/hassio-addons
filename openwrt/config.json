@@ -1,0 +1,26 @@
+{
+  "name": "OpenWRT",
+  "version": "0.0.1",
+  "slug": "openwrt",
+  "description": "OpenWRT instance",
+  "url": "https://github.com/johnpdowling/hassio-addons/openwrt",
+  "startup": "services",
+  "host_network": false,
+  "host_dbus": false,
+  "arch": [
+    "aarch64",
+    "amd64",
+    "armv7",
+    "i386"
+  ],
+  "boot": "auto",
+  "hassio_api": true,
+  "hassio_role": "default",
+  "map": [ 
+    "config:rw"
+  ],
+  "options": {
+  },
+  "schema": {
+  }
+}
