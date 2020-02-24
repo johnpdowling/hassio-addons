@@ -20,14 +20,13 @@ COPY rootfs /
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 
 # Install HA system
-RUN \
-    opkg update 
-    # && \
-RUN opkg install -y \
-        ca-certificates \
-        curl \
-        jq \
-        tzdata
+#RUN \
+#    opkg update 
+#    && opkg install -y \
+#        ca-certificates \
+#        curl \
+#        jq \
+#       tzdata
 
 RUN YQ_ARCH = "amd64"\
     && if [ "${BUILD_ARCH}" = "i386" ]; then YQ_ARCH="386"; \
