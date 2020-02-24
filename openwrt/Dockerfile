@@ -17,7 +17,7 @@ ENV \
 COPY rootfs /
 
 # Set shell
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 
 # Install HA system
 RUN \
