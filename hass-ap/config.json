@@ -1,0 +1,23 @@
+{
+  "name": "HASS AP",
+  "version": "0.0.1",
+  "slug": "hass-ap",
+  "description": "Home Assistant Access Point",
+  "url": "https://github.com/johnpdowling/hassio-addons/hass-ap",
+  "startup": "before",
+  "arch": [
+    "1386",
+    "amd64",
+    "aarch64",
+    "armhf",
+    "armv7"
+  ],
+  "boot": "auto",
+  "map": [ 
+    "config:rw",
+  ],
+  "options": {
+  },
+  "schema": {    
+  }
+}
