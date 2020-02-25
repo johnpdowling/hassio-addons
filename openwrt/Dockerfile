@@ -23,45 +23,14 @@ RUN mkdir /var/lock
 
 # Install HA system
 RUN \
-    opkg update \
-    && opkg install \
-        ca-bundle \
-        curl \
-        jq 
-#        tzdata
+    apk update
 
 RUN if [ "${BUILD_ARCH}" = "i386" ]; then curl -o /tmp/openwrt.tar.gz http://downloads.openwrt.org/releases/19.07.1/targets/x86/generic/openwrt-19.07.1-x86-generic-generic-rootfs.tar.gz; fi
 RUN if [ "${BUILD_ARCH}" = "amd64" ]; then curl -o /tmp/openwrt.tar.gz http://downloads.openwrt.org/releases/19.07.1/targets/x86/64/openwrt-19.07.1-x86-64-generic-rootfs.tar.gz; fi
 RUN if [ "${BUILD_ARCH}" = "arm7" ]; then curl -o /tmp/openwrt.tar.gz http://downloads.openwrt.org/releases/19.07.1/targets/armvirt/32/openwrt-19.07.1-armvirt-32-default-rootfs.tar.gz; fi
 RUN if [ "${BUILD_ARCH}" = "aarch64" ]; then curl -o /tmp/openwrt.tar.gz http://downloads.openwrt.org/releases/19.07.1/targets/armvirt/64/openwrt-19.07.1-armvirt-64-default-rootfs.tar.gz; fi
 RUN mkdir /tmp/openwrt && tar -zxvf /tmp/openwrt.tar.gz -C /tmp/openwrt && rm /tmp/openwrt/etc/hosts && rm /tmp/openwrt/etc/resolv.conf
-#RUN cp -fr /tmp/openwrt/* /
-
-RUN if [ "${BUILD_ARCH}" = "i386" ]; then curl -o /bin/yq https://github.com/mikefarah/yq/releases/download/2.4.0/yq_linux_386; fi
-RUN if [ "${BUILD_ARCH}" = "amd64" ]; then curl -o /bin/yq https://github.com/mikefarah/yq/releases/download/2.4.0/yq_linux_amd64; fi
-RUN if [ "${BUILD_ARCH}" = "arm7" ]; then curl -o /bin/yq https://github.com/mikefarah/yq/releases/download/2.4.0/yq_linux_arm; fi
-RUN if [ "${BUILD_ARCH}" = "aarch64" ]; then curl -o /bin/yq https://github.com/mikefarah/yq/releases/download/2.4.0/yq_linux_arm64; fi
-
-RUN S6_ARCH="${BUILD_ARCH}" \
-    && if [ "${BUILD_ARCH}" = "i386" ]; then S6_ARCH="x86"; fi \
-    && if [ "${BUILD_ARCH}" = "armv7" ]; then S6_ARCH="arm"; fi \
-    \
-#    && curl -L -s "https://github.com/just-containers/s6-overlay/releases/download/v1.22.1.0/s6-overlay-${S6_ARCH}.tar.gz" \
-#        | tar zxvf - -C / \
-#    \
-#    && mkdir -p /etc/fix-attrs.d \
-#    && mkdir -p /etc/services.d \
-#    \
-    && curl -J -L -o /tmp/bashio.tar.gz "https://github.com/hassio-addons/bashio/archive/v0.4.1.tar.gz" \
-    && mkdir /tmp/bashio \
-    && tar -zxvf /tmp/bashio.tar.gz -C /tmp/bashio \
-    \
-    && mv /tmp/bashio/bashio-0.4.1/lib /usr/lib/bashio \
-    && ln -s /usr/lib/bashio/bashio /usr/bin/bashio \
-    \
-    && rm -fr /tmp/bashio* 
-#        /var/{cache,log}/* \
-#        /var/lib/apt/lists/*
+RUN cp -fr /tmp/openwrt/* /
 
 # Build arugments
 ARG BUILD_DATE
