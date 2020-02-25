@@ -22,7 +22,7 @@ true ${WPA_PASSPHRASE:=passw0rd}
 true ${HW_MODE:=g}
 true ${DRIVER:=nl80211}
 true ${HT_CAPAB:=[HT40-][SHORT-GI-20][SHORT-GI-40]}
-true ${MODE:=guest}
+true ${MODE:=host}
 
 # Attach interface to container in guest mode
 if [ "$MODE" == "guest"  ]; then
