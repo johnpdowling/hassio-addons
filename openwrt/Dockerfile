@@ -19,7 +19,7 @@ COPY rootfs /
 # Set shell
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 
-RUN mkdir /var/lock
+#RUN mkdir /var/lock
 
 # Install HA system
 RUN \
