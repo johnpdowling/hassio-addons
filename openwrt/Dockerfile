@@ -25,7 +25,8 @@ SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 RUN apk update && \
     apk add --no-cache \
     docker \
-    iw
+    iw \
+    rsync
 
 RUN if [ "${BUILD_ARCH}" = "i386" ]; then curl -o /tmp/openwrt.tar.gz http://downloads.openwrt.org/releases/19.07.1/targets/x86/generic/openwrt-19.07.1-x86-generic-generic-rootfs.tar.gz; fi
 RUN if [ "${BUILD_ARCH}" = "amd64" ]; then curl -o /tmp/openwrt.tar.gz http://downloads.openwrt.org/releases/19.07.1/targets/x86/64/openwrt-19.07.1-x86-64-generic-rootfs.tar.gz; fi
@@ -35,10 +36,11 @@ RUN mkdir /tmp/openwrt && tar -zxvf /tmp/openwrt.tar.gz -C /tmp/openwrt && \
     rm /tmp/openwrt/etc/hosts && \
     rm /tmp/openwrt/etc/resolv.conf && \
     rm -rf /tmp/openwrt/var && \
-    rm -rf /tmp/openwrt/init && \
+    rm -rf /tmp/openwrt/init
+# && \
 
 #    rm -rf /tmp/openwrt/etc/init.d
-    rm -rf /tmp/openwrt/etc
+#    rm -rf /tmp/openwrt/etc
     
 #RUN cp -rn /tmp/openwrt/* /
 
