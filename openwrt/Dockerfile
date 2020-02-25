@@ -28,11 +28,11 @@ SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 #        jq \
 #       tzdata
 
-RUN YQ_ARCH = "amd64"\
+RUN YQ_ARCH = "amd64" \
     && if [ "${BUILD_ARCH}" = "i386" ]; then YQ_ARCH="386"; \
        elif [ "${BUILD_ARCH}" = "armv7" ]; then YQ_ARCH="arm"; \
-       elif [ "${BUILD_ARCH}" = "aarch64" ]; then YQ_ARCH="arm64"; fi \
-    && curl -o /bin/yq "https://github.com/mikefarah/yq/releases/download/2.4.0/yq_linux_${YQ_ARCH}"
+       elif [ "${BUILD_ARCH}" = "aarch64" ]; then YQ_ARCH="arm64"; fi
+RUN curl -o /bin/yq "https://github.com/mikefarah/yq/releases/download/2.4.0/yq_linux_${YQ_ARCH}"
 
 RUN S6_ARCH="${BUILD_ARCH}" \
     && if [ "${BUILD_ARCH}" = "i386" ]; then S6_ARCH="x86"; fi \
