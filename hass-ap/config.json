@@ -6,7 +6,8 @@
   "url": "https://github.com/johnpdowling/hassio-addons/hass-ap",
   "startup": "before",
   "full_access": "true",
-  "privileged": [ "SYS_ADMIN" ],
+  "docker_api": "true",
+  "privileged": [ "NET_ADMIN" ],
   "arch": [
     "i386",
     "amd64",
