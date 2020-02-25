@@ -34,3 +34,7 @@ INTERFACE=wlan0
 
 # unblock wlan
 rfkill unblock wlan
+
+# Setup interface and bring it up 
+ip link set ${INTERFACE} up
+ip addr flush dev ${INTERFACE}
