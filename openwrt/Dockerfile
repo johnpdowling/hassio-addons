@@ -28,7 +28,7 @@ SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 #        jq \
 #       tzdata
 
-RUN YQ_ARCH = "amd64" 
+ENV YQ_ARCH = "amd64" 
 RUN if [ "${BUILD_ARCH}" = "i386" ]; then YQ_ARCH="386"; fi 
 RUN if [ "${BUILD_ARCH}" = "armv7" ]; then YQ_ARCH="arm"; fi \
     && if [ "${BUILD_ARCH}" = "aarch64" ]; then YQ_ARCH="arm64"; fi
