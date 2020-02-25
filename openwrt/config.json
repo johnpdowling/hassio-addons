@@ -7,7 +7,7 @@
   "startup": "services",
   "privileged": [ "NET_ADMIN" ],
   "ingress": false,
-  "host_network": true,
+  "host_network": false,
   "host_dbus": false,
   "ports": {
     "80/tcp": 1980
