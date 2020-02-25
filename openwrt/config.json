@@ -27,6 +27,7 @@
   "map": [ 
     "config:rw"
   ],
+  "devices": [ "/sys/class/net/wlan0:/sys/slass/net/wlan0:rwm" ],
   "options": {
   },
   "schema": {
