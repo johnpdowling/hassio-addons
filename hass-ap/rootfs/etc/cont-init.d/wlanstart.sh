@@ -26,17 +26,19 @@ true ${MODE:=guest}
 
 # Attach interface to container in guest mode
 if [ "$MODE" == "guest"  ]; then
-    echo "Attaching interface to container"
+    bashio::log.info "Fetching interface data for container"
 
     CONTAINER_ID=$(cat /proc/self/cgroup | grep -o  -e "/docker/.*" | head -n 1| sed "s/\/docker\/\(.*\)/\\1/")
     CONTAINER_PID=$(docker inspect -f '{{.State.Pid}}' ${CONTAINER_ID})
     CONTAINER_IMAGE=$(docker inspect -f '{{.Config.Image}}' ${CONTAINER_ID})
+    
+    bashio::log.info "Attaching interface to container"
 
     docker run -t --privileged --net=host --pid=host --rm --entrypoint /bin/sh ${CONTAINER_IMAGE} -c "
         PHY=\$(echo phy\$(iw dev ${INTERFACE} info | grep wiphy | tr ' ' '\n' | tail -n 1))
         iw phy \$PHY set netns ${CONTAINER_PID}
     "
-
+    bashio::log.info "Setting up interface"
     ip link set ${INTERFACE} name wlan0
 
     INTERFACE=wlan0
