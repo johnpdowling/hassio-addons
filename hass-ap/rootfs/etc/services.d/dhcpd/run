@@ -1,0 +1,10 @@
+#!/usr/bin/with-contenv bashio
+# ==============================================================================
+# JPD Hass.io Add-ons: HASS-AP
+# Runs dhcpd
+# ==============================================================================
+
+true ${INTERFACE:=wlan0}
+
+bashio::log.info "Starting DHCP server .."
+dhcpd ${INTERFACE}
