@@ -5,7 +5,7 @@
   "description": "OpenWRT instance",
   "url": "https://github.com/johnpdowling/hassio-addons/openwrt",
   "startup": "services",
-  "privileged": "NET_ADMIN",
+  "privileged": [ "NET_ADMIN" ],
   "ingress": false,
   "host_network": false,
   "host_dbus": false,
