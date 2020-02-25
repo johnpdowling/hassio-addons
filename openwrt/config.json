@@ -5,10 +5,15 @@
   "description": "OpenWRT instance",
   "url": "https://github.com/johnpdowling/hassio-addons/openwrt",
   "startup": "services",
-  "ingress": true,
-  "ingress_port": 80,
+  "ingress": false,
   "host_network": false,
   "host_dbus": false,
+  "ports": {
+    "80/tcp": 1980
+  },
+  "ports_description": {
+    "80/tcp": "Web interface"
+  },
   "arch": [
     "aarch64",
     "amd64",
