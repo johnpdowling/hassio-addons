@@ -48,12 +48,11 @@ RUN S6_ARCH="${BUILD_ARCH}" \
     && curl -J -L -o /tmp/bashio.tar.gz "https://github.com/hassio-addons/bashio/archive/v0.4.1.tar.gz" \
     && mkdir /tmp/bashio \
     && tar -zxvf /tmp/bashio.tar.gz -C /tmp/bashio 
-#    \
-#    && mv /tmp/bashio/lib /usr/lib/bashio \
-#    && ln -s /usr/lib/bashio/bashio /usr/bin/bashio \
-#    \
-#    && rm -fr \
-#        /tmp/* 
+    \
+    && mv /tmp/bashio/bashio-0.4.1/lib /usr/lib/bashio \
+    && ln -s /usr/lib/bashio/bashio /usr/bin/bashio \
+    \
+    && rm -fr /tmp/bashio* 
 #        /var/{cache,log}/* \
 #        /var/lib/apt/lists/*
 
