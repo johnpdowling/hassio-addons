@@ -32,7 +32,7 @@ RUN if [ "${BUILD_ARCH}" = "amd64" ]; then curl -o /tmp/openwrt.tar.gz http://do
 RUN if [ "${BUILD_ARCH}" = "arm7" ]; then curl -o /tmp/openwrt.tar.gz http://downloads.openwrt.org/releases/19.07.1/targets/armvirt/32/openwrt-19.07.1-armvirt-32-default-rootfs.tar.gz; fi
 RUN if [ "${BUILD_ARCH}" = "aarch64" ]; then curl -o /tmp/openwrt.tar.gz http://downloads.openwrt.org/releases/19.07.1/targets/armvirt/64/openwrt-19.07.1-armvirt-64-default-rootfs.tar.gz; fi
 RUN mkdir /tmp/openwrt && tar -zxvf /tmp/openwrt.tar.gz -C /tmp/openwrt && rm /tmp/openwrt/etc/hosts && rm /tmp/openwrt/etc/resolv.conf && rm -rf /tmp/openwrt/var && rm -rf /tmp/openwrt/etc
-RUN cp -fr /tmp/openwrt/* / && rm /etc/init.d/*
+RUN cp -fr /tmp/openwrt/* /
 
 # Build arugments
 ARG BUILD_DATE
