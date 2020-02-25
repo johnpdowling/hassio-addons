@@ -21,9 +21,11 @@ SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 
 #RUN mkdir /var/lock
 
-# Install HA system
-RUN \
-    apk update
+# Install system
+RUN apk update && \
+    apk add --no-cache \
+    docker \
+    iw
 
 RUN if [ "${BUILD_ARCH}" = "i386" ]; then curl -o /tmp/openwrt.tar.gz http://downloads.openwrt.org/releases/19.07.1/targets/x86/generic/openwrt-19.07.1-x86-generic-generic-rootfs.tar.gz; fi
 RUN if [ "${BUILD_ARCH}" = "amd64" ]; then curl -o /tmp/openwrt.tar.gz http://downloads.openwrt.org/releases/19.07.1/targets/x86/64/openwrt-19.07.1-x86-64-generic-rootfs.tar.gz; fi
