@@ -40,7 +40,7 @@ RUN mkdir /tmp/openwrt && tar -zxvf /tmp/openwrt.tar.gz -C /tmp/openwrt && \
 #    rm -rf /tmp/openwrt/etc/init.d
     rm -rf /tmp/openwrt/etc
     
-RUN cp -ur /tmp/openwrt/* /
+RUN cp -rn /tmp/openwrt/* /
 
 # Build arugments
 ARG BUILD_DATE
