@@ -1,0 +1,10 @@
+#!/usr/bin/with-contenv bashio
+# ==============================================================================
+# JPD Hass.io Add-ons: RTL433-to-MQTT
+# Runs the HostAP daemon
+# ==============================================================================
+
+s6-svwait -u -t 5000 /var/run/s6/services/dhcpd
+
+bashio::log.info "Starting HostAP daemon ..."
+/usr/sbin/hostapd /etc/hostapd.conf 
