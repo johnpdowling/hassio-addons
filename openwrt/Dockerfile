@@ -23,7 +23,7 @@ RUN mkdir /var/lock
 
 # Install HA system
 RUN \
-    opkg update 
+    opkg update \
     && opkg install -y \
         ca-certificates \
         curl \
