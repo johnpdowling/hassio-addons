@@ -13,6 +13,7 @@ fi
 #MQTT_HOST="$(jq --raw-output '.mqtt_host' $CONFIG_PATH)"
 
 # Default values
+true ${OUTGOINGS:=eth0}
 true ${INTERFACE:=wlan0}
 true ${SUBNET:=192.168.254.0}
 true ${AP_ADDR:=192.168.254.1}
