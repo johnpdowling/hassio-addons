@@ -19,9 +19,11 @@ COPY rootfs /
 # Set shell
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 
+RUN mkdir /var/lock
+
 # Install HA system
-#RUN \
-#    opkg update 
+RUN \
+    opkg update 
 #    && opkg install -y \
 #        ca-certificates \
 #        curl \
