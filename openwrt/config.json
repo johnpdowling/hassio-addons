@@ -5,6 +5,7 @@
   "description": "OpenWRT instance",
   "url": "https://github.com/johnpdowling/hassio-addons/openwrt",
   "startup": "services",
+  "ingress": true,
   "host_network": false,
   "host_dbus": false,
   "arch": [
