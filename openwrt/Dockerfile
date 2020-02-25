@@ -59,7 +59,7 @@ RUN S6_ARCH="${BUILD_ARCH}" \
     && mv /tmp/bashio/bashio-0.4.1/lib /usr/lib/bashio \
     && ln -s /usr/lib/bashio/bashio /usr/bin/bashio \
     \
-    && rm -fr /tmp/bashio* /tmp/openwrt*
+    && rm -fr /tmp/bashio* 
 #        /var/{cache,log}/* \
 #        /var/lib/apt/lists/*
 
