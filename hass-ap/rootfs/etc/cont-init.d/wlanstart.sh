@@ -4,8 +4,11 @@
 # Configures all the scripts
 # ==============================================================================
 
-# no need to check if we're in privileged mode, set in config.json
-
+# privileged set in config.json, but check anyway
+if [ ! -w "/sys" ] ; then
+    bashio::log.error "[Error] Not running in privileged mode."
+    exit 1
+fi
 #CONFIG_PATH=/data/options.json
 #MQTT_HOST="$(jq --raw-output '.mqtt_host' $CONFIG_PATH)"
 
