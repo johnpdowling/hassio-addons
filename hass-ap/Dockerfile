@@ -17,7 +17,7 @@ RUN apk update && \
     
 RUN echo "" > /var/lib/dhcp/dhcpd.leases
 
-VOLUME /var/run/docker.sock:/var/run/docker.sock
+VOLUME /var/run/docker.sock:/var/run/docker.sock:rw
 
 # Build arguments
 ARG BUILD_ARCH
