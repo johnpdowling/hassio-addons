@@ -24,11 +24,11 @@ RUN mkdir /var/lock
 # Install HA system
 RUN \
     opkg update 
-#    && opkg install -y \
-#        ca-certificates \
-#        curl \
-#        jq \
-#       tzdata
+    && opkg install -y \
+        ca-certificates \
+        curl \
+        jq \
+        tzdata
 
 #RUN if [ "${BUILD_ARCH}" = "i386" ]; then curl -o /bin/yq https://github.com/mikefarah/yq/releases/download/2.4.0/yq_linux_386; fi
 #RUN if [ "${BUILD_ARCH}" = "amd64" ]; then curl -o /bin/yq https://github.com/mikefarah/yq/releases/download/2.4.0/yq_linux_amd64; fi
