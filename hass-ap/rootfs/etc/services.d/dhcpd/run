@@ -6,5 +6,6 @@
 
 true ${INTERFACE:=wlan0}
 
+# start the dhcp server in the foreground
 bashio::log.info "Starting DHCP server .."
-dhcpd ${INTERFACE}
+dhcpd -f ${INTERFACE}
