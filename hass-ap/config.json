@@ -5,7 +5,7 @@
   "description": "Home Assistant Access Point",
   "url": "https://github.com/johnpdowling/hassio-addons/hass-ap",
   "startup": "before",
-  "privileged": [ "NET_ADMIN" ],
+  "full_access": "true",
   "arch": [
     "i386",
     "amd64",
