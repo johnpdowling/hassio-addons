@@ -25,7 +25,7 @@ RUN mkdir /var/lock
 RUN \
     opkg update \
     && opkg install \
-#        ca-bundle \
+        ca-bundle \
         curl
 #        jq 
 #        tzdata
