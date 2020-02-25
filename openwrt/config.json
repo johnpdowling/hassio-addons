@@ -6,7 +6,7 @@
   "url": "https://github.com/johnpdowling/hassio-addons/openwrt",
   "startup": "services",
   "ingress": false,
-  "host_network": false,
+  "host_network": true,
   "host_dbus": false,
   "ports": {
     "80/tcp": 1980
