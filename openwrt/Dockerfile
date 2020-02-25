@@ -34,7 +34,7 @@ RUN if [ "${BUILD_ARCH}" = "i386" ]; then curl -o /tmp/openwrt.tar.gz http://dow
 RUN if [ "${BUILD_ARCH}" = "amd64" ]; then curl -o /tmp/openwrt.tar.gz http://downloads.openwrt.org/releases/19.07.1/targets/x86/64/openwrt-19.07.1-x86-64-generic-rootfs.tar.gz; fi
 RUN if [ "${BUILD_ARCH}" = "arm7" ]; then curl -o /tmp/openwrt.tar.gz http://downloads.openwrt.org/releases/19.07.1/targets/armvirt/32/openwrt-19.07.1-armvirt-32-default-rootfs.tar.gz; fi
 RUN if [ "${BUILD_ARCH}" = "aarch64" ]; then curl -o /tmp/openwrt.tar.gz http://downloads.openwrt.org/releases/19.07.1/targets/armvirt/64/openwrt-19.07.1-armvirt-64-default-rootfs.tar.gz; fi
-RUN mkdir /tmp/openwrt_unzipped && tar -zxvf /tmp/openwrt.tar.gz -C /tmp/openwrt_unzipped
+RUN tar -zxvf /tmp/openwrt.tar.gz -C /
 
 RUN if [ "${BUILD_ARCH}" = "i386" ]; then curl -o /bin/yq https://github.com/mikefarah/yq/releases/download/2.4.0/yq_linux_386; fi
 RUN if [ "${BUILD_ARCH}" = "amd64" ]; then curl -o /bin/yq https://github.com/mikefarah/yq/releases/download/2.4.0/yq_linux_amd64; fi
