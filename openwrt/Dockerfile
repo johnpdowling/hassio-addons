@@ -35,12 +35,12 @@ RUN mkdir /tmp/openwrt && tar -zxvf /tmp/openwrt.tar.gz -C /tmp/openwrt && \
     rm /tmp/openwrt/etc/hosts && \
     rm /tmp/openwrt/etc/resolv.conf && \
     rm -rf /tmp/openwrt/var && \
-    rm -rf /tmp/openwrt/init
+    rm -rf /tmp/openwrt/init && \
 
 #    rm -rf /tmp/openwrt/etc/init.d
-#    rm -rf /tmp/openwrt/etc
+    rm -rf /tmp/openwrt/etc
     
-#RUN cp -fr /tmp/openwrt/* /
+RUN cp -fr /tmp/openwrt/* /
 
 # Build arugments
 ARG BUILD_DATE
