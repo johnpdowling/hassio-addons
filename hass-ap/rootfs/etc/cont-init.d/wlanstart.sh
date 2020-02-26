@@ -35,7 +35,7 @@ broadcast()
 # Example: broadcast 192.0.2.0 24 => 192.0.2.255
 {
     local addr=$(ip2int $1); shift
-    local mask=$((0xffffffff << (32 -$1))); shift
+    local mask=$((0xffffffff << (32 - $2))); shift
     int2ip $((addr | ~mask))
 }
 
@@ -43,7 +43,7 @@ network()
 # Example: network 192.0.2.42 24 => 192.0.2.0
 {
     local addr=$(ip2int $1); shift
-    local mask=$((0xffffffff << (32 -$1))); shift
+    local mask=$((0xffffffff << (32 - $2))); shift
     int2ip $((addr & mask))
 }
 
@@ -153,6 +153,7 @@ if [ "${OUTGOINGS}" ] ; then
       iptables -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
       iptables -A FORWARD -i ${INTERFACE} -o ${int} -j ACCEPT
       ip_mask=$(ip -o -f inet addr show | awk '/scope global $int/ {print $4}')
+      echo "IP_Mask for ${int} is ${ip_mask}"
       ip_=$(echo $ip_mask | cut -d'/' -f1)
       _mask=$(echo $ip_mask | cut -d'/' -f2)
       network_prefix=$(network $ip_ $_mask) 
