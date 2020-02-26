@@ -25,6 +25,8 @@
     "channel": "11",
     "subnet": "192.168.254.0",
     "ap_address": "192.168.254.1",
+    "dhcp_min": 100,
+    "dhcp_max": 199,
     "hw_mode": "g"
   },
   "schema": {
@@ -33,6 +35,8 @@
     "channel": "str",
     "subnet": "str",
     "ap_address": "str",
+    "dhcp_min": "int",
+    "dhcp_max": "int",
     "hw_mode": "str"
   }
 }
