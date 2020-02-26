@@ -152,9 +152,8 @@ if [ "${OUTGOINGS}" ] ; then
       iptables -t nat -A POSTROUTING -o ${int} -j MASQUERADE
       iptables -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
       iptables -A FORWARD -i ${INTERFACE} -o ${int} -j ACCEPT
-      IFS='/'
-      read -ra ip_mask <<< $(ip -o -f inet addr show | awk '/scope global $int/ {print $4}')
-      network_prefix=network ${ip_mask[0]} ${ip_mask[1]}
+      ip_mask=$(ip -o -f inet addr show | awk '/scope global $int/ {print $4}')
+      network_prefix=network $(echo $ip_mask | cut -d'/' -f1) $(ip_mask | cut -d'/' -f2)
       echo "Prefix for ${int} is ${network_prefix}"
    done
 else
