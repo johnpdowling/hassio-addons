@@ -32,6 +32,9 @@ true ${DRIVER:=nl80211}
 true ${HT_CAPAB:=[HT40-][SHORT-GI-20][SHORT-GI-40]}
 true ${MODE:=guest}
 
+DHCP_MIN="$(jq --raw-output '.dhcp_min' $CONFIG_PATH)"
+DHCP_MAX="$(jq --raw-output '.dhcp_max' $CONFIG_PATH)"
+
 # Attach interface to container in guest mode
 if [ "$MODE" == "guest"  ]; then
     bashio::log.info "Fetching interface data for container"
@@ -125,7 +128,7 @@ option domain-name-servers 1.1.1.1, 1.0.0.1;
 option subnet-mask 255.255.255.0;
 option routers ${AP_ADDR};
 subnet ${SUBNET} netmask 255.255.255.0 {
-  range ${SUBNET::-1}100 ${SUBNET::-1}199;
+  range ${SUBNET::-1}${DHCP_MIN} ${SUBNET::-1}${DHCP_MAX};
 }
 include "/config/hass-ap/dhcp-reservations.conf";
 EOF
