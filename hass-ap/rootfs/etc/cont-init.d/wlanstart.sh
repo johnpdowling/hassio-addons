@@ -155,7 +155,7 @@ if [ "${OUTGOINGS}" ] ; then
       iptables -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
       iptables -A FORWARD -i ${INTERFACE} -o ${int} -j ACCEPT
       #set outbound to subnet-only
-      if [ ${DOCKER_ONLY} ]; then
+      if [ "${DOCKER_ONLY}" = true ]; then
          ip_mask=$(ip -o -f inet addr show | awk '/scope global eth0/ {print $4}')
          ip_=$(echo $ip_mask | cut -d'/' -f1)
          _mask=$(echo $ip_mask | cut -d'/' -f2)
