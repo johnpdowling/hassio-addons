@@ -160,7 +160,7 @@ if [ "${OUTGOINGS}" ] ; then
       echo "which is ${ip_} and ${_mask}"
       network_prefix=$(network $ip_ $_mask) 
       echo "Prefix for ${int} is ${network_prefix}"
-      int_subnet=$(echo $ip_mask | sed "s/$ip/$network_prefix/g")
+      int_subnet=$(echo $ip_mask | sed "s/$ip_/$network_prefix/g")
       echo "Subnet for ${int} is ${int_subnet}"
    done
 else
