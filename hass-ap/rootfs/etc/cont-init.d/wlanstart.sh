@@ -161,7 +161,7 @@ if [ "${OUTGOINGS}" ] ; then
          _mask=$(echo $ip_mask | cut -d'/' -f2)
          network_prefix=$(network $ip_ $_mask) 
          int_subnet=$(echo $ip_mask | sed "s/$ip_/$network_prefix/g")
-         iptables -A OUTPUT -d 127.0.0.11 -j ACCEPT
+         iptables -A OUTPUT -d 127.0.0.0/24 -j ACCEPT
          iptables -A OUTPUT -d ${int_subnet} -j ACCEPT
          iptables -A OUTPUT -j DROP
       fi
