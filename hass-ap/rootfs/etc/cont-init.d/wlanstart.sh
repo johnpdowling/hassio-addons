@@ -35,7 +35,7 @@ broadcast()
 # Example: broadcast 192.0.2.0 24 => 192.0.2.255
 {
     local addr=$(ip2int $1); shift
-    local mask=$((0xffffffff << (32 - $2))); shift
+    local mask=$((0xffffffff << (32 - $1))); shift
     int2ip $((addr | ~mask))
 }
 
@@ -43,7 +43,7 @@ network()
 # Example: network 192.0.2.42 24 => 192.0.2.0
 {
     local addr=$(ip2int $1); shift
-    local mask=$((0xffffffff << (32 - $2))); shift
+    local mask=$((0xffffffff << (32 - $1))); shift
     int2ip $((addr & mask))
 }
 
