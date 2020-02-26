@@ -153,7 +153,9 @@ if [ "${OUTGOINGS}" ] ; then
       iptables -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
       iptables -A FORWARD -i ${INTERFACE} -o ${int} -j ACCEPT
       ip_mask=$(ip -o -f inet addr show | awk '/scope global $int/ {print $4}')
-      network_prefix=network $(echo $ip_mask | cut -d'/' -f1) $(echo $ip_mask | cut -d'/' -f2)
+      ip_=$(echo $ip_mask | cut -d'/' -f1)
+      _mask=$(echo $ip_mask | cut -d'/' -f2)
+      network_prefix=$(network $ip_ $_mask) 
       echo "Prefix for ${int} is ${network_prefix}"
    done
 else
