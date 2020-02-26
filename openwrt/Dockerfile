@@ -47,6 +47,7 @@ RUN mkdir /tmp/openwrt && tar -zxvf /tmp/openwrt.tar.gz -C /tmp/openwrt && \
 #    rm -rf /tmp/openwrt/etc
     
 #RUN cp -rn /tmp/openwrt/* /
+RUN rsync --ignore-existing --recursive --quiet /tmp/openwrt/ /
 
 # Build arugments
 ARG BUILD_DATE
