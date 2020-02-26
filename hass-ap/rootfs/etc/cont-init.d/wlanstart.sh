@@ -9,19 +9,26 @@ if [ ! -w "/sys" ] ; then
     bashio::log.error "[Error] Not running in privileged mode."
     exit 1
 fi
-#CONFIG_PATH=/data/options.json
+CONFIG_PATH=/data/options.json
 #MQTT_HOST="$(jq --raw-output '.mqtt_host' $CONFIG_PATH)"
 
 # Default values
 true ${OUTGOINGS:=eth0}
 true ${INTERFACE:=wlan0}
-true ${SUBNET:=192.168.254.0}
-true ${AP_ADDR:=192.168.254.1}
-true ${SSID:=dockerap}
-true ${CHANNEL:=11}
-true ${WPA_PASSPHRASE:=passw0rd}
-true ${HW_MODE:=g}
+#true ${SUBNET:=192.168.254.0}
+SUBNET="$(jq --raw-output '.subnet' $CONFIG_PATH)"
+#true ${AP_ADDR:=192.168.254.1}
+AP_ADDR="$(jq --raw-output '.ap_address' $CONFIG_PATH)"
+#true ${SSID:=dockerap}
+SSID="$(jq --raw-output '.ssid' $CONFIG_PATH)"
+#true ${CHANNEL:=11}
+CHANNEL="$(jq --raw-output '.channel' $CONFIG_PATH)"
+#true ${WPA_PASSPHRASE:=passw0rd}
+WPA_PASSPHRASE="$(jq --raw-output '.wpa_passphrase' $CONFIG_PATH)"
+#true ${HW_MODE:=g}
+HW_MODE="$(jq --raw-output '.hw_mode' $CONFIG_PATH)"
 true ${DRIVER:=nl80211}
+#DRIVER="$(jq --raw-output '.driver' $CONFIG_PATH)"
 true ${HT_CAPAB:=[HT40-][SHORT-GI-20][SHORT-GI-40]}
 true ${MODE:=guest}
 
@@ -108,16 +115,17 @@ else
 fi
 echo "Configuring DHCP server .."
 
-if [ ! -f "/config/dhcp-reservations.conf" ] ; then
-  echo "" > /config/dhcp-reservations.conf
+if [ ! -f "/config/hass-ap/dhcp-reservations.conf" ] ; then
+  mkdir -p /config/hass-ap
+  echo "" > /config/hass-ap/dhcp-reservations.conf
 fi
 
 cat > "/etc/dhcp/dhcpd.conf" <<EOF
-option domain-name-servers 8.8.8.8, 8.8.4.4;
+option domain-name-servers 1.1.1.1, 1.0.0.1;
 option subnet-mask 255.255.255.0;
 option routers ${AP_ADDR};
 subnet ${SUBNET} netmask 255.255.255.0 {
   range ${SUBNET::-1}100 ${SUBNET::-1}199;
 }
-include "/config/dhcp-reservations.conf";
+include "/config/hass-ap/dhcp-reservations.conf";
 EOF
