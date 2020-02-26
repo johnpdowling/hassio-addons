@@ -20,7 +20,19 @@
     "config:rw"
   ],
   "options": {
+    "ssid": "hass-ap",
+    "wpa_passphrase": "passw0rd",
+    "channel": "11",
+    "subnet": "192.168.254.0",
+    "ap_address": "192.168.254.1",
+    "hw_mode": "g"
   },
-  "schema": {    
+  "schema": {
+    "ssid": "str",
+    "wpa_passphrase" : "str",
+    "channel": "str",
+    "subnet": "str",
+    "ap_address": "str",
+    "hw_mode": "str"
   }
 }
