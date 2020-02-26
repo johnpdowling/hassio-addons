@@ -155,8 +155,9 @@ if [ "${OUTGOINGS}" ] ; then
       ip_mask=$(ip -o -f inet addr show | awk '/scope global eth0/ {print $4}')
       echo "IP_Mask for ${int} is ${ip_mask}"
       ip_=$(echo $ip_mask | cut -d'/' -f1)
-      mask_=$(echo $ip_mask | cut -d'/' -f2)
-      network_prefix=$(network $ip_ $mask_) 
+      _mask=$(echo $ip_mask | cut -d'/' -f2)
+      echo "which is ${ip_} and ${_mask}"
+      network_prefix=$(network $ip_ $_mask) 
       echo "Prefix for ${int} is ${network_prefix}"
    done
 else
