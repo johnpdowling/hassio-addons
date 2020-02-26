@@ -5,6 +5,35 @@ FROM ${BUILD_FROM}
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
+# install build reqs
+RUN	apt-get update \
+  && apt-get upgrade -y \
+  && apt-get install -y \
+    linux-headers-generic \
+  && apt-get install -y \
+    build-essential \
+    git-core \
+    g++ \
+    realpath \
+    patch \
+    byacc \
+    make \
+    python-urlgrabber \
+    autoconf \
+    automake \
+    nano \
+    wget \
+    pv \
+    dialog \
+    bzip2
+
+RUN git clone git://git.ipfire.org/ipfire-2.x.git && \
+    cd ipfire-2.x && \
+    git checkout -b next -t origin/next && \
+    ./make.sh downloadsrc && \
+    ./make.sh gettoolchain && \
+    ./make.sh build
+
 # Build arugments
 ARG BUILD_ARCH
 ARG BUILD_DATE
