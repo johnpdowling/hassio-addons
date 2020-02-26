@@ -14,7 +14,7 @@ RUN apt-get install -y \
     build-essential \
     git-core \
     g++ \
-    realpath \
+    coreutils \
     patch \
     byacc \
     make \
