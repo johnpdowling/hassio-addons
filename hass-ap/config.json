@@ -27,7 +27,7 @@
     "ap_address": "192.168.254.1",
     "dhcp_min": 100,
     "dhcp_max": 199,
-    "local_only": false
+    "docker_only": false
   },
   "schema": {
     "ssid": "str",
@@ -37,6 +37,6 @@
     "ap_address": "str",
     "dhcp_min": "int",
     "dhcp_max": "int",
-    "local_only": "bool"
+    "docker_only": "bool"
   }
 }
