@@ -180,7 +180,7 @@ if [ ! -f "/config/hass-ap/dhcp-reservations.conf" ] ; then
 fi
 
 cat > "/etc/dhcp/dhcpd.conf" <<EOF
-option domain-name-servers 1.1.1.1, 1.0.0.1, 127.0.0.11;
+option domain-name-servers ${AP_ADDR};
 option subnet-mask 255.255.255.0;
 option routers ${AP_ADDR};
 subnet ${SUBNET} netmask 255.255.255.0 {
