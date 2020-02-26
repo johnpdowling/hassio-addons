@@ -153,13 +153,15 @@ if [ "${OUTGOINGS}" ] ; then
       iptables -t nat -A POSTROUTING -o ${int} -j MASQUERADE
       iptables -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
       iptables -A FORWARD -i ${INTERFACE} -o ${int} -j ACCEPT
-      ip_mask=$(ip -o -f inet addr show | awk '/scope global eth0/ {print $4}')
+      ip_mask=$(ip -o -f inet addr show | awk "/scope global $int/ {print $4}")
       echo "IP_Mask for ${int} is ${ip_mask}"
       ip_=$(echo $ip_mask | cut -d'/' -f1)
       _mask=$(echo $ip_mask | cut -d'/' -f2)
       echo "which is ${ip_} and ${_mask}"
       network_prefix=$(network $ip_ $_mask) 
       echo "Prefix for ${int} is ${network_prefix}"
+      int_subnet=$(echo $ip_mask | sed "s/$ip/$network_prefix/g")
+      echo "Subnet for ${int} is ${int_subnet}"
    done
 else
    echo "Setting iptables for outgoing traffics on all interfaces..."
