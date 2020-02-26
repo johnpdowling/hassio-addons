@@ -75,6 +75,7 @@ true ${DRIVER:=nl80211}
 #DRIVER="$(jq --raw-output '.driver' $CONFIG_PATH)"
 true ${HT_CAPAB:=[HT40-][SHORT-GI-20][SHORT-GI-40]}
 true ${MODE:=guest}
+DOCKER_ONLY="$(jq --raw-output '.docker_only' $CONFIG_PATH)"
 
 DHCP_MIN="$(jq --raw-output '.dhcp_min' $CONFIG_PATH)"
 DHCP_MAX="$(jq --raw-output '.dhcp_max' $CONFIG_PATH)"
@@ -154,13 +155,15 @@ if [ "${OUTGOINGS}" ] ; then
       iptables -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
       iptables -A FORWARD -i ${INTERFACE} -o ${int} -j ACCEPT
       #set outbound to subnet-only
-      ip_mask=$(ip -o -f inet addr show | awk '/scope global eth0/ {print $4}')
-      ip_=$(echo $ip_mask | cut -d'/' -f1)
-      _mask=$(echo $ip_mask | cut -d'/' -f2)
-      network_prefix=$(network $ip_ $_mask) 
-      int_subnet=$(echo $ip_mask | sed "s/$ip_/$network_prefix/g")
-      iptables -A OUTPUT -d ${int_subnet} -j ACCEPT
-      iptables -A OUTPUT -j DROP
+      if [ ${DOCKER_ONLY} ]; then
+         ip_mask=$(ip -o -f inet addr show | awk '/scope global eth0/ {print $4}')
+         ip_=$(echo $ip_mask | cut -d'/' -f1)
+         _mask=$(echo $ip_mask | cut -d'/' -f2)
+         network_prefix=$(network $ip_ $_mask) 
+         int_subnet=$(echo $ip_mask | sed "s/$ip_/$network_prefix/g")
+         iptables -A OUTPUT -d ${int_subnet} -j ACCEPT
+         iptables -A OUTPUT -j DROP
+      fi
    done
 else
    echo "Setting iptables for outgoing traffics on all interfaces..."
