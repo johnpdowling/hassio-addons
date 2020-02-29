@@ -11,6 +11,8 @@ FROM ${BUILD_FROM}
 
 ENV LANG C.UTF-8
 
+ENV LD_LIBRARY_PATH=/lib:/libexec:/usr/lib:/usr/local/lib:/usr/local/lib64
+
 LABEL Description=""
 
 #
