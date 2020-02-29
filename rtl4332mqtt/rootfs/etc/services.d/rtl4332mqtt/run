@@ -208,7 +208,10 @@ do
   if [ ${#DEVICEID} > 0 ]; then
     MQTT_PATH=$MQTT_PATH/"$DEVICEID"
   fi
-
+  if [ "$MQTT_PATH" = "$MQTT_TOPIC" ]; then
+    #path never changed, something went wrong. bail.
+    break
+  fi
   # Create file with touch /tmp/rtl_433.log if logging is needed
   [ -w /tmp/rtl_433.log ] && echo $line >> rtl_433.log
   echo $line | /usr/bin/mosquitto_pub -h $MQTT_HOST -u $MQTT_USER -P $MQTT_PASS -i RTL_433 -r -l -t $MQTT_PATH
