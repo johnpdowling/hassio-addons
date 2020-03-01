@@ -6,9 +6,9 @@ FROM ${BUILD_FROM}
 RUN apk update && \
     apk add --no-cache build-base python2 python-dev py-pip py-setuptools py-virtualenv py-mysqldb \
                        nginx redis curl gcc musl-dev mysql-client \
-                       zlib-dev libjpeg-turbo libjpeg-turbo-dev libjpeg openjpeg
-                       
-RUN apk add --no-cache mariadb-dev
+                       zlib-dev libjpeg-turbo libjpeg-turbo-dev libjpeg openjpeg \
+                       libcrypto1.1>1.1.1d-r2 libssl1.1>1.1.1d-r2 \
+                       mariadb-dev
 
 ADD kegbot.conf /etc/nginx/conf.d/default.conf
 ADD nginx.conf /etc/nginx/nginx.conf
