@@ -1,10 +1,10 @@
-ARG BUILD_FROM=hassioaddons/base:latest
+ARG BUILD_FROM=hassioaddons/base:5.0.1
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 #FROM python:2.7-stretch
 
 RUN apk update && \
-    apk add --no-cache build-base python2 python-dev py-pip py-setuptools py-virtualenv py-mysqldb \
+    apk add --no-cache build-base python2 python-dev py-pip py-setuptools py-virtualenv py-mysqldb py-future \
                        nginx redis curl gcc musl-dev mysql-client \
                        zlib-dev libjpeg-turbo libjpeg-turbo-dev libjpeg openjpeg \
                        libcrypto1.1>1.1.1d-r2 libssl1.1>1.1.1d-r2 \
@@ -34,6 +34,7 @@ RUN curl -k -L https://github.com/Kegbot/kegbot-server/archive/${KEGBOT_VERSION}
      && ls -la ./ \
      && cp -r /app/bin/* /bin/
 
+RUN pip install -U dj-database-url
 RUN pip install -U gunicorn
 RUN pip install -U celery
 RUN pip install -U redis
