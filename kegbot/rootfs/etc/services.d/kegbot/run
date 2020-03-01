@@ -20,6 +20,11 @@ do_mysql() {
   return $?
 }
 
+fetch_mysql() {
+  local return_str=$(mysql -B -u "${KEGBOT_DB_USER}" --password="${KEGBOT_DB_PASS}" -h "${KEGBOT_DB_HOST}" -P ${KEGBOT_DB_PORT} "${@}")
+  echo $return_str
+}
+
 setup_env() {
   #pull required options
   export KEGBOT_DB_NAME=$(jq --raw-output '.db_name' $CONFIG_PATH)
@@ -111,12 +116,10 @@ wait_for_mysql() {
     #no db
     do_mysql -e "create database ${KEGBOT_DB_NAME};"
   fi
-  if [ -z $(do_mysql "${KEGBOT_DB_NAME}" -e "show tables") ]; then
+  if [ -z $(fetch_mysql "${KEGBOT_DB_NAME}" -e "show tables") ]; then
     #db empty
     kegbot migrate --noinput -v 0
     do_mysql "${KEGBOT_DB_NAME}" -e "show tables"
-  else
-    echo "NO TABLES"
   fi
 }
 
