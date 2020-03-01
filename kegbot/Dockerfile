@@ -3,9 +3,12 @@ ARG BUILD_FROM=hassioaddons/base:latest
 FROM ${BUILD_FROM}
 #FROM python:2.7-stretch
 
-RUN apk update && \
+RUN apk update && apk upgrade && \
     apk add --no-cache build-base python2 python-dev py-pip py-setuptools py-virtualenv py-mysqldb \
-    nginx redis
+                       nginx rediscurl gcc musl-dev mysql-client \
+                       zlib-dev libjpeg-turbo libjpeg-turbo-dev libjpeg openjpeg
+
+RUN apk add --no-cache mariadb-dev
 
 ADD kegbot.conf /etc/nginx/conf.d/default.conf
 ADD nginx.conf /etc/nginx/nginx.conf
@@ -24,18 +27,10 @@ ENV KEGBOT_MEDIA_ROOT=/config/kegbot/media/
  
 #    export KEGBOT_DATA_DIR=/config/kegbot/kegbot-data/
 ENV KEGBOT_VERSION=master
-RUN apk add --no-cache curl gcc musl-dev \
-                       zlib-dev libjpeg-turbo libjpeg-turbo-dev libjpeg openjpeg \
-                       mysql-client
-RUN apk add --no-cache mariadb-dev
 RUN curl -k -L https://github.com/Kegbot/kegbot-server/archive/${KEGBOT_VERSION}.tar.gz -o /tmp/kegbot.tar.gz \
      && tar -xf /tmp/kegbot.tar.gz -C /tmp/ \
      && ls -la /tmp/ \
      && cp -r /tmp/kegbot-server-${KEGBOT_VERSION}/* /app/ \
-#     && apk add gcc musl-dev \
-#     && apk add zlib-dev libjpeg-turbo libjpeg-turbo-dev libjpeg openjpeg \
-#     && apk add mysql-client \
-#     && apk add mariadb-dev \
      && ls -la ./ \
      && cp -r /app/bin/* /bin/
 
