@@ -1,4 +1,4 @@
-ARG BUILD_FROM=hassioaddons/base:5.0.1
+ARG BUILD_FROM=hassioaddons/base:latest
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 #FROM python:2.7-stretch
@@ -24,9 +24,10 @@ ENV KEGBOT_MEDIA_ROOT=/config/kegbot/media/
  
 #    export KEGBOT_DATA_DIR=/config/kegbot/kegbot-data/
 ENV KEGBOT_VERSION=master
-RUN apk add --no-cache curl gcc musl-dev
-RUN apk add --no-cache                       zlib-dev libjpeg-turbo libjpeg-turbo-dev libjpeg openjpeg 
-RUN apk add --no-cache                       mysql-client mariadb-dev
+RUN apk add --no-cache curl gcc musl-dev \
+                       zlib-dev libjpeg-turbo libjpeg-turbo-dev libjpeg openjpeg \
+                       mysql-client
+RUN apk add --no-cache mariadb-dev
 RUN curl -k -L https://github.com/Kegbot/kegbot-server/archive/${KEGBOT_VERSION}.tar.gz -o /tmp/kegbot.tar.gz \
      && tar -xf /tmp/kegbot.tar.gz -C /tmp/ \
      && ls -la /tmp/ \
