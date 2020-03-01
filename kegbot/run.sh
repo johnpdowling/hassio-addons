@@ -106,7 +106,7 @@ wait_for_mysql() {
     #no db
     do_mysql -e "create database ${KEGBOT_DB_NAME};"
   fi
-  if [ $(do_mysql "${KEGBOT_DB_NAME}" -e "show tables" | head -c1 | wc -c) -eq 0 ]
+  if [ $(do_mysql "${KEGBOT_DB_NAME}" -e "show tables" | head -c1 | wc -c) -eq "0" ]
     #db empty
     kegbot migrate --noinput -v 0
     do_mysql "${KEGBOT_DB_NAME}" -e "show tables"
