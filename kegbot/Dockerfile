@@ -3,7 +3,7 @@ ARG BUILD_FROM=hassioaddons/base:latest
 FROM ${BUILD_FROM}
 #FROM python:2.7-stretch
 
-RUN apk update && apk upgrade && \
+RUN apk update && \
     apk add --no-cache build-base python2 python-dev py-pip py-setuptools py-virtualenv py-mysqldb \
                        nginx rediscurl gcc musl-dev mysql-client \
                        zlib-dev libjpeg-turbo libjpeg-turbo-dev libjpeg openjpeg
