@@ -1,0 +1,15 @@
+django < 3
+requests
+isodate 
+dj-database-url 
+coloredlogs 
+addict
+whitenoise 
+django-crispy-forms
+django-bootstrap-pagination
+django-imagekit 
+pillow
+jsonfield
+gunicorn
+celery
+redis
