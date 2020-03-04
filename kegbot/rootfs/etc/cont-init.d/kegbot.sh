@@ -5,4 +5,4 @@
 # ==============================================================================
 set -e
 
-source ./kegbot_env.sh
+source /etc/cont-init.d/kegbot_env.sh
