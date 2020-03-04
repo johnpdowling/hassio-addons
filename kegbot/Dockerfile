@@ -24,6 +24,7 @@ ENV KEGBOT_REDIS_HOST=localhost
 ENV KEGBOT_REDIS_PORT=6379
 ENV KEGBOT_SETTINGS_DIR=/config/kegbot/
 ENV KEGBOT_MEDIA_ROOT=/config/kegbot/media/
+ENV ENV=/root/.ashrc
 ENV LANG C.UTF-8
 
 #    export KEGBOT_DATA_DIR=/config/kegbot/kegbot-data/
