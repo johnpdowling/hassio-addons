@@ -1,7 +1,6 @@
 ARG BUILD_FROM=hassioaddons/base:latest
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
-#FROM python:2.7-stretch
 
 RUN apk update && \
     apk add --no-cache build-base python3 python3-dev py3-pip py3-setuptools py3-virtualenv py3-mysqlclient py3-future \
@@ -14,7 +13,7 @@ ADD kegbot.conf /etc/nginx/conf.d/default.conf
 ADD nginx.conf /etc/nginx/nginx.conf
 
 #kb
-COPY setup.py /     
+#COPY setup.py /     
 RUN mkdir /app
 #WORKDIR /app
 ENV PATH="/app/bin:${PATH}"
