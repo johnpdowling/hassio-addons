@@ -41,7 +41,7 @@ RUN pip3 install -U redis
 #RUN pip3 install -U kegbot
 
 WORKDIR /app
-RUN python /app/setup.py install 
+RUN python3 /app/setup.py install 
 #RUN apk del musl-dev gcc 
 RUN rm -rf /tmp/kegbot*
 
