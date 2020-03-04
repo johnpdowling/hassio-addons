@@ -18,6 +18,7 @@ RUN mkdir /app
 #WORKDIR /app
 ENV PATH="/app/bin:${PATH}"
 ENV PYTHONPATH="/app:${PYTHONPATH}"
+ENV PYTHON3PATH="/app:${PYTHON3PATH}"
 # other sets
 ENV KEGBOT_REDIS_HOST=localhost
 ENV KEGBOT_REDIS_PORT=6379
@@ -41,7 +42,7 @@ RUN pip3 install -U redis
 #RUN pip3 install -U kegbot
 
 WORKDIR /app
-RUN python3 /app/setup.py install 
+RUN ln -s /usr/bin/python3 /usr/bin/python && python /app/setup.py install 
 #RUN apk del musl-dev gcc 
 RUN rm -rf /tmp/kegbot*
 
