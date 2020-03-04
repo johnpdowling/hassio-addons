@@ -2,20 +2,6 @@ ARG BUILD_FROM=hassioaddons/python-base:latest
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
-RUN apk update && \
-    apk add --no-cache build-base python3-dev py3-setuptools py3-virtualenv py3-mysqlclient py3-future \
-                       nginx redis curl gcc musl-dev mysql-client \
-                       zlib-dev libjpeg-turbo libjpeg-turbo-dev libjpeg openjpeg \
-                       libcrypto1.1>1.1.1d-r2 libssl1.1>1.1.1d-r2 \
-                       mariadb-dev
-
-ADD kegbot.conf /etc/nginx/conf.d/default.conf
-ADD nginx.conf /etc/nginx/nginx.conf
-
-#kb
-#COPY setup.py /     
-RUN mkdir /app
-#WORKDIR /app
 ENV PATH="/app/bin:${PATH}"
 ENV PYTHONPATH="/app:/app/bin:${PYTHONPATH}"
 ENV PYTHON3PATH="/app:/app/bin:${PYTHON3PATH}"
@@ -24,23 +10,34 @@ ENV KEGBOT_REDIS_HOST=localhost
 ENV KEGBOT_REDIS_PORT=6379
 ENV KEGBOT_SETTINGS_DIR=/config/kegbot/
 ENV KEGBOT_MEDIA_ROOT=/config/kegbot/media/
-ENV ENV=/root/.ashrc
-ENV LANG C.UTF-8
-
 #    export KEGBOT_DATA_DIR=/config/kegbot/kegbot-data/
 ENV KEGBOT_VERSION=master
+ENV LANG C.UTF-8
+
+RUN apk update && \
+    apk add --no-cache build-base python3-dev py3-setuptools py3-virtualenv py3-mysqlclient py3-future \
+                       nginx redis curl gcc musl-dev mysql-client \
+                       zlib-dev libjpeg-turbo libjpeg-turbo-dev libjpeg openjpeg \
+                       libcrypto1.1>1.1.1d-r2 libssl1.1>1.1.1d-r2 \
+                       mariadb-dev
+RUN pip3 install -U -r requirements.txt
+
+COPY rootfs /
+RUN echo "# shellcheck source=lib/kegbot.sh" >> /usr/lib/bashio/bashio.sh && \
+    echo "source "${__BASHIO_LIB_DIR}/kegbot.sh" >> /usr/lib/bashio/bashio.sh
+    
+ADD kegbot.conf /etc/nginx/conf.d/default.conf
+ADD nginx.conf /etc/nginx/nginx.conf
+
+#kb
+
 RUN curl -k -L https://github.com/Kegbot/kegbot-server/archive/${KEGBOT_VERSION}.tar.gz -o /tmp/kegbot.tar.gz \
      && tar -xf /tmp/kegbot.tar.gz -C /tmp/ \
      && ls -la /tmp/ \
+     && mkdir /app \
      && cp -r /tmp/kegbot-server-${KEGBOT_VERSION}/* /app/ \
      && ls -la ./ \
      && cp -r /app/bin/* /bin/
-
-RUN pip3 install -U 'django<3' requests isodate dj-database-url coloredlogs addict whitenoise django-crispy-forms django-bootstrap-pagination django-imagekit pillow jsonfield
-RUN pip3 install -U gunicorn
-RUN pip3 install -U celery
-RUN pip3 install -U redis
-#RUN pip3 install -U kegbot
 
 WORKDIR /app
 RUN ln -s /usr/bin/python3 /usr/bin/python && python /app/setup.py install 
@@ -49,8 +46,6 @@ RUN rm -rf /tmp/kegbot*
 
 RUN mkdir -p /kegbot-data/
 COPY local_settings.py /kegbot-data/
-
-COPY rootfs /
 
 # Build arguments
 ARG BUILD_ARCH
