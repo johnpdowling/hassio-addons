@@ -7,7 +7,7 @@ RUN apk update && \
     apk add --no-cache build-base python3 python3-dev py3-pip py3-setuptools py3-virtualenv py3-mysqlclient py3-future \
                        nginx redis curl gcc musl-dev mysql-client \
                        zlib-dev libjpeg-turbo libjpeg-turbo-dev libjpeg openjpeg \
-#                       libcrypto1.1>1.1.1d-r2 libssl1.1>1.1.1d-r2 \
+                       libcrypto1.1>1.1.1d-r2 libssl1.1>1.1.1d-r2 \
                        mariadb-dev
 
 ADD kegbot.conf /etc/nginx/conf.d/default.conf
