@@ -1,9 +1,9 @@
-ARG BUILD_FROM=hassioaddons/base:latest
+ARG BUILD_FROM=hassioaddons/python-base:latest
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
 RUN apk update && \
-    apk add --no-cache build-base python3 python3-dev py3-pip py3-setuptools py3-virtualenv py3-mysqlclient py3-future \
+    apk add --no-cache build-base python3-dev py3-setuptools py3-virtualenv py3-mysqlclient py3-future \
                        nginx redis curl gcc musl-dev mysql-client \
                        zlib-dev libjpeg-turbo libjpeg-turbo-dev libjpeg openjpeg \
                        libcrypto1.1>1.1.1d-r2 libssl1.1>1.1.1d-r2 \
@@ -23,7 +23,8 @@ ENV KEGBOT_REDIS_HOST=localhost
 ENV KEGBOT_REDIS_PORT=6379
 ENV KEGBOT_SETTINGS_DIR=/config/kegbot/
 ENV KEGBOT_MEDIA_ROOT=/config/kegbot/media/
- 
+ENV LANG C.UTF-8
+
 #    export KEGBOT_DATA_DIR=/config/kegbot/kegbot-data/
 ENV KEGBOT_VERSION=master
 RUN curl -k -L https://github.com/Kegbot/kegbot-server/archive/${KEGBOT_VERSION}.tar.gz -o /tmp/kegbot.tar.gz \
@@ -40,7 +41,7 @@ RUN pip3 install -U redis
 #RUN pip3 install -U kegbot
 
 WORKDIR /app
-RUN python3 /app/setup.py install 
+RUN python /app/setup.py install 
 #RUN apk del musl-dev gcc 
 RUN rm -rf /tmp/kegbot*
 
