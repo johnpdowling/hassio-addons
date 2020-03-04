@@ -39,8 +39,22 @@ wait_for_mysql() {
   fi
 }
 
+# Perform first-launch setup.
+maybe_setup_kegbot() {
+  if [ ! -d "${KEGBOT_SETTINGS_DIR}" ]; then
+    mkdir -p ${KEGBOT_SETTINGS_DIR}/media
+    mv /kegbot-data/local_settings.py ${KEGBOT_SETTINGS_DIR}
+  fi
+  
+  kegbot collectstatic --noinput -v 0
+  #do_mysql -e "create database ${KEGBOT_DB_NAME};" || die "Could not create database."
+  true
+}
+
 bashio::log.info "Checking environment..."
 env
+bashio::log.info "Checking Kegbot..."
+maybe_setup_kegbot
 bashio::log.info "Waiting for Redis..."
 redis-cli -h "${KEGBOT_REDIS_HOST}" -p ${KEGBOT_REDIS_PORT} ping
 bashio::log.info "Waiting for MySQL..."
