@@ -119,7 +119,7 @@ wait_for_mysql() {
   fi
   if no_tables; then
     #db empty
-    kegbot migrate --noinput -v 0
+    python3 kegbot migrate --noinput -v 0
     do_mysql "${KEGBOT_DB_NAME}" -e "show tables"
   fi
 }
