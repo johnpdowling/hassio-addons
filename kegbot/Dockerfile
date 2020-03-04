@@ -1,13 +1,13 @@
-ARG BUILD_FROM=hassioaddons/base:5.0.1
+ARG BUILD_FROM=hassioaddons/base:latest
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 #FROM python:2.7-stretch
 
 RUN apk update && \
-    apk add --no-cache build-base python2 python-dev py-pip py-setuptools py-virtualenv py-mysqldb py-future \
+    apk add --no-cache build-base python3 python3-dev py-pip3 py-setuptools py-virtualenv py-mysqldb py-future \
                        nginx redis curl gcc musl-dev mysql-client \
                        zlib-dev libjpeg-turbo libjpeg-turbo-dev libjpeg openjpeg \
-                       libcrypto1.1>1.1.1d-r2 libssl1.1>1.1.1d-r2 \
+#                       libcrypto1.1>1.1.1d-r2 libssl1.1>1.1.1d-r2 \
                        mariadb-dev
 
 ADD kegbot.conf /etc/nginx/conf.d/default.conf
@@ -34,14 +34,14 @@ RUN curl -k -L https://github.com/Kegbot/kegbot-server/archive/${KEGBOT_VERSION}
      && ls -la ./ \
      && cp -r /app/bin/* /bin/
 
-RUN pip install -U dj-database-url
-RUN pip install -U gunicorn
-RUN pip install -U celery
-RUN pip install -U redis
-RUN pip install -U kegbot
+RUN pip3 install -U dj-database-url
+RUN pip3 install -U gunicorn
+RUN pip3 install -U celery
+RUN pip3 install -U redis
+RUN pip3 install -U kegbot
 
 WORKDIR /app
-RUN python /app/setup.py install 
+RUN python3 /app/setup.py install 
 #RUN apk del musl-dev gcc 
 RUN rm -rf /tmp/kegbot*
 
