@@ -17,8 +17,8 @@ ADD nginx.conf /etc/nginx/nginx.conf
 RUN mkdir /app
 #WORKDIR /app
 ENV PATH="/app/bin:${PATH}"
-ENV PYTHONPATH="/app:${PYTHONPATH}"
-ENV PYTHON3PATH="/app:${PYTHON3PATH}"
+ENV PYTHONPATH="/app:/app/bin:${PYTHONPATH}"
+ENV PYTHON3PATH="/app:/app/bin:${PYTHON3PATH}"
 # other sets
 ENV KEGBOT_REDIS_HOST=localhost
 ENV KEGBOT_REDIS_PORT=6379
@@ -35,7 +35,7 @@ RUN curl -k -L https://github.com/Kegbot/kegbot-server/archive/${KEGBOT_VERSION}
      && ls -la ./ \
      && cp -r /app/bin/* /bin/
 
-RUN pip3 install -U dj-database-url
+RUN pip3 install -U 'django<3' requests isodate dj-database-url coloredlogs addict whitenoise django-crispy-forms django-bootstrap-pagination django-imagekit pillow jsonfield
 RUN pip3 install -U gunicorn
 RUN pip3 install -U celery
 RUN pip3 install -U redis
