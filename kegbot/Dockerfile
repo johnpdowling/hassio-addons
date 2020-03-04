@@ -38,7 +38,7 @@ RUN pip3 install -U dj-database-url
 RUN pip3 install -U gunicorn
 RUN pip3 install -U celery
 RUN pip3 install -U redis
-RUN pip3 install -U kegbot
+#RUN pip3 install -U kegbot
 
 WORKDIR /app
 RUN python3 /app/setup.py install 
