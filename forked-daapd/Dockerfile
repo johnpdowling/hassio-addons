@@ -74,7 +74,8 @@ RUN apk --no-cache add --virtual=deps1 \
     cd /tmp/forked-daapd && \
     autoreconf -fi && \
     ./configure \
-      --enable-itunes  &&\
+      --enable-itunes \
+      --with-libwebsockets && \
     make && \
     make install \
  \
