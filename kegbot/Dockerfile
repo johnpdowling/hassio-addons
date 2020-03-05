@@ -26,7 +26,7 @@ RUN pip3 install -U -r /tmp/requirements.txt
 
 COPY rootfs /
 RUN echo "# shellcheck source=lib/kegbot.sh" >> /usr/lib/bashio/bashio.sh && \
-    echo "source "${__BASHIO_LIB_DIR}/kegbot.sh"" >> /usr/lib/bashio/bashio.sh
+    echo "source \"\${__BASHIO_LIB_DIR}/kegbot.sh\"" >> /usr/lib/bashio/bashio.sh
     
 ADD kegbot.conf /etc/nginx/conf.d/default.conf
 ADD nginx.conf /etc/nginx/nginx.conf
