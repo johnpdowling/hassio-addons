@@ -65,7 +65,7 @@ setup_env() {
     export -n KEGBOT_EMAIL_USE_TLS
   fi
 
-export KEGBOT_DATABASE_URL="${KEGBOT_DB_USER}:${KEGBOT_DB_PASS}@${KEGBOT_DB_HOST}:${KEGBOT_DB_PORT}/${KEGBOT_DB_NAME}"
+export KEGBOT_DATABASE_URL="mysql://${KEGBOT_DB_USER}:${KEGBOT_DB_PASS}@${KEGBOT_DB_HOST}:${KEGBOT_DB_PORT}/${KEGBOT_DB_NAME}"
 
   # other sets
   if [ -z "${KEGBOT_REDIS_PORT}" ]; then
