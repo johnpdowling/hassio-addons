@@ -20,7 +20,9 @@ RUN apk update && \
                        zlib-dev libjpeg-turbo libjpeg-turbo-dev libjpeg openjpeg \
                        libcrypto1.1>1.1.1d-r2 libssl1.1>1.1.1d-r2 \
                        mariadb-dev
-RUN pip3 install -U -r requirements.txt
+
+COPY requirements.txt /tmp/
+RUN pip3 install -U -r /tmp/requirements.txt
 
 COPY rootfs /
 RUN echo "# shellcheck source=lib/kegbot.sh" >> /usr/lib/bashio/bashio.sh && \
