@@ -22,7 +22,7 @@ RUN apk update && \
                        mariadb-dev
 
 COPY requirements.txt /tmp/
-RUN pip3 install -U -r /tmp/requirements.txt
+RUN ln -s /usr/bin/python3 /usr/bin/python && pip3 install -U -r /tmp/requirements.txt
 
 COPY rootfs /
 RUN echo "# shellcheck source=lib/kegbot.sh" >> /usr/lib/bashio/bashio.sh && \
@@ -35,16 +35,12 @@ ADD nginx.conf /etc/nginx/nginx.conf
 
 RUN curl -k -L https://github.com/Kegbot/kegbot-server/archive/${KEGBOT_VERSION}.tar.gz -o /tmp/kegbot.tar.gz \
      && tar -xf /tmp/kegbot.tar.gz -C /tmp/ \
-     && ls -la /tmp/ \
      && mkdir /app \
      && cp -r /tmp/kegbot-server-${KEGBOT_VERSION}/* /app/ \
-     && ls -la ./ \
-     && cp -r /app/bin/* /bin/
+     && pip3 install -U /app \
+     && rm -rf /tmp/kegbot*
 
 WORKDIR /app
-RUN ln -s /usr/bin/python3 /usr/bin/python && python /app/setup.py install 
-#RUN apk del musl-dev gcc 
-RUN rm -rf /tmp/kegbot*
 
 RUN mkdir -p /kegbot-data/
 COPY local_settings.py /kegbot-data/
