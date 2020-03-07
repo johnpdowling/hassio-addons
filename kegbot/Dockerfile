@@ -37,7 +37,8 @@ RUN curl -k -L https://github.com/Kegbot/kegbot-server/archive/${KEGBOT_VERSION}
      && tar -xf /tmp/kegbot.tar.gz -C /tmp/ \
      && mkdir /app \
      && cp -r /tmp/kegbot-server-${KEGBOT_VERSION}/* /app/ \
-     && pip3 install -U /app \
+#     && pip3 install -U /app \
+     && pip3 install git+https://github.com/Kegbot/kegbot-server.git#egg=kegbot \
      && rm -rf /tmp/kegbot*
 
 WORKDIR /app
