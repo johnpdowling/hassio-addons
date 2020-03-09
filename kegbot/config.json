@@ -4,7 +4,7 @@
   "slug": "kegbot",
   "description": "Kegbot Server, the internet beer kegerator monitoring system.",
   "url": "https://github.com/johnpdowling/hassio-addons/kegbot",
-  "ingress": true,
+  "ingress": false,
   "panel_icon": "mdi:keg",
   "startup": "application",
   "homeassistant": "0.92.0b2",
@@ -16,8 +16,10 @@
     "i386"
   ],
   "ports": {
+    "88/tcp": 88
   },
   "ports_description": {
+    "88/tcp": "Web interface"
   },
   "boot": "auto",
   "hassio_api": false,
