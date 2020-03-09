@@ -46,7 +46,7 @@ maybe_setup_kegbot() {
     mv /kegbot-data/local_settings.py ${KEGBOT_SETTINGS_DIR}
   fi
   
-  kegbot collectstatic --noinput -v 0
+  #kegbot collectstatic --noinput -v 0
   #do_mysql -e "create database ${KEGBOT_DB_NAME};" || die "Could not create database."
   true
 }
@@ -61,4 +61,5 @@ bashio::log.info "Waiting for MySQL..."
 wait_for_mysql
 bashio::log.info "Starting Kegbot..."
 echo `date` >> /kegbot-data/runlog
-kegbot run_all --logs_dir=/kegbot-data --gunicorn_options="-w 3 -b 127.0.0.1:8000"
+/usr/local/bin/pipenv run gunicorn pykeg.web.wsgi:application -w 3 -b 127.0.0.1:8000
+#kegbot run_all --logs_dir=/kegbot-data --gunicorn_options="-w 3 -b 127.0.0.1:8000"
