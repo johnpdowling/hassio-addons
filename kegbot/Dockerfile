@@ -2,9 +2,14 @@ ARG BUILD_FROM=hassioaddons/python-base:latest
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
-ENV PATH="/app/bin:${PATH}"
-ENV PYTHONPATH="/app:/app/bin:${PYTHONPATH}"
-ENV PYTHON3PATH="/app:/app/bin:${PYTHON3PATH}"
+ENV SHELL=/bin/sh \
+   PIP_NO_CACHE_DIR=1 \
+   KEGBOT_DATA_DIR=/kegbot-data \
+   KEGBOT_IN_DOCKER=True \
+   KEGBOT_ENV=debug
+#ENV PATH="/app/bin:${PATH}"
+#ENV PYTHONPATH="/app:/app/bin:${PYTHONPATH}"
+#ENV PYTHON3PATH="/app:/app/bin:${PYTHON3PATH}"
 # other sets
 ENV KEGBOT_REDIS_HOST=localhost
 ENV KEGBOT_REDIS_PORT=6379
@@ -12,18 +17,18 @@ ENV KEGBOT_SETTINGS_DIR=/config/kegbot/
 ENV KEGBOT_MEDIA_ROOT=/config/kegbot/media/
 #    export KEGBOT_DATA_DIR=/config/kegbot/kegbot-data/
 ENV KEGBOT_VERSION=master
-ENV KEGBOT_IN_DOCKER=True
 ENV LANG C.UTF-8
 
 RUN apk update && \
-    apk add --no-cache build-base python3-dev py3-setuptools py3-virtualenv py3-mysqlclient py3-future \
-                       nginx redis curl gcc musl-dev mysql-client \
+    apk add --no-cache build-base python3-dev \
+                       bash nginx redis curl gcc musl-dev mysql-client \
                        zlib-dev libjpeg-turbo libjpeg-turbo-dev libjpeg openjpeg \
                        libcrypto1.1>1.1.1d-r2 libssl1.1>1.1.1d-r2 \
-                       mariadb-dev
+                       mariadb-dev mariadb-connector-c-dev
 
 COPY requirements.txt /tmp/
-RUN ln -s /usr/bin/python3 /usr/bin/python && pip3 install -U -r /tmp/requirements.txt
+RUN ln -s /usr/bin/python3 /usr/bin/python && \
+    pip3 install -U -r /tmp/requirements.txt
 
 COPY rootfs /
 RUN echo "# shellcheck source=lib/kegbot.sh" >> /usr/lib/bashio/bashio.sh && \
@@ -38,16 +43,21 @@ RUN curl -k -L https://github.com/Kegbot/kegbot-server/archive/${KEGBOT_VERSION}
      && tar -xf /tmp/kegbot.tar.gz -C /tmp/ \
      && mkdir /app \
      && cp -r /tmp/kegbot-server-${KEGBOT_VERSION}/* /app/ \
-#     && python setup.py develop \
-#     && pip3 install -U /app \
-#     && pip3 install git+https://github.com/Kegbot/kegbot-server.git#egg=kegbot \
      && rm -rf /tmp/kegbot*
 
 WORKDIR /app
-RUN python setup.py develop
+RUN pipenv install --deploy && \
+    pipenv run python setup.py develop && \
+    pipenv run kegbot collectstatic -v 0 --noinput
+#RUN python setup.py develop
 
 RUN mkdir -p /kegbot-data/
 COPY local_settings.py /kegbot-data/
+
+#VOLUME  ["/kegbot-data"]
+
+#EXPOSE 8000
+#CMD ["/usr/local/bin/pipenv", "run", "gunicorn", "pykeg.web.wsgi:application", "-b", "0.0.0.0:8000"]
 
 # Build arguments
 ARG BUILD_ARCH
