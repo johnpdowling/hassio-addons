@@ -12,6 +12,7 @@ ENV KEGBOT_SETTINGS_DIR=/config/kegbot/
 ENV KEGBOT_MEDIA_ROOT=/config/kegbot/media/
 #    export KEGBOT_DATA_DIR=/config/kegbot/kegbot-data/
 ENV KEGBOT_VERSION=master
+ENV KEGBOT_IN_DOCKER=True
 ENV LANG C.UTF-8
 
 RUN apk update && \
