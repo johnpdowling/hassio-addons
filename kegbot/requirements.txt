@@ -1,10 +1,14 @@
 django < 3
+setuptools
 requests
+virtualenv
+mysqlclient
 isodate 
-dj-database-url 
 coloredlogs 
 addict
+future
 whitenoise 
+dj-database-url 
 django-crispy-forms
 django-bootstrap-pagination
 django-imagekit 
