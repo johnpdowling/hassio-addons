@@ -44,7 +44,7 @@
     "certfile": "fullchain.pem",
     "keyfile": "privkey.pem",
     "db_name": "kegbot",
-    "db_host": "localhost",
+    "db_host": "core-mariadb",
     "db_port": "3306",
     "db_user": "kegbot",
     "db_pass": ""
