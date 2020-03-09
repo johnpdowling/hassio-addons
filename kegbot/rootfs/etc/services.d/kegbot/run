@@ -34,7 +34,7 @@ wait_for_mysql() {
   fi
   if no_tables; then
     #db empty
-    /usr/local/bin/pipenv run kegbot migrate --noinput -v 0
+    /usr/bin/pipenv run kegbot migrate --noinput -v 0
     do_mysql "${KEGBOT_DB_NAME}" -e "show tables"
   fi
 }
@@ -61,5 +61,5 @@ bashio::log.info "Waiting for MySQL..."
 wait_for_mysql
 bashio::log.info "Starting Kegbot..."
 echo `date` >> /kegbot-data/runlog
-/usr/local/bin/pipenv run gunicorn pykeg.web.wsgi:application -w 3 -b 127.0.0.1:8000
+/usr/bin/pipenv run gunicorn pykeg.web.wsgi:application -w 3 -b 127.0.0.1:8000
 #kegbot run_all --logs_dir=/kegbot-data --gunicorn_options="-w 3 -b 127.0.0.1:8000"
