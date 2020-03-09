@@ -52,6 +52,7 @@ maybe_setup_kegbot() {
 }
 
 bashio::log.info "Checking environment..."
+cd /app
 env
 bashio::log.info "Checking Kegbot..."
 maybe_setup_kegbot
