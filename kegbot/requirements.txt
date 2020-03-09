@@ -1,7 +1,6 @@
 django < 3
-setuptools
+pipenv
 requests
-virtualenv
 mysqlclient
 isodate 
 coloredlogs 
