@@ -4,5 +4,6 @@
 # Runs the Nginx daemon
 # ==============================================================================
 
-bashio::log.info "Starting NGinx..."
-nginx -g 'daemon off;'
+bashio::log.info "No NGinx!"
+#bashio::log.info "Starting NGinx..."
+#nginx -g 'daemon off;'
