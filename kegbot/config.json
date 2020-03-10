@@ -16,10 +16,10 @@
     "i386"
   ],
   "ports": {
-    "80/tcp": 2080
+    "8000/tcp": 2080
   },
   "ports_description": {
-    "80/tcp": "Web interface"
+    "8000/tcp": "Web interface"
   },
   "boot": "auto",
   "hassio_api": false,
