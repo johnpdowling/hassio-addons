@@ -15,7 +15,7 @@ RUN \
         build-base=0.5-r1 \
         cmake=3.15.5-r0 \
         docker=19.03.5-r1 \
-        json-c-dev=0.13.1-r0 \
+        json-c-dev=0.13.1-r1 \
         libffi-dev=3.2.1-r6 \
         libuv-dev=1.34.0-r0 \
         openssl-dev=1.1.1g-r0 \
@@ -28,7 +28,7 @@ RUN \
         alsa-utils=1.2.1-r0 \
         awake=1.0-r4 \
         bash-completion=2.9-r0 \
-        bind-tools=9.14.8-r5 \
+        bind-tools=9.14.12-r0 \
         bluez=5.52-r1 \
         colordiff=1.0.18-r1 \
         device-mapper-libs=2.02.186-r0 \
@@ -36,7 +36,7 @@ RUN \
         docker-zsh-completion=19.03.5-r1 \
         git=2.24.3-r0 \
         htop=2.2.0-r0 \
-        json-c=0.13.1-r0 \
+        json-c=0.13.1-r1 \
         libltdl=2.4.6-r7 \
         libuv=1.34.0-r0 \
         libxml2-utils=2.9.10-r3 \
@@ -63,7 +63,7 @@ RUN \
         zip=3.0-r7 \
         zsh-autosuggestions=0.6.3-r0 \
         zsh-syntax-highlighting=0.6.0-r0 \
-        zsh=5.7.1-r0 
+        zsh=5.7.1-r0
 
 RUN apk --no-cache add --virtual=deps1 \
         alsa-lib-dev \
