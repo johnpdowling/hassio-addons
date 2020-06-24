@@ -7,7 +7,8 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 #adapted from sretalla's/kevineye's dockerfiles
 # hadolint ignore=DL3003
-RUN apk --no-cache add --virtual=deps1 \
+RUN apk update && \
+    apk --no-cache add --virtual=deps1 \
         alsa-lib-dev \
         autoconf \
         automake \
