@@ -1,4 +1,4 @@
-ARG BUILD_FROM=hassioaddons/base:5.0.1
+ARG BUILD_FROM=hassioaddons/base:7.2.0
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -33,12 +33,12 @@ RUN apk --no-cache add --virtual=deps1 \
         libunistring-dev \
         openjdk7-jre-base \
         protobuf-c-dev \
-        sqlite-dev \
- && apk add --no-cache --virtual=deps2 --repository http://nl.alpinelinux.org/alpine/edge/testing \
+        sqlite-dev
+ RUN apk add --no-cache --virtual=deps2 --repository http://nl.alpinelinux.org/alpine/edge/testing \
         libantlr3c-dev \
         mxml-dev \
- \       
- && apk add --no-cache \
+        
+RUN apk add --no-cache \
         avahi \
         confuse \
         dbus \
@@ -57,8 +57,8 @@ RUN apk --no-cache add --virtual=deps1 \
  && apk add --no-cache --repository http://nl.alpinelinux.org/alpine/edge/testing \
         libantlr3c \
         mxml \
- \
- && curl -L -o /tmp/antlr-3.4-complete.jar http://www.antlr3.org/download/antlr-3.4-complete.jar && \
+ 
+RUN curl -L -o /tmp/antlr-3.4-complete.jar http://www.antlr3.org/download/antlr-3.4-complete.jar && \
     echo '#!/bin/bash' > /usr/local/bin/antlr3 && \
     echo 'exec java -cp /tmp/antlr-3.4-complete.jar org.antlr.Tool "$@"' >> /usr/local/bin/antlr3 && \
     chmod 775 /usr/local/bin/antlr3 \
