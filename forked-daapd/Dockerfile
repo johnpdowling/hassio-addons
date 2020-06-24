@@ -20,9 +20,9 @@ RUN \
         libuv-dev=1.34.0-r0 \
         openssl-dev=1.1.1g-r0 \
         python3-dev=3.8.2-r0 \
-        zlib-dev=1.2.11-r3 \
-    \
-    && apk add --no-cache \
+        zlib-dev=1.2.11-r3 
+
+RUN apk add --no-cache \
         ack=3.2.0-r0 \
         alsa-plugins-pulse=1.2.1-r0 \
         alsa-utils=1.2.1-r0 \
