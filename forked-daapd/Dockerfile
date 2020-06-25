@@ -73,7 +73,8 @@ RUN cd /tmp && \
     git clone https://github.com/warmcat/libwebsockets.git && \
     cd /tmp/libwebsockets && \
     cmake ./ 
-RUN    make install 
+RUN make
+RUN make install 
 
 RUN cd /tmp && \
     git clone https://github.com/ejurgensen/forked-daapd.git && \
