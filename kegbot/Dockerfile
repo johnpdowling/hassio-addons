@@ -24,7 +24,7 @@ RUN apk update && \
                        bash nginx redis curl gcc musl-dev mysql-client \
                        zlib-dev libjpeg-turbo libjpeg-turbo-dev libjpeg openjpeg \
                        libcrypto1.1>1.1.1d-r2 libssl1.1>1.1.1d-r2 \
-                       mariadb-dev mariadb-connector-c-dev
+                       mariadb-dev mariadb-connector-c-dev postgresql-dev
 
 COPY requirements.txt /tmp/
 RUN ln -s /usr/bin/python3 /usr/bin/python && \
@@ -46,9 +46,11 @@ RUN curl -k -L https://github.com/Kegbot/kegbot-server/archive/${KEGBOT_VERSION}
      && rm -rf /tmp/kegbot*
 
 WORKDIR /app
-RUN pipenv install --deploy
-RUN pipenv run python setup.py develop 
-RUN pipenv run kegbot collectstatic -v 0 --noinput
+RUN rm Pipfile.lock && \
+    sed -i s#"protobuf = \"\*\""#"protobuf = \"3.12.2\""#g Pipfile && \
+    pipenv install --deploy && \
+    pipenv run python setup.py develop && \
+    pipenv run kegbot collectstatic -v 0 --noinput && \
 #RUN python setup.py develop
 
 RUN mkdir -p /kegbot-data/
