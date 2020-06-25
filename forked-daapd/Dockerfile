@@ -67,16 +67,16 @@ RUN apk update \
  && curl -L -o /tmp/antlr-3.4-complete.jar http://www.antlr3.org/download/antlr-3.4-complete.jar && \
     echo '#!/bin/bash' > /usr/local/bin/antlr3 && \
     echo 'exec java -cp /tmp/antlr-3.4-complete.jar org.antlr.Tool "$@"' >> /usr/local/bin/antlr3 && \
-    chmod 775 /usr/local/bin/antlr3
+    chmod 775 /usr/local/bin/antlr3 \
 
-RUN cd /tmp && \
+ && cd /tmp && \
     git clone https://github.com/warmcat/libwebsockets.git && \
     cd /tmp/libwebsockets && \
     cmake ./ && \
     make && \
-    make install 
+    make install \
 
-RUN cd /tmp && \
+ && cd /tmp && \
     git clone https://github.com/ejurgensen/forked-daapd.git && \
     cd /tmp/forked-daapd && \
     autoreconf -fi && \
@@ -84,12 +84,12 @@ RUN cd /tmp && \
       --enable-itunes \
       --with-libwebsockets && \
     make && \
-    make install
+    make install \
 
-RUN apk del --purge deps1 deps2 && \
-    rm -rf /usr/local/bin/antlr3 /tmp/*
+ && apk del --purge deps1 deps2 && \
+    rm -rf /usr/local/bin/antlr3 /tmp/* \
 
-RUN cd /usr/local/etc \
+ && cd /usr/local/etc \
  && sed -i -e 's/\(uid.*=.*\)/uid = "root"/g' forked-daapd.conf \
  && sed -i s#"ipv6 = yes"#"ipv6 = no"#g forked-daapd.conf \
  && sed -i s#/srv/music#/config/forked-daapd/music#g forked-daapd.conf \
