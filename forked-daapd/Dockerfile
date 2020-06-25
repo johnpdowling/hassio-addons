@@ -7,9 +7,11 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 #adapted from sretalla's/kevineye's dockerfiles
 # hadolint ignore=DL3003
-RUN apk update
-
-RUN apk add --no-cache --virtual deps1 \
+RUN apk update \
+ && apk add --no-cache \
+        libcrypto1.1=1.1.1g-r0 \
+        libssl1.1=1.1.1g-r0 \
+ && apk add --no-cache --virtual deps1 \
         alsa-lib-dev \
         autoconf \
         automake \
@@ -20,7 +22,7 @@ RUN apk add --no-cache --virtual deps1 \
         build-base \
         confuse-dev \
         curl \
-#        curl-dev \
+        curl-dev \
         ffmpeg-dev \
         file \
         git \
