@@ -7,7 +7,7 @@ set -e
 CONFIG_PATH=/data/options.json
 
 # Wait for other services to become available
-s6-svwait -u -t 5000 /var/run/s6/services/nginx
+#s6-svwait -u -t 5000 /var/run/s6/services/nginx
 s6-svwait -u -t 5000 /var/run/s6/services/redis
 
 die() {
