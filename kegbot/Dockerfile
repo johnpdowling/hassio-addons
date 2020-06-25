@@ -46,9 +46,9 @@ RUN curl -k -L https://github.com/Kegbot/kegbot-server/archive/${KEGBOT_VERSION}
      && rm -rf /tmp/kegbot*
 
 WORKDIR /app
-RUN pipenv install --deploy && \
-    pipenv run python setup.py develop && \
-    pipenv run kegbot collectstatic -v 0 --noinput
+RUN pipenv install --deploy
+RUN pipenv run python setup.py develop 
+RUN pipenv run kegbot collectstatic -v 0 --noinput
 #RUN python setup.py develop
 
 RUN mkdir -p /kegbot-data/
