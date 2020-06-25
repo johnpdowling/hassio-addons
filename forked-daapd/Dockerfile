@@ -71,8 +71,8 @@ RUN curl -L -o /tmp/antlr-3.4-complete.jar http://www.antlr3.org/download/antlr-
 
 RUN cd /tmp && \
     git clone https://github.com/warmcat/libwebsockets.git && \
-    cd /tmp/libwebsockets
-RUN    cmake ./ 
+    cd /tmp/libwebsockets && \
+    cmake ./ 
 RUN    make install 
 
 RUN cd /tmp && \
