@@ -35,7 +35,6 @@ RUN apk update \
         libsodium-dev \
         libtool \
         libunistring-dev \
-        libuv=1.34.0-r0 \
         openjdk7-jre-base \
         protobuf-c-dev \
         sqlite-dev \
@@ -80,7 +79,7 @@ RUN apk update \
         -DLWS_IPV6=ON \
         -DLWS_STATIC_PIC=ON \
         -DLWS_UNIX_SOCK=OFF \
-        -DLWS_WITH_LIBUV=ON \
+        -DLWS_WITH_LIBUV=OFF \
         -DLWS_WITH_SHARED=ON \
         -DLWS_WITHOUT_TESTAPPS=ON 
 RUN    make && \
