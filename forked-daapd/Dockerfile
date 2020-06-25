@@ -55,6 +55,8 @@ RUN apk update \
         libplist \
         libsodium \
         libunistring \
+        libuv=1.29.1-r0 \
+        libuv-dev=1.29.1-r0 \
         protobuf-c \
         sqlite \
         sqlite-libs \
@@ -79,10 +81,10 @@ RUN apk update \
         -DLWS_IPV6=ON \
         -DLWS_STATIC_PIC=ON \
         -DLWS_UNIX_SOCK=OFF \
-        -DLWS_WITH_LIBUV=OFF \
+        -DLWS_WITH_LIBUV=ON \
         -DLWS_WITH_SHARED=ON \
-        -DLWS_WITHOUT_TESTAPPS=ON 
-RUN    make && \
+        -DLWS_WITHOUT_TESTAPPS=ON && \
+    make && \
     make install \
 
  && cd /tmp && \
