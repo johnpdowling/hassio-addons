@@ -69,9 +69,9 @@ RUN curl -L -o /tmp/antlr-3.4-complete.jar http://www.antlr3.org/download/antlr-
 
 RUN cd /tmp && \
     git clone https://github.com/warmcat/libwebsockets.git && \
-    cd /tmp/libwebsockets && \
-    cmake ./ && \
-    make install 
+    cd /tmp/libwebsockets
+RUN    cmake ./ 
+RUN    make install 
 
 RUN cd /tmp && \
     git clone https://github.com/ejurgensen/forked-daapd.git && \
