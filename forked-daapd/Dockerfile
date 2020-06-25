@@ -35,13 +35,13 @@ RUN apk add --no-cache --virtual deps1 \
         libunistring-dev \
         openjdk7-jre-base \
         protobuf-c-dev \
-        sqlite-dev
- 
-RUN apk add --no-cache --virtual=deps2 --repository http://nl.alpinelinux.org/alpine/edge/testing \
-        libantlr3c-dev \
-        mxml-dev
+        sqlite-dev \
         
-RUN apk add --no-cache \
+ && apk add --no-cache --virtual=deps2 --repository http://nl.alpinelinux.org/alpine/edge/testing \
+        libantlr3c-dev \
+        mxml-dev \
+        
+ && apk add --no-cache \
         avahi \
         confuse \
         dbus \
@@ -56,10 +56,11 @@ RUN apk add --no-cache \
         protobuf-c \
         sqlite \
         sqlite-libs \
-        openssl=1.1.1g-r0 \        
+        openssl=1.1.1g-r0 \
+        
  && apk add --no-cache --repository http://nl.alpinelinux.org/alpine/edge/testing \
         libantlr3c \
-        mxml \
+        mxml
  
 RUN curl -L -o /tmp/antlr-3.4-complete.jar http://www.antlr3.org/download/antlr-3.4-complete.jar && \
     echo '#!/bin/bash' > /usr/local/bin/antlr3 && \
