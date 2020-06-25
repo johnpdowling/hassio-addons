@@ -50,7 +50,7 @@ RUN rm Pipfile.lock && \
     sed -i s#"protobuf = \"\*\""#"protobuf = \"3.12.2\""#g Pipfile && \
     pipenv install --deploy && \
     pipenv run python setup.py develop && \
-    pipenv run kegbot collectstatic -v 0 --noinput && \
+    pipenv run kegbot collectstatic -v 0 --noinput
 #RUN python setup.py develop
 
 RUN mkdir -p /kegbot-data/
