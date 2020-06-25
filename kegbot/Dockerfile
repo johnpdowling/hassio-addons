@@ -23,7 +23,7 @@ RUN apk update && \
     apk add --no-cache build-base python3-dev \
                        bash nginx redis curl gcc musl-dev mysql-client sed \
                        zlib-dev libjpeg-turbo libjpeg-turbo-dev libjpeg openjpeg \
-                       libcrypto1.1>1.1.1d-r2 libssl1.1>1.1.1d-r2 \
+                       libcrypto1.1>1.1.1d-r2 libssl1.1>1.1.1d-r2 libffi-dev \
                        mariadb-dev mariadb-connector-c-dev postgresql-dev
 
 COPY requirements.txt /tmp/
@@ -40,14 +40,14 @@ ADD nginx.conf /etc/nginx/nginx.conf
 #kb
 
 RUN curl -k -L https://github.com/Kegbot/kegbot-server/archive/${KEGBOT_VERSION}.tar.gz -o /tmp/kegbot.tar.gz \
-     && tar -xf /tmp/kegbot.tar.gz -C /tmp/ \
+     && tar -xf /tmp/kegbot.tar.gz -C /tmp/ \     
+     && rm /tmp/kegbot-server-${KEGBOT_VERSION}/Pipfile.lock \
+     && sed -i s#"protobuf = \"\*\""#"protobuf = \"3.12.2\""#g /tmp/kegbot-server-${KEGBOT_VERSION}/Pipfile \
      && mkdir /app \
      && cp -r /tmp/kegbot-server-${KEGBOT_VERSION}/* /app/ \
      && rm -rf /tmp/kegbot*
 
-WORKDIR /app
-RUN rm Pipfile.lock 
-RUN sed -i s#"protobuf = \"\*\""#"protobuf = \"3.12.2\""#g Pipfile 
+WORKDIR /app 
 RUN pipenv install --deploy 
 RUN pipenv run python setup.py develop 
 RUN pipenv run kegbot collectstatic -v 0 --noinput
