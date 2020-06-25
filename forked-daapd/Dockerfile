@@ -19,8 +19,8 @@ RUN apk add --no-cache --virtual deps1 \
         bsd-compat-headers \
         build-base \
         confuse-dev \
-        curl \
-        curl-dev \
+#        curl \
+#        curl-dev \
         ffmpeg-dev \
         file \
         git \
@@ -36,9 +36,10 @@ RUN apk add --no-cache --virtual deps1 \
         openjdk7-jre-base \
         protobuf-c-dev \
         sqlite-dev
- RUN apk add --no-cache --virtual=deps2 --repository http://nl.alpinelinux.org/alpine/edge/testing \
+ 
+RUN apk add --no-cache --virtual=deps2 --repository http://nl.alpinelinux.org/alpine/edge/testing \
         libantlr3c-dev \
-        mxml-dev \
+        mxml-dev
         
 RUN apk add --no-cache \
         avahi \
@@ -55,7 +56,7 @@ RUN apk add --no-cache \
         protobuf-c \
         sqlite \
         sqlite-libs \
-        openssl \        
+        openssl=1.1.1g-r0 \        
  && apk add --no-cache --repository http://nl.alpinelinux.org/alpine/edge/testing \
         libantlr3c \
         mxml \
