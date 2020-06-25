@@ -19,7 +19,7 @@ RUN apk add --no-cache --virtual deps1 \
         bsd-compat-headers \
         build-base \
         confuse-dev \
-#        curl \
+        curl \
 #        curl-dev \
         ffmpeg-dev \
         file \
@@ -65,15 +65,15 @@ RUN apk add --no-cache --virtual deps1 \
 RUN curl -L -o /tmp/antlr-3.4-complete.jar http://www.antlr3.org/download/antlr-3.4-complete.jar && \
     echo '#!/bin/bash' > /usr/local/bin/antlr3 && \
     echo 'exec java -cp /tmp/antlr-3.4-complete.jar org.antlr.Tool "$@"' >> /usr/local/bin/antlr3 && \
-    chmod 775 /usr/local/bin/antlr3 \
- \
- && cd /tmp && \
+    chmod 775 /usr/local/bin/antlr3
+
+RUN cd /tmp && \
     git clone https://github.com/warmcat/libwebsockets.git && \
     cd /tmp/libwebsockets && \
     cmake ./ && \
-    make install \
- \
- && cd /tmp && \
+    make install 
+
+RUN cd /tmp && \
     git clone https://github.com/ejurgensen/forked-daapd.git && \
     cd /tmp/forked-daapd && \
     autoreconf -fi && \
@@ -81,9 +81,9 @@ RUN curl -L -o /tmp/antlr-3.4-complete.jar http://www.antlr3.org/download/antlr-
       --enable-itunes \
       --with-libwebsockets && \
     make && \
-    make install \
- \
- && apk del --purge deps1 deps2 && \
+    make install
+
+RUN apk del --purge deps1 deps2 && \
     rm -rf /usr/local/bin/antlr3 /tmp/*
 
 RUN cd /usr/local/etc \
