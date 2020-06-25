@@ -9,7 +9,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # hadolint ignore=DL3003
 RUN apk update
 
-RUN apk --no-cache add --virtual=deps1 \
+RUN apk add --no-cache --virtual deps1 \
         alsa-lib-dev \
         autoconf \
         automake \
