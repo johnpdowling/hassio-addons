@@ -70,9 +70,18 @@ RUN apk update \
     chmod 775 /usr/local/bin/antlr3 \
 
  && cd /tmp && \
-    git clone https://github.com/warmcat/libwebsockets.git && \
+    git clone --branch "v3.2.2" --depth=1 https://github.com/warmcat/libwebsockets.git && \
     cd /tmp/libwebsockets && \
-    cmake ./ && \
+    cmake ./ \
+        -DCMAKE_BUILD_TYPE=MinSizeRel \
+        -DCMAKE_INSTALL_PREFIX=/usr \
+        -DCMAKE_VERBOSE_MAKEFILE=TRUE \
+        -DLWS_IPV6=ON \
+        -DLWS_STATIC_PIC=ON \
+        -DLWS_UNIX_SOCK=OFF \
+        -DLWS_WITH_LIBUV=ON \
+        -DLWS_WITH_SHARED=ON \
+        -DLWS_WITHOUT_TESTAPPS=ON && \
     make && \
     make install \
 
