@@ -44,6 +44,8 @@ RUN apt-get update && \
 
 #ENV LD_LIBRARY_PATH $LD_LIBRARY_PATH:/opt/z-way-server/libs
 
+RUN echo "razberry" > /etc/z-way/box_type
+
 # Copy root filesystem
 COPY rootfs /
 
