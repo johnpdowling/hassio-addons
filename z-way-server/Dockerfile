@@ -11,25 +11,38 @@ ENV TZ=America/Los_Angeles
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-# upgrade and install all the libs zway needs ourself in one go
-RUN apt-get update 
-RUN apt-get install -y --no-install-recommends \
-        wget \
-        sharutils \
-        gawk \
-        libc-ares2 \
-        libavahi-compat-libdnssd-dev \
-        libarchive-dev \
-        libcurl3
+# Install additional packages that help to add Z-Wave.Me repository
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        dirmngr \
+        apt-transport-https && \
+# Add Z-Wave.Me repository
+    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0x7E148E3C && \
+    echo "deb https://repo.z-wave.me/z-way/raspbian stretch main" > /etc/apt/sources.list.d/z-wave-me.list && \
+    apt-get update && \
+# upgrade and install everything zway needs itself in one go
+    apt-get install --reinstall -y --no-install-recommends \
+        z-way-full \
+        z-way-server \
+        zbw \
+        webif
+        
+#        wget \
+#        sharutils \
+#        gawk \
+#        libc-ares2 \
+#        libavahi-compat-libdnssd-dev \
+#       libarchive-dev \
+#       libcurl3
 
-WORKDIR /opt
-RUN curl -O https://storage.z-wave.me/z-way-server/z-way-server-RaspberryPiXTools-v2.3.8.tgz && \
-    tar -zxvf z-way-server-RaspberryPiXTools-v2.3.8.tgz && \
-    rm z-way-server-RaspberryPiXTools-v2.3.8.tgz && \ 
-    mkdir -p /etc/z-way/ && \
-    echo "v2.3.8" > /etc/z-way/VERSION && echo "razberry" > /etc/z-way/box_type
+#WORKDIR /opt
+#RUN curl -O https://storage.z-wave.me/z-way-server/z-way-server-RaspberryPiXTools-v2.3.8.tgz && \
+#    tar -zxvf z-way-server-RaspberryPiXTools-v2.3.8.tgz && \
+#    rm z-way-server-RaspberryPiXTools-v2.3.8.tgz && \ 
+#    mkdir -p /etc/z-way/ && \
+#    echo "v2.3.8" > /etc/z-way/VERSION && echo "razberry" > /etc/z-way/box_type
 
-ENV LD_LIBRARY_PATH $LD_LIBRARY_PATH:/opt/z-way-server/libs
+#ENV LD_LIBRARY_PATH $LD_LIBRARY_PATH:/opt/z-way-server/libs
 
 # Copy root filesystem
 COPY rootfs /
