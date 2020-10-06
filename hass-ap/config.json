@@ -22,6 +22,7 @@
   "options": {
     "ssid": "hass-ap",
     "wpa_passphrase": "passw0rd",
+    "interface": "wlan0",
     "channel": "11",
     "subnet": "192.168.254.0",
     "ap_address": "192.168.254.1",
@@ -32,6 +33,7 @@
   "schema": {
     "ssid": "str",
     "wpa_passphrase" : "str",
+    "interface": "str",
     "channel": "str",
     "subnet": "str",
     "ap_address": "str",
