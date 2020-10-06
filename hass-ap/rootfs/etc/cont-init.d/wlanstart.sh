@@ -58,7 +58,8 @@ CONFIG_PATH=/data/options.json
 
 # Default values
 true ${OUTGOINGS:=eth0}
-true ${INTERFACE:=wlan0}
+#true ${INTERFACE:=wlan0}
+INTERFACE="$(jq --raw-output '.interface' $CONFIG_PATH)"
 #true ${SUBNET:=192.168.254.0}
 SUBNET="$(jq --raw-output '.subnet' $CONFIG_PATH)"
 #true ${AP_ADDR:=192.168.254.1}
