@@ -15,7 +15,8 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         dirmngr \
-        apt-transport-https
+        apt-transport-https \
+	gnupg
 # Add Z-Wave.Me repository
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0x7E148E3C
 RUN    echo "deb https://repo.z-wave.me/z-way/raspbian stretch main" > /etc/apt/sources.list.d/z-wave-me.list
