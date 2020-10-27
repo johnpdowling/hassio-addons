@@ -16,13 +16,13 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         dirmngr \
         apt-transport-https \
-	gnupg
+	gnupg && \
 # Add Z-Wave.Me repository
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0x7E148E3C
-RUN    echo "deb https://repo.z-wave.me/z-way/raspbian stretch main" > /etc/apt/sources.list.d/z-wave-me.list
-RUN    apt-get update
+    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0x7E148E3C && \
+    echo "deb https://repo.z-wave.me/z-way/raspbian stretch main" > /etc/apt/sources.list.d/z-wave-me.list && \
+    apt-get update && \
 # upgrade and install everything zway needs itself in one go
-RUN apt-get install --reinstall -y --no-install-recommends \
+    apt-get install --reinstall -y --no-install-recommends \
         z-way-full \
         z-way-server \
         zbw \
@@ -46,16 +46,16 @@ RUN apt-get install --reinstall -y --no-install-recommends \
 #ENV LD_LIBRARY_PATH $LD_LIBRARY_PATH:/opt/z-way-server/libs
 # follow "package config replace" path
 RUN TMP_DIR=`mktemp -d` && \
-		pushd $TMP_DIR && \
-		apt-get download z-way-server && \
-		dpkg-deb --fsys-tarfile ./z-way-server*.deb | sudo tar -C / -x ./opt/z-way-server/config/Defaults.xml ./opt/z-way-server/config.xml ./etc/z-way/box_type ./etc/logrotate.d/z-way-server ./etc/init.d/z-way-server && \
-		apt-get download webif && \
-		dpkg-deb --fsys-tarfile ./webif*.deb | sudo tar -C / -x ./etc/webif.conf ./etc/mongoose/mongoose.conf && \
-		#  no config files in zbw package
-		# apt-get download zbw
-		# dpkg-deb --fsys-tarfile ./zbw*.deb | sudo tar -C / -x ...
-		popd && \
-		rm -R $TMP_DIR
+    pushd $TMP_DIR
+RUN apt-get download z-way-server && \
+    dpkg-deb --fsys-tarfile ./z-way-server*.deb | sudo tar -C / -x ./opt/z-way-server/config/Defaults.xml ./opt/z-way-server/config.xml ./etc/z-way/box_type ./etc/logrotate.d/z-way-server ./etc/init.d/z-way-server
+RUN apt-get download webif && \
+    dpkg-deb --fsys-tarfile ./webif*.deb | sudo tar -C / -x ./etc/webif.conf ./etc/mongoose/mongoose.conf
+    #  no config files in zbw package
+    # apt-get download zbw
+    # dpkg-deb --fsys-tarfile ./zbw*.deb | sudo tar -C / -x ...
+RUN popd && \
+    rm -R $TMP_DIR
 
 # Copy root filesystem
 COPY rootfs /
