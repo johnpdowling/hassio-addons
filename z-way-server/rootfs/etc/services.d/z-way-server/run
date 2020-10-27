@@ -7,4 +7,4 @@
 
 # Run z-way-server
 bashio::log.info 'Starting the Z-Way Server...'
-(cd /opt/z-way-server && z-way-server -c /config/z-way-server/config/config.xml -L /dev/stdout)
+(cd /opt/z-way-server && ./z-way-server -c /config/z-way-server/config/config.xml -L /dev/stdout)
