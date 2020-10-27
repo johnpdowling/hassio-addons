@@ -47,8 +47,8 @@ RUN apt-get update && \
 # follow "package config replace" path
 RUN TMP_DIR=`mktemp -d` && \
     pushd $TMP_DIR
-RUN apt-get download z-way-server && \
-    dpkg-deb --fsys-tarfile ./z-way-server*.deb | sudo tar -C / -x ./opt/z-way-server/config/Defaults.xml ./opt/z-way-server/config.xml ./etc/z-way/box_type ./etc/logrotate.d/z-way-server ./etc/init.d/z-way-server
+RUN apt-get download z-way-server
+RUN dpkg-deb --fsys-tarfile ./z-way-server*.deb | sudo tar -C / -x ./opt/z-way-server/config/Defaults.xml ./opt/z-way-server/config.xml ./etc/z-way/box_type ./etc/logrotate.d/z-way-server ./etc/init.d/z-way-server
 RUN apt-get download webif && \
     dpkg-deb --fsys-tarfile ./webif*.deb | sudo tar -C / -x ./etc/webif.conf ./etc/mongoose/mongoose.conf
     #  no config files in zbw package
