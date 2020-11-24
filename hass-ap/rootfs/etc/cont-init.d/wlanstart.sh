@@ -57,7 +57,8 @@ CONFIG_PATH=/data/options.json
 #MQTT_HOST="$(jq --raw-output '.mqtt_host' $CONFIG_PATH)"
 
 # Default values
-true ${OUTGOINGS:=eth0}
+#true ${OUTGOINGS:=eth0}
+OUTGOINGS="$(jq --raw-output '.outgoing' $CONFIG_PATH)"
 #true ${INTERFACE:=wlan0}
 INTERFACE="$(jq --raw-output '.interface' $CONFIG_PATH)"
 #true ${SUBNET:=192.168.254.0}
