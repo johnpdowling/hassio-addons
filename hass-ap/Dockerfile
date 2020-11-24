@@ -17,7 +17,7 @@ RUN apk update && \
     
 RUN echo "" > /var/lib/dhcp/dhcpd.leases
 
-RUN modprobe ip_tables &&
+RUN modprobe ip_tables && \
     echo 'ip_tables' >> /etc/modules
 
 # Build arguments
