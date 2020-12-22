@@ -43,7 +43,7 @@ RUN apk add --no-cache --virtual deps1 \
         protobuf-c-dev \
         sqlite-dev
         
-RUN apk add --no-cache --virtual=deps2 --repository http://nl.alpinelinux.org/alpine/edge/testing \
+RUN apk add --no-cache --virtual=deps2 --repository http://nl.alpinelinux.org/alpine/edge/testing --repository http://nl.alpinelinux.org/alpine/edge/community \
         libantlr3c-dev \
         mxml \
         mxml-dev 
