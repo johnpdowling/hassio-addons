@@ -11,7 +11,10 @@ RUN apk update
 RUN apk add --no-cache \
  libcrypto1.1=1.1.1i-r0 \
  libssl1.1=1.1.1i-r0 
-        
+RUN apk add --no-cache \
+ musl \
+ musl-dev
+ 
 RUN apk add --no-cache --virtual deps1 \
         alsa-lib-dev \
         autoconf \
