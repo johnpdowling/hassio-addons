@@ -3,7 +3,7 @@ ARG BUILD_FROM=hassioaddons/base:8.0.0
 FROM ${BUILD_FROM}
 
 # Set shell
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+#SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 #adapted from sretalla's/kevineye's dockerfiles
 # hadolint ignore=DL3003
