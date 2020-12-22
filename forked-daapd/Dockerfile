@@ -9,8 +9,8 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # hadolint ignore=DL3003
 RUN apk update \
  && apk add --no-cache \
-        libcrypto1.1=1.1.1g-r0 \
-        libssl1.1=1.1.1g-r0 \
+        libcrypto1.1 \
+        libssl1.1 \
  && apk add --no-cache --virtual deps1 \
         alsa-lib-dev \
         autoconf \
