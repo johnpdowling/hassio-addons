@@ -9,9 +9,9 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # hadolint ignore=DL3003
 RUN apk update \
  && apk add --no-cache \
-        libcrypto1.1 \
-        libssl1.1 \
- && apk add --no-cache --virtual deps1 \
+        libcrypto1.1=1.1.1g-r0 \
+        libssl1.1=1.1.1g-r0 
+RUN apk add --no-cache --virtual deps1 \
         alsa-lib-dev \
         autoconf \
         automake \
@@ -37,13 +37,13 @@ RUN apk update \
         libunistring-dev \
         openjdk7-jre-base \
         protobuf-c-dev \
-        sqlite-dev \
+        sqlite-dev
         
- && apk add --no-cache --virtual=deps2 --repository http://nl.alpinelinux.org/alpine/edge/testing \
+RUN apk add --no-cache --virtual=deps2 --repository http://nl.alpinelinux.org/alpine/edge/testing \
         libantlr3c-dev \
-        mxml-dev \
+        mxml-dev 
         
- && apk add --no-cache \
+RUN apk add --no-cache \
         avahi \
         confuse \
         dbus \
@@ -60,18 +60,18 @@ RUN apk update \
         protobuf-c \
         sqlite \
         sqlite-libs \
-        openssl \
+        openssl 
         
- && apk add --no-cache --repository http://nl.alpinelinux.org/alpine/edge/testing \
+RUN apk add --no-cache --repository http://nl.alpinelinux.org/alpine/edge/testing \
         libantlr3c \
-        mxml \
+        mxml 
  
- && curl -L -o /tmp/antlr-3.4-complete.jar http://www.antlr3.org/download/antlr-3.4-complete.jar && \
+RUN curl -L -o /tmp/antlr-3.4-complete.jar http://www.antlr3.org/download/antlr-3.4-complete.jar && \
     echo '#!/bin/bash' > /usr/local/bin/antlr3 && \
     echo 'exec java -cp /tmp/antlr-3.4-complete.jar org.antlr.Tool "$@"' >> /usr/local/bin/antlr3 && \
-    chmod 775 /usr/local/bin/antlr3 \
+    chmod 775 /usr/local/bin/antlr3 
 
- && cd /tmp && \
+RUN cd /tmp && \
     git clone --branch "v3.2.2" --depth=1 https://github.com/warmcat/libwebsockets.git && \
     cd /tmp/libwebsockets && \
     cmake ./ \
@@ -85,9 +85,9 @@ RUN apk update \
         -DLWS_WITH_SHARED=ON \
         -DLWS_WITHOUT_TESTAPPS=ON && \
     make && \
-    make install \
+    make install 
 
- && cd /tmp && \
+RUN cd /tmp && \
     git clone https://github.com/ejurgensen/forked-daapd.git && \
     cd /tmp/forked-daapd && \
     autoreconf -fi && \
@@ -95,12 +95,12 @@ RUN apk update \
       --enable-itunes \
       --with-libwebsockets && \
     make && \
-    make install \
+    make install 
 
- && apk del --purge deps1 deps2 && \
-    rm -rf /usr/local/bin/antlr3 /tmp/* \
+RUN apk del --purge deps1 deps2 && \
+    rm -rf /usr/local/bin/antlr3 /tmp/* 
 
- && cd /usr/local/etc \
+RUN cd /usr/local/etc \
  && sed -i -e 's/\(uid.*=.*\)/uid = "root"/g' forked-daapd.conf \
  && sed -i s#"ipv6 = yes"#"ipv6 = no"#g forked-daapd.conf \
  && sed -i s#/srv/music#/config/forked-daapd/music#g forked-daapd.conf \
