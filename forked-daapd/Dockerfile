@@ -60,8 +60,8 @@ RUN apk add --no-cache \
         libplist \
         libsodium \
         libunistring \
-        libuv=1.29.1-r0 \
-        libuv-dev=1.29.1-r0 \
+        libuv \
+        libuv-dev \
         protobuf-c \
         sqlite \
         sqlite-libs \
