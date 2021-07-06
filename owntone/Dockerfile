@@ -14,9 +14,7 @@ COPY rootfs /
 # hadolint ignore=DL3003
 RUN apt-get update 
 RUN apt-get install -y --fix-missing --no-install-recommends \
-        build-essential git autotools-dev autoconf automake libtool gettext gawk 
-RUN apt-get install -y --fix-missing --no-install-recommends \
-        gperf antlr3 libantlr3c-dev libconfuse-dev libunistring-dev libsqlite3-dev 
+        build-essential git autotools-dev autoconf automake libtool gettext gawk
 RUN apt-get install -y --fix-missing --no-install-recommends \
         libavcodec-dev libavformat-dev libavfilter-dev libswscale-dev libavutil-dev 
 RUN apt-get install -y --fix-missing --no-install-recommends \
@@ -24,7 +22,9 @@ RUN apt-get install -y --fix-missing --no-install-recommends \
 RUN apt-get install -y --fix-missing --no-install-recommends \
         libevent-dev libplist-dev libsodium-dev libjson-c-dev libwebsockets-dev 
 RUN apt-get install -y --fix-missing --no-install-recommends \
-        libcurl4-openssl-dev libprotobuf-c-dev
+        libcurl4-openssl-dev libprotobuf-c-dev 
+RUN apt-get install -y --fix-missing --no-install-recommends \
+        gperf antlr3 libantlr3c-dev libconfuse-dev libunistring-dev libsqlite3-dev 
 RUN git clone https://github.com/owntone/owntone-server.git && \
     cd owntone-server && \
     autoreconf -i && \
