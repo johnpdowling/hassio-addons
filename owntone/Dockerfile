@@ -25,7 +25,7 @@ RUN git clone https://github.com/owntone/owntone-server.git && \
     autoreconf -i && \
     ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --with-libwebsockets && \
     make && \
-    make install        
+    make install \
 
 # && cd /tmp && \
 #    git clone https://github.com/ejurgensen/forked-daapd.git && \
