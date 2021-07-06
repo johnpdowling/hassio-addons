@@ -23,7 +23,7 @@ RUN apt-get install -y --fix-missing --no-install-recommends \
         gperf libantlr3c-dev
 #RUN apt-get install -y --fix-missing --no-install-recommends \ 
 #        antlr3
-RUN curl -L -o /tmp/antlr-3.4-complete.jar http://www.antlr3.org/download/antlr-3.4-complete.jar && \
+RUN curl -L -o /tmp/antlr-3.4-complete.jar http://www.antlr3.org/download/antlr-3.5.2-complete.jar && \
     echo '#!/bin/bash' > /usr/local/bin/antlr3 && \
     echo 'exec java -cp /tmp/antlr-3.4-complete.jar org.antlr.Tool "$@"' >> /usr/local/bin/antlr3 && \
     chmod 775 /usr/local/bin/antlr3
@@ -33,7 +33,7 @@ RUN git clone https://github.com/owntone/owntone-server.git && \
     autoreconf -i && \
     ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --with-libwebsockets && \
     make && \
-    make install \
+    make install
 
 # && cd /tmp && \
 #    git clone https://github.com/ejurgensen/forked-daapd.git && \
@@ -47,7 +47,7 @@ RUN git clone https://github.com/owntone/owntone-server.git && \
 
 # && apk del --purge deps1 deps2 && \
 #    rm -rf /usr/local/bin/antlr3 /tmp/* \
-
+RUN \
  && cd /usr/local/etc \
  && sed -i -e 's/\(uid.*=.*\)/uid = "root"/g' owntone.conf \
  && sed -i s#"ipv6 = yes"#"ipv6 = no"#g owntone.conf \
