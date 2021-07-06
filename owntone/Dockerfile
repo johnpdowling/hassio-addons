@@ -32,9 +32,9 @@ RUN cd /tmp && \
     git clone https://github.com/owntone/owntone-server.git && \
     cd /tmp/owntone-server && \
     autoreconf -fi && \
-    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --with-libwebsockets 
-RUN    make 
-RUN    make install
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --with-libwebsockets && \
+    make && \
+    make install
 
 # && cd /tmp && \
 #    git clone https://github.com/ejurgensen/forked-daapd.git && \
