@@ -12,13 +12,18 @@ COPY rootfs /
 
 #from owntone-server instructions
 # hadolint ignore=DL3003
-RUN apt-get update && \
-    apt-get install -y --fix-missing --no-install-recommends \
-        build-essential git autotools-dev autoconf automake libtool gettext gawk \
-        gperf antlr3 libantlr3c-dev libconfuse-dev libunistring-dev libsqlite3-dev \
-        libavcodec-dev libavformat-dev libavfilter-dev libswscale-dev libavutil-dev \
-        libasound2-dev libmxml-dev libgcrypt20-dev libavahi-client-dev zlib1g-dev \
-        libevent-dev libplist-dev libsodium-dev libjson-c-dev libwebsockets-dev \
+RUN apt-get update 
+RUN apt-get install -y --fix-missing --no-install-recommends \
+        build-essential git autotools-dev autoconf automake libtool gettext gawk 
+RUN apt-get install -y --fix-missing --no-install-recommends \
+        gperf antlr3 libantlr3c-dev libconfuse-dev libunistring-dev libsqlite3-dev 
+RUN apt-get install -y --fix-missing --no-install-recommends \
+        libavcodec-dev libavformat-dev libavfilter-dev libswscale-dev libavutil-dev 
+RUN apt-get install -y --fix-missing --no-install-recommends \
+        libasound2-dev libmxml-dev libgcrypt20-dev libavahi-client-dev zlib1g-dev 
+RUN apt-get install -y --fix-missing --no-install-recommends \
+        libevent-dev libplist-dev libsodium-dev libjson-c-dev libwebsockets-dev 
+RUN apt-get install -y --fix-missing --no-install-recommends \
         libcurl4-openssl-dev libprotobuf-c-dev
 RUN git clone https://github.com/owntone/owntone-server.git && \
     cd owntone-server && \
