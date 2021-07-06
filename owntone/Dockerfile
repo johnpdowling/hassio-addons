@@ -32,7 +32,7 @@ RUN cd /tmp && \
     git clone https://github.com/owntone/owntone-server.git && \
     cd /tmp/owntone-server && \
     autoreconf -fi && \
-    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --with-libwebsockets && \
+    ./configure --with-libwebsockets && \
     make
 RUN    make install
 
