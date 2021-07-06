@@ -5,11 +5,14 @@ FROM ${BUILD_FROM}
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-RUN apk update
+VOLUME /etc/localtime /etc/localtime:ro
+
+# Copy root filesystem
+COPY rootfs /
 
 #from owntone-server instructions
 # hadolint ignore=DL3003
-RUN apt-get update &&
+RUN apt-get update && \
     apt-get install -y --fix-missing --no-install-recommends \
         build-essential git autotools-dev autoconf automake libtool gettext gawk \
         gperf antlr3 libantlr3c-dev libconfuse-dev libunistring-dev libsqlite3-dev \
@@ -50,10 +53,6 @@ RUN git clone https://github.com/owntone/owntone-server.git && \
  && sed -i "/db_path\ =/ s/# *//" owntone.conf \
  && sed -i "/cache_path\ =/ s/# *//" owntone.conf
 
-VOLUME /etc/localtime /etc/localtime:ro
-
-# Copy root filesystem
-COPY rootfs /
 
 # Build arguments
 ARG BUILD_ARCH
