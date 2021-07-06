@@ -36,17 +36,17 @@ RUN git clone https://github.com/owntone/owntone-server.git && \
 #    rm -rf /usr/local/bin/antlr3 /tmp/* \
 
  && cd /usr/local/etc \
- && sed -i -e 's/\(uid.*=.*\)/uid = "root"/g' forked-daapd.conf \
- && sed -i s#"ipv6 = yes"#"ipv6 = no"#g forked-daapd.conf \
- && sed -i s#/srv/music#/config/forked-daapd/music#g forked-daapd.conf \
- && sed -i s#/usr/local/var/cache/forked-daapd/songs3.db#/config/forked-daapd/cache/songs3.db#g forked-daapd.conf \
- && sed -i s#/usr/local/var/cache/forked-daapd/cache.db#/config/forked-daapd/cache/cache.db#g forked-daapd.conf \
- && sed -i s#/usr/local/var/log/forked-daapd.log#/dev/stdout#g forked-daapd.conf \
- && sed -i "/websocket_port\ =/ s/# *//" forked-daapd.conf \
- && sed -i "/trusted_networks\ =/ s/# *//" forked-daapd.conf \
- && sed -i "/pipe_autostart\ =/ s/# *//" forked-daapd.conf \
- && sed -i "/db_path\ =/ s/# *//" forked-daapd.conf \
- && sed -i "/cache_path\ =/ s/# *//" forked-daapd.conf
+ && sed -i -e 's/\(uid.*=.*\)/uid = "root"/g' owntone.conf \
+ && sed -i s#"ipv6 = yes"#"ipv6 = no"#g owntone.conf \
+ && sed -i s#/srv/music#/config/owntone/music#g owntone.conf \
+ && sed -i s#/usr/local/var/cache/owntone/songs3.db#/config/owntone/cache/songs3.db#g owntone.conf \
+ && sed -i s#/usr/local/var/cache/owntone/cache.db#/config/owntone/cache/cache.db#g owntone.conf \
+ && sed -i s#/usr/local/var/log/owntone.log#/dev/stdout#g owntone.conf \
+ && sed -i "/websocket_port\ =/ s/# *//" owntone.conf \
+ && sed -i "/trusted_networks\ =/ s/# *//" owntone.conf \
+ && sed -i "/pipe_autostart\ =/ s/# *//" owntone.conf \
+ && sed -i "/db_path\ =/ s/# *//" owntone.conf \
+ && sed -i "/cache_path\ =/ s/# *//" owntone.conf
 
 VOLUME /etc/localtime /etc/localtime:ro
 
@@ -61,15 +61,15 @@ ARG BUILD_VERSION
 
 # Labels
 LABEL \
-    io.hass.name="Owntone Server" \
-    io.hass.description="The owntone server program" \
+    io.hass.name="OwnTone Server" \
+    io.hass.description="The OwnTone server program" \
     io.hass.arch="${BUILD_ARCH}" \
     io.hass.type="addon" \
     io.hass.version=${BUILD_VERSION} \
     maintainer="John Dowling <john.patrick.dowling@gmail.com>" \
-    org.label-schema.description="The owntone server program" \
+    org.label-schema.description="The OwnTone server program" \
     org.label-schema.build-date=${BUILD_DATE} \
-    org.label-schema.name="Owntone Server" \
+    org.label-schema.name="OwnTone Server" \
     org.label-schema.schema-version="1.0" \
     org.label-schema.url="" \
     org.label-schema.usage="https://github.com/johnpdowling/hassio-addons/tree/master/owntone/README.md" \
