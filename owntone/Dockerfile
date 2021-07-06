@@ -21,11 +21,11 @@ RUN apt-get install -y --fix-missing --no-install-recommends \
         libcurl4-openssl-dev libprotobuf-c-dev \
         libconfuse-dev libunistring-dev libsqlite3-dev 
 RUN apt-get install -y --fix-missing --no-install-recommends \
-        gperf 
-RUN apt-get install -y --fix-missing --no-install-recommends \ 
-        antlr3 
+        gperf  
 RUN apt-get install -y --fix-missing --no-install-recommends \ 
         libantlr3c-dev 
+RUN apt-get install -y --fix-missing --no-install-recommends \ 
+        antlr3
 RUN git clone https://github.com/owntone/owntone-server.git && \
     cd owntone-server && \
     autoreconf -i && \
