@@ -2,10 +2,10 @@
     "squash": false,
     "build_from": {
         "aarch64": "hassioaddons/debian-base-aarch64",
-        "amd64": "hassioaddons/base-amd64",
-        "armhf": "hassioaddons/base-armhf",
-        "armv7": "hassioaddons/base-armv7",
-        "i386": "hassioaddons/base-i386"
+        "amd64": "hassioaddons/debian-base-amd64",
+        "armhf": "hassioaddons/debian-base-armhf",
+        "armv7": "hassioaddons/debian-base-armv7",
+        "i386": "hassioaddons/debian-base-i386"
     },
     "args": {}
 }
