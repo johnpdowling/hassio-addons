@@ -5,7 +5,7 @@ FROM ${BUILD_FROM}
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-VOLUME /etc/localtime /etc/localtime:ro
+VOLUME /etc/localtime:/etc/localtime:ro
 
 # Copy root filesystem
 COPY rootfs /
