@@ -28,9 +28,10 @@ RUN curl -L -o /tmp/antlr-3.4-complete.jar http://www.antlr3.org/download/antlr-
     echo 'exec java -cp /tmp/antlr-3.4-complete.jar org.antlr.Tool "$@"' >> /usr/local/bin/antlr3 && \
     chmod 775 /usr/local/bin/antlr3
 
+RUN cd /tmp
 RUN  git clone https://github.com/owntone/owntone-server.git
-RUN    cd owntone-server
-RUN    autoreconf -i 
+RUN    cd /tmp/owntone-server
+RUN    autoreconf -fi 
 RUN    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --with-libwebsockets 
 RUN    make 
 RUN    make install
