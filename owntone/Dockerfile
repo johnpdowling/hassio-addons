@@ -19,13 +19,15 @@ RUN apt-get install -y --fix-missing --no-install-recommends \
         libasound2-dev libmxml-dev libgcrypt20-dev libavahi-client-dev zlib1g-dev \
         libevent-dev libplist-dev libsodium-dev libjson-c-dev libwebsockets-dev \
         libcurl4-openssl-dev libprotobuf-c-dev \
-        libconfuse-dev libunistring-dev libsqlite3-dev 
-RUN apt-get install -y --fix-missing --no-install-recommends \
-        gperf  
-RUN apt-get install -y --fix-missing --no-install-recommends \ 
-        libantlr3c-dev 
-RUN apt-get install -y --fix-missing --no-install-recommends \ 
-        antlr3
+        libconfuse-dev libunistring-dev libsqlite3-dev \
+        gperf libantlr3c-dev
+#RUN apt-get install -y --fix-missing --no-install-recommends \ 
+#        antlr3
+RUN curl -L -o /tmp/antlr-3.4-complete.jar http://www.antlr3.org/download/antlr-3.4-complete.jar && \
+    echo '#!/bin/bash' > /usr/local/bin/antlr3 && \
+    echo 'exec java -cp /tmp/antlr-3.4-complete.jar org.antlr.Tool "$@"' >> /usr/local/bin/antlr3 && \
+    chmod 775 /usr/local/bin/antlr3
+
 RUN git clone https://github.com/owntone/owntone-server.git && \
     cd owntone-server && \
     autoreconf -i && \
