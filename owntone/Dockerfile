@@ -8,7 +8,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 #from owntone-server instructions
 # hadolint ignore=DL3003
 RUN apt-get update &&
-    apt-get install \
+    apt-get install -y --fix-missing --no-install-recommends \
         build-essential git autotools-dev autoconf automake libtool gettext gawk \
         gperf antlr3 libantlr3c-dev libconfuse-dev libunistring-dev libsqlite3-dev \
         libavcodec-dev libavformat-dev libavfilter-dev libswscale-dev libavutil-dev \
