@@ -1,8 +1,8 @@
 {
-  "name": "owntone",
+  "name": "OwnTone",
   "version": "0.0.1",
   "slug": "owntone",
-  "description": "Owntone media server instance",
+  "description": "OwnTone media server instance",
   "url": "https://github.com/johnpdowling/hassio-addons/owntone",
   "startup": "services",
   "host_network": true,
