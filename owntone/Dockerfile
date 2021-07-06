@@ -31,8 +31,8 @@ RUN curl -L -o /tmp/antlr-3.4-complete.jar http://www.antlr3.org/download/antlr-
 RUN cd /tmp && \
     git clone https://github.com/owntone/owntone-server.git && \
     cd /tmp/owntone-server && \
-    autoreconf -fi 
-RUN    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --with-libwebsockets 
+    autoreconf -fi && \
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --with-libwebsockets 
 RUN    make 
 RUN    make install
 
