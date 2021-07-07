@@ -47,8 +47,8 @@ RUN cd /tmp && \
 
 # && apk del --purge deps1 deps2 && \
 #    rm -rf /usr/local/bin/antlr3 /tmp/* \
-RUN \
- && cd /usr/local/etc \
+
+RUN cd /usr/local/etc \
  && sed -i -e 's/\(uid.*=.*\)/uid = "root"/g' owntone.conf \
  && sed -i s#"ipv6 = yes"#"ipv6 = no"#g owntone.conf \
  && sed -i s#/srv/music#/config/owntone/music#g owntone.conf \
