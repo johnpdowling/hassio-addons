@@ -1,4 +1,5 @@
 #!/usr/bin/with-contenv bashio
+
 # ==============================================================================
 # JPD Hass.io Add-ons: owntone server
 # Configures the owntone Server
