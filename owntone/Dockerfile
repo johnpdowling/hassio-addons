@@ -32,8 +32,8 @@ RUN cd /tmp && \
     cd /tmp/owntone-server && \
     autoreconf -fi && \
     ./configure --with-libwebsockets && \
-    make
-RUN    make install
+    make && \
+    make install
 
 # && cd /tmp && \
 #    git clone https://github.com/ejurgensen/forked-daapd.git && \
