@@ -22,8 +22,6 @@ RUN apt-get install -y --fix-missing --no-install-recommends \
         libconfuse-dev libunistring-dev libsqlite3-dev \
         gperf libantlr3c-dev
 RUN apt-get install -y --fix-missing --no-install-recommends \ 
-        openjdk7-jre-base        
-RUN apt-get install -y --fix-missing --no-install-recommends \ 
         antlr3
 RUN curl -L -o /tmp/antlr-3.4-complete.jar http://www.antlr3.org/download/antlr-3.5.2-complete.jar && \
     echo '#!/bin/bash' > /usr/local/bin/antlr3 && \
