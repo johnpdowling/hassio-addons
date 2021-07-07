@@ -21,8 +21,10 @@ RUN apt-get install -y --fix-missing --no-install-recommends \
         libcurl4-openssl-dev libprotobuf-c-dev \
         libconfuse-dev libunistring-dev libsqlite3-dev \
         gperf libantlr3c-dev
-#RUN apt-get install -y --fix-missing --no-install-recommends \ 
-#        antlr3
+RUN apt-get install -y --fix-missing --no-install-recommends \ 
+        openjdk7-jre-base        
+RUN apt-get install -y --fix-missing --no-install-recommends \ 
+        antlr3
 RUN curl -L -o /tmp/antlr-3.4-complete.jar http://www.antlr3.org/download/antlr-3.5.2-complete.jar && \
     echo '#!/bin/bash' > /usr/local/bin/antlr3 && \
     echo 'exec java -cp /tmp/antlr-3.4-complete.jar org.antlr.Tool "$@"' >> /usr/local/bin/antlr3 && \
