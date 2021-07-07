@@ -22,11 +22,13 @@ RUN apt-get install -y --fix-missing --no-install-recommends \
         libconfuse-dev libunistring-dev libsqlite3-dev \
         gperf libantlr3c-dev
 RUN apt-get install -y --fix-missing --no-install-recommends \ 
+        openjdk-11-jre-headless
+RUN apt-get install -y --fix-missing --no-install-recommends \ 
         antlr3
-RUN curl -L -o /tmp/antlr-3.4-complete.jar http://www.antlr3.org/download/antlr-3.5.2-complete.jar && \
-    echo '#!/bin/bash' > /usr/local/bin/antlr3 && \
-    echo 'exec java -cp /tmp/antlr-3.4-complete.jar org.antlr.Tool "$@"' >> /usr/local/bin/antlr3 && \
-    chmod 775 /usr/local/bin/antlr3
+#RUN curl -L -o /tmp/antlr-3.4-complete.jar http://www.antlr3.org/download/antlr-3.5.2-complete.jar && \
+#    echo '#!/bin/bash' > /usr/local/bin/antlr3 && \
+#    echo 'exec java -cp /tmp/antlr-3.4-complete.jar org.antlr.Tool "$@"' >> /usr/local/bin/antlr3 && \
+#    chmod 775 /usr/local/bin/antlr3
 
 RUN cd /tmp && \
     git clone https://github.com/owntone/owntone-server.git && \
