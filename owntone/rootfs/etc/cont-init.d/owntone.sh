@@ -7,7 +7,7 @@ if ! bashio::fs.directory_exists '/config/owntone/cache'; then
     mkdir -p /config/owntone/cache
 fi
 
-if ! bashio::fs.file_exists '/config/forked-daapd/forked-daapd.conf'; then
+if ! bashio::fs.file_exists '/config/owntone/owntone.conf'; then
     bashio::log.debug 'Copying default conf file...'
     cp /usr/local/etc/owntone.conf /config/owntone/owntone.conf
 fi
