@@ -7,8 +7,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 VOLUME /etc/localtime:/etc/localtime:ro
 
-ENV PGID=0
-ENV PUID=0
+
 
 # Copy root filesystem
 COPY rootfs /
@@ -24,11 +23,11 @@ RUN mkdir -p /usr/share/man/man1 && \
         libevent-dev libplist-dev libsodium-dev libjson-c-dev libwebsockets-dev \
         libcurl4-openssl-dev libprotobuf-c-dev \
         libconfuse-dev libunistring-dev libsqlite3-dev \
-        gperf libantlr3c-dev antlr3
-#RUN curl -L -o /tmp/antlr-3.4-complete.jar http://www.antlr3.org/download/antlr-3.5.2-complete.jar && \
-#    echo '#!/bin/bash' > /usr/local/bin/antlr3 && \
-#    echo 'exec java -cp /tmp/antlr-3.4-complete.jar org.antlr.Tool "$@"' >> /usr/local/bin/antlr3 && \
-#    chmod 775 /usr/local/bin/antlr3
+        gperf libantlr3c-dev antlr3 avahi-daemon
+
+#hook into os mdns
+VOLUME /run/dbus:/var/run/dbus
+VOLUME /run/avahi-daemon:/var/run/avahi-daemon
 
 RUN cd /tmp && \
     git clone https://github.com/owntone/owntone-server.git && \
@@ -37,19 +36,6 @@ RUN cd /tmp && \
     ./configure --with-libwebsockets && \
     make && \
     make install
-
-# && cd /tmp && \
-#    git clone https://github.com/ejurgensen/forked-daapd.git && \
-#    cd /tmp/forked-daapd && \
-#    autoreconf -fi && \
-#    ./configure \
-#      --enable-itunes \
-#      --with-libwebsockets && \
-#    make && \
-#    make install \
-
-# && apk del --purge deps1 deps2 && \
-#    rm -rf /usr/local/bin/antlr3 /tmp/* \
 
 RUN cd /usr/local/etc \
  && sed -i -e 's/\(uid.*=.*\)/uid = "root"/g' owntone.conf \
