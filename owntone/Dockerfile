@@ -21,7 +21,7 @@ RUN mkdir -p /usr/share/man/man1 && \
         libevent-dev libplist-dev libsodium-dev libjson-c-dev libwebsockets-dev \
         libcurl4-openssl-dev libprotobuf-c-dev \
         libconfuse-dev libunistring-dev libsqlite3-dev \
-        gperf libantlr3c-dev antlr3
+        gperf libantlr3c-dev antlr3 avahi-daemon
 #RUN curl -L -o /tmp/antlr-3.4-complete.jar http://www.antlr3.org/download/antlr-3.5.2-complete.jar && \
 #    echo '#!/bin/bash' > /usr/local/bin/antlr3 && \
 #    echo 'exec java -cp /tmp/antlr-3.4-complete.jar org.antlr.Tool "$@"' >> /usr/local/bin/antlr3 && \
