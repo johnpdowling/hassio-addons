@@ -23,11 +23,8 @@ RUN mkdir -p /usr/share/man/man1 && \
         libevent-dev libplist-dev libsodium-dev libjson-c-dev libwebsockets-dev \
         libcurl4-openssl-dev libprotobuf-c-dev \
         libconfuse-dev libunistring-dev libsqlite3-dev \
-        gperf libantlr3c-dev antlr3 avahi-daemon
-
-#hook into os mdns
-VOLUME /run/dbus:/var/run/dbus
-VOLUME /run/avahi-daemon:/var/run/avahi-daemon
+        gperf libantlr3c-dev antlr3 \
+        avahi-daemon avahi-discover avahi-utils libnss-mdns haproxy
 
 RUN cd /tmp && \
     git clone https://github.com/owntone/owntone-server.git && \
