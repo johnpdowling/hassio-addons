@@ -34,18 +34,18 @@ RUN    ./configure --with-libwebsockets # && \
 RUN    make # && \
 RUN    make install
 
-RUN cd /usr/local/etc \
- && sed -i -e 's/\(uid.*=.*\)/uid = "root"/g' owntone.conf \
- && sed -i s#"ipv6 = yes"#"ipv6 = no"#g owntone.conf \
- && sed -i s#/srv/music#/config/owntone/music#g owntone.conf \
- && sed -i s#/usr/local/var/cache/owntone/songs3.db#/config/owntone/cache/songs3.db#g owntone.conf \
- && sed -i s#/usr/local/var/cache/owntone/cache.db#/config/owntone/cache/cache.db#g owntone.conf \
- && sed -i s#/usr/local/var/log/owntone.log#/dev/stdout#g owntone.conf \
- && sed -i "/websocket_port\ =/ s/# *//" owntone.conf \
- && sed -i "/trusted_networks\ =/ s/# *//" owntone.conf \
- && sed -i "/pipe_autostart\ =/ s/# *//" owntone.conf \
- && sed -i "/db_path\ =/ s/# *//" owntone.conf \
- && sed -i "/cache_path\ =/ s/# *//" owntone.conf
+RUN cd /usr/local/etc # && \
+RUN    sed -i -e 's/\(uid.*=.*\)/uid = "root"/g' owntone.conf # && \
+RUN    sed -i s#"ipv6 = yes"#"ipv6 = no"#g owntone.conf # && \
+RUN    sed -i s#/srv/music#/config/owntone/music#g owntone.conf # && \
+RUN    sed -i s#/usr/local/var/cache/owntone/songs3.db#/config/owntone/cache/songs3.db#g owntone.conf # && \
+RUN    sed -i s#/usr/local/var/cache/owntone/cache.db#/config/owntone/cache/cache.db#g owntone.conf # && \
+RUN    sed -i s#/usr/local/var/log/owntone.log#/dev/stdout#g owntone.conf # && \
+RUN    sed -i "/websocket_port\ =/ s/# *//" owntone.conf # && \
+RUN    sed -i "/trusted_networks\ =/ s/# *//" owntone.conf # && \
+RUN    sed -i "/pipe_autostart\ =/ s/# *//" owntone.conf # && \
+RUN    sed -i "/db_path\ =/ s/# *//" owntone.conf # && \
+RUN    sed -i "/cache_path\ =/ s/# *//" owntone.conf
 
 
 # Build arguments
