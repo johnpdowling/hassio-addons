@@ -26,13 +26,13 @@ RUN mkdir -p /usr/share/man/man1 && \
         gperf libantlr3c-dev antlr3 \
         avahi-daemon avahi-discover avahi-utils libnss-mdns haproxy
 
-RUN cd /tmp && \
-    git clone https://github.com/owntone/owntone-server.git && \
-    cd /tmp/owntone-server && \
-    autoreconf -fi && \
-    ./configure --with-libwebsockets && \
-    make && \
-    make install
+RUN cd /tmp # && \
+RUN    git clone https://github.com/owntone/owntone-server.git # && \
+RUN    cd /tmp/owntone-server # && \
+RUN    autoreconf -fi # && \
+RUN    ./configure --with-libwebsockets # && \
+RUN    make # && \
+RUN    make install
 
 RUN cd /usr/local/etc \
  && sed -i -e 's/\(uid.*=.*\)/uid = "root"/g' owntone.conf \
