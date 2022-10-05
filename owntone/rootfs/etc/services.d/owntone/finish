@@ -1,4 +1,4 @@
-#!/usr/bin/execlineb -S0
+#!/command/execlineb -S0
 # ==============================================================================
 # JPD Hass.io Add-ons: owntone server
 # Take down the S6 supervision tree when owntone fails
