@@ -3,7 +3,6 @@
   "version": "0.0.2",
   "slug": "owntone",
   "description": "OwnTone media server instance",
-  "url": "https://github.com/johnpdowling/hassio-addons/owntone",
   "startup": "services",
   "host_network": true,
   "host_dbus": true,
