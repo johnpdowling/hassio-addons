@@ -13,7 +13,7 @@ if ! bashio::fs.file_exists '/config/owntone/owntone.conf'; then
 fi
 
 if ! bashio::fs.directory_exists '/config/owntone/music'; then
-bashio::log.debug 'Creating music folder...'
+    bashio::log.debug 'Creating music folder...'
     mkdir -p /config/owntone/music
     bashio::log.debug 'Creating HA fifo file...'
     mkfifo -m 666 /config/owntone/music/HomeAssistantAnnounce
