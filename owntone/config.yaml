@@ -6,7 +6,7 @@ description: OwnTone media server instance
 url: https://github.com/johnpdowling/hassio-addons/tree/master/owntone
 startup: services
 host_network: true
-host_dbus": true
+host_dbus: true
 arch:
   - aarch64
   - amd64
@@ -15,7 +15,7 @@ arch:
   - i386
 boot: auto
 hassio_api: true
-hassio_role": default
+hassio_role: default
 map:  
   - config:rw
 options: 
