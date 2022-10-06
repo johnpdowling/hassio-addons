@@ -1,0 +1,10 @@
+#!/command/with-contenv bashio
+# ==============================================================================
+# JPD Hass.io Add-ons: owntone server
+# Runs the owntone Server
+# ==============================================================================
+# shellcheck disable=SC1091
+
+# Run owntone
+bashio::log.info 'Starting the OwnTone Server...'
+owntone -f -c /config/owntone/owntone.conf -P /var/run/owntone.pid
