@@ -4,7 +4,7 @@ set -e
 bashio::log.info "Creating WG configuration..."
 
 # Create main config
-WG_USER=$(bashio::config 'user')
+WG_USER=$(bashio::config 'email')
 WG_PASS=$(bashio::config 'password')
 
 sed -i "s/WG_USER/${WG_USER}/" /waterguru_flask.py
