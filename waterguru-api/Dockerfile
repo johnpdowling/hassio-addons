@@ -10,7 +10,7 @@ RUN \
   apk add --no-cache \
     python3 py3-pip
 RUN pip install --no-cache-dir \
-    flask boto3 requests-aws4auth
+    flask boto3 requests-aws4auth warrant-ext
 #RUN \
 #  pip install \
 #    requests_aws4auth boto3 flask warrant 
