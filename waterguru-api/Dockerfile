@@ -1,6 +1,8 @@
 ARG BUILD_FROM
 FROM $BUILD_FROM
 
+ENV WG_PORT=53255
+
 VOLUME /etc/localtime:/etc/localtime:ro
 
 # Install requirements for add-on
