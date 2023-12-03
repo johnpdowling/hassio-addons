@@ -9,7 +9,8 @@ VOLUME /etc/localtime:/etc/localtime:ro
 RUN \
   apk add --no-cache \
     python3 py3-pip
-RUN pip install flask
+RUN pip install --no-cache-dir \
+    flask boto3
 #RUN \
 #  pip install \
 #    requests_aws4auth boto3 flask warrant 
