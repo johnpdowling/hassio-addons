@@ -10,7 +10,7 @@ arch:
   - armv7
   - i386
 url: https://github.com/johnpdowling/hassio-addons/tree/master/waterguru-api
-startup: application
+startup: services
 boot: auto
 init: false
 ports:
