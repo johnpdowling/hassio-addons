@@ -18,11 +18,9 @@ ports:
 ports_description:
   53255/tcp: API access port
 options: 
-  packages: []
-  init_commands: []
+  email: "user@example.com"
+  password: "P@$$w0rd"
 schema:
   log_level: list(trace|debug|info|notice|warning|error|fatal)?
-  packages:
-    - str
-  init_commands:
-    - str
+  email: str
+  password: str
