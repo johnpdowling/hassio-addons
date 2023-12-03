@@ -12,4 +12,4 @@ sed -i "s/WG_PASS/${WG_PASS}/" /waterguru_flask.py
 sed -i "s/WG_PORT/${WG_PORT}/" /waterguru_flask.py
 
 bashio::log.info "Starting WG API server..."
-python3 /waterguru_flash.py
+python3 /waterguru_flask.py
